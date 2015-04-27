@@ -25,13 +25,13 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
         # the login page has to be accessible for everybody
-        demo_login:
-            pattern:  ^/entrar$
+        login:
+            pattern:  ^/
             security: false
 
         # secures part of the application
-        demo_secured_area:
-            pattern:    ^/demo/secured/
+        area_segura:
+            pattern:    ^/
             # it's important to notice that in this case _demo_security_check and _demo_login
             # are route names and that they are specified in the AcmeDemoBundle
             form_login:
