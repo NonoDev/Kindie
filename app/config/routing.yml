@@ -1,3 +1,9 @@
 app:
     resource: @AppBundle/Controller/
     type:     annotation
+
+usuario_comprobar:
+    path:     /comprobar
+
+usuario_salir:
+    path:     /salir

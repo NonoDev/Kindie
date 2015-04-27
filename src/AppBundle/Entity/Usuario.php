@@ -1,0 +1,531 @@
+<?php
+namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ */
+class Usuario
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     *
+     * @var integer
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $dni;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $imagen;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $pass;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $nombreCompleto;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $telefono;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $apellidos;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $nombreUsuario;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Favorito", mappedBy="usuario")
+     *
+     * @var Favorito
+     */
+    protected $favoritos = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="usuario")
+     *
+     * @var Comentario
+     */
+    protected $comentarios = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Notificacion", mappedBy="usuario")
+     *
+     * @var Notificacion
+     */
+    protected $notificaciones = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Mensaje", mappedBy="usuario")
+     *
+     * @var Mensaje
+     */
+    protected $mensajes = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Inversion", mappedBy="usuario")
+     *
+     * @var Inversion
+     */
+    protected $inversiones = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="usuario")
+     *
+     * @var Proyecto
+     */
+    protected $proyectos = null;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Proyecto", mappedBy="participantes")
+     *
+     * @var Proyecto
+     */
+    protected $participaciones = null;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->favoritos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->notificaciones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->mensajes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inversiones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->proyectos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participaciones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dni
+     *
+     * @param string $dni
+     * @return Usuario
+     */
+    public function setDni($dni)
+    {
+        $this->dni = $dni;
+
+        return $this;
+    }
+
+    /**
+     * Get dni
+     *
+     * @return string 
+     */
+    public function getDni()
+    {
+        return $this->dni;
+    }
+
+    /**
+     * Set imagen
+     *
+     * @param string $imagen
+     * @return Usuario
+     */
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    /**
+     * Get imagen
+     *
+     * @return string 
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    /**
+     * Set pass
+     *
+     * @param string $pass
+     * @return Usuario
+     */
+    public function setPass($pass)
+    {
+        $this->pass = $pass;
+
+        return $this;
+    }
+
+    /**
+     * Get pass
+     *
+     * @return string 
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * Set nombreCompleto
+     *
+     * @param string $nombreCompleto
+     * @return Usuario
+     */
+    public function setNombreCompleto($nombreCompleto)
+    {
+        $this->nombreCompleto = $nombreCompleto;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreCompleto
+     *
+     * @return string 
+     */
+    public function getNombreCompleto()
+    {
+        return $this->nombreCompleto;
+    }
+
+    /**
+     * Set telefono
+     *
+     * @param string $telefono
+     * @return Usuario
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return string 
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * Set apellidos
+     *
+     * @param string $apellidos
+     * @return Usuario
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    /**
+     * Get apellidos
+     *
+     * @return string 
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * Set nombreUsuario
+     *
+     * @param string $nombreUsuario
+     * @return Usuario
+     */
+    public function setNombreUsuario($nombreUsuario)
+    {
+        $this->nombreUsuario = $nombreUsuario;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreUsuario
+     *
+     * @return string 
+     */
+    public function getNombreUsuario()
+    {
+        return $this->nombreUsuario;
+    }
+
+    /**
+     * Add favoritos
+     *
+     * @param \AppBundle\Entity\Favorito $favoritos
+     * @return Usuario
+     */
+    public function addFavorito(\AppBundle\Entity\Favorito $favoritos)
+    {
+        $this->favoritos[] = $favoritos;
+
+        return $this;
+    }
+
+    /**
+     * Remove favoritos
+     *
+     * @param \AppBundle\Entity\Favorito $favoritos
+     */
+    public function removeFavorito(\AppBundle\Entity\Favorito $favoritos)
+    {
+        $this->favoritos->removeElement($favoritos);
+    }
+
+    /**
+     * Get favoritos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFavoritos()
+    {
+        return $this->favoritos;
+    }
+
+    /**
+     * Add comentarios
+     *
+     * @param \AppBundle\Entity\Comentario $comentarios
+     * @return Usuario
+     */
+    public function addComentario(\AppBundle\Entity\Comentario $comentarios)
+    {
+        $this->comentarios[] = $comentarios;
+
+        return $this;
+    }
+
+    /**
+     * Remove comentarios
+     *
+     * @param \AppBundle\Entity\Comentario $comentarios
+     */
+    public function removeComentario(\AppBundle\Entity\Comentario $comentarios)
+    {
+        $this->comentarios->removeElement($comentarios);
+    }
+
+    /**
+     * Get comentarios
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * Add notificaciones
+     *
+     * @param \AppBundle\Entity\Notificacion $notificaciones
+     * @return Usuario
+     */
+    public function addNotificacione(\AppBundle\Entity\Notificacion $notificaciones)
+    {
+        $this->notificaciones[] = $notificaciones;
+
+        return $this;
+    }
+
+    /**
+     * Remove notificaciones
+     *
+     * @param \AppBundle\Entity\Notificacion $notificaciones
+     */
+    public function removeNotificacione(\AppBundle\Entity\Notificacion $notificaciones)
+    {
+        $this->notificaciones->removeElement($notificaciones);
+    }
+
+    /**
+     * Get notificaciones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotificaciones()
+    {
+        return $this->notificaciones;
+    }
+
+    /**
+     * Add mensajes
+     *
+     * @param \AppBundle\Entity\Mensaje $mensajes
+     * @return Usuario
+     */
+    public function addMensaje(\AppBundle\Entity\Mensaje $mensajes)
+    {
+        $this->mensajes[] = $mensajes;
+
+        return $this;
+    }
+
+    /**
+     * Remove mensajes
+     *
+     * @param \AppBundle\Entity\Mensaje $mensajes
+     */
+    public function removeMensaje(\AppBundle\Entity\Mensaje $mensajes)
+    {
+        $this->mensajes->removeElement($mensajes);
+    }
+
+    /**
+     * Get mensajes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMensajes()
+    {
+        return $this->mensajes;
+    }
+
+    /**
+     * Add inversiones
+     *
+     * @param \AppBundle\Entity\Inversion $inversiones
+     * @return Usuario
+     */
+    public function addInversione(\AppBundle\Entity\Inversion $inversiones)
+    {
+        $this->inversiones[] = $inversiones;
+
+        return $this;
+    }
+
+    /**
+     * Remove inversiones
+     *
+     * @param \AppBundle\Entity\Inversion $inversiones
+     */
+    public function removeInversione(\AppBundle\Entity\Inversion $inversiones)
+    {
+        $this->inversiones->removeElement($inversiones);
+    }
+
+    /**
+     * Get inversiones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInversiones()
+    {
+        return $this->inversiones;
+    }
+
+    /**
+     * Add proyectos
+     *
+     * @param \AppBundle\Entity\Proyecto $proyectos
+     * @return Usuario
+     */
+    public function addProyecto(\AppBundle\Entity\Proyecto $proyectos)
+    {
+        $this->proyectos[] = $proyectos;
+
+        return $this;
+    }
+
+    /**
+     * Remove proyectos
+     *
+     * @param \AppBundle\Entity\Proyecto $proyectos
+     */
+    public function removeProyecto(\AppBundle\Entity\Proyecto $proyectos)
+    {
+        $this->proyectos->removeElement($proyectos);
+    }
+
+    /**
+     * Get proyectos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProyectos()
+    {
+        return $this->proyectos;
+    }
+
+    /**
+     * Add participaciones
+     *
+     * @param \AppBundle\Entity\Proyecto $participaciones
+     * @return Usuario
+     */
+    public function addParticipacione(\AppBundle\Entity\Proyecto $participaciones)
+    {
+        $this->participaciones[] = $participaciones;
+
+        return $this;
+    }
+
+    /**
+     * Remove participaciones
+     *
+     * @param \AppBundle\Entity\Proyecto $participaciones
+     */
+    public function removeParticipacione(\AppBundle\Entity\Proyecto $participaciones)
+    {
+        $this->participaciones->removeElement($participaciones);
+    }
+
+    /**
+     * Get participaciones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipaciones()
+    {
+        return $this->participaciones;
+    }
+}
