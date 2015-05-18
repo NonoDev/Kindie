@@ -1,0 +1,74 @@
+/* general */
+h1{
+    font-weight: 200;
+
+}
+
+.parallax-container {
+    height: 300px;
+    margin: -20px 0 0 -1px;
+}
+
+/* fin */
+/* menu superior */
+nav a, nav .input-field input{
+    color: #000 !important;
+    padding: 7px 15px !important;
+}
+
+nav{
+    border-top: 3px solid #aa00ff;
+    height: 80px;
+
+}
+
+.brand-logo{
+    margin: -3px 15px;
+
+}
+
+nav a.button-collapse i {
+    color: #aa00ff;
+}
+/* fin menu */
+
+/* slider */
+
+
+/* fin slider */
+/* |||||||||||||  SECCIONES |||||||||||||| */
+/* seccion principal */
+#principal{
+    background: url(../images/slider/1.jpg) no-repeat fixed;
+    height: 700px;
+    background-size: cover;
+    padding: 50px;
+}
+#principal .row{
+    padding: 70px 100px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+#principal p{
+    font-size: 17px;
+    font-weight: 300;
+    margin: 20px 0 50px 0 !important;
+
+}
+/* fin secc, principal */
+/* secciones */
+#opciones{
+    background: #f3e5f5;
+}
+/* fin */
+/* FIN SECCIONES */
+/* footer */
+.page-footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+
+}
+
+/* fin pie */

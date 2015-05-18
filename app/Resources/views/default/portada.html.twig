@@ -1,0 +1,97 @@
+{% extends '::layout.html.twig' %}
+
+{% block contenido %}
+    <section id="principal">
+        <div class="row">
+            <div class="col s12 m10 offset-2">
+                <h1>Cabecera demo</h1>
+                <p>Lorem Ipsum asrae eliptica coconut salchipapa lol</p>
+                <button class="btn purple accent-4 waves-effect">Más Info</button>
+            </div>
+        </div>
+
+
+    </section>
+    <section id="opciones">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('bundles/app/images/slider/5.jpg') }}">
+                        <span class="card-title">Card Title</span>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                        <a href='#'>This is a link</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('bundles/app/images/slider/2.jpg') }}">
+                        <span class="card-title">Card Title</span>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                        <a href='#'>This is a link</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('bundles/app/images/slider/3.jpg') }}">
+                        <span class="card-title">Card Title</span>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                        <a href='#'>This is a link</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('bundles/app/images/slider/4.jpg') }}">
+                        <span class="card-title">Card Title</span>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                        <a href='#'>This is a link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div class="parallax-container">
+        <div class="parallax"><img src="{{ asset('bundles/app/images/slider/3.jpg') }}"></div>
+    </div>
+    <section id="recientes">
+        <h1 class="center">Proyectos Recientes</h1>
+    </section>
+    <div class="parallax-container">
+        <div class="parallax"><img src="{{ asset('bundles/app/images/slider/5.jpg') }}"></div>
+    </div>
+    <section id="generos">
+        <h1 class="center">Descubre</h1>
+    </section>
+{% endblock %}
+
