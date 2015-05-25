@@ -9,20 +9,15 @@
 
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
             <ul class="right hide-on-med-and-down">
-                <li><div class="input-field">
-                        <input id="search" type="search" required>
-                        <label for="search"><i class="mdi-action-search"></i></label>
-                        <i class="mdi-navigation-close"></i>
-                    </div></li>
-                <li><a href="#">Descubre</a></li>
-                <li><a href="#">Empieza</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="{{ path('descubre_proyectos') }}">Descubre</a></li>
+                <li><a href="{{ path('empieza') }}">Empieza</a></li>
+                <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
                 <li><a href="{{ path('nuevo_usuario') }}">Regístrate</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="#">Descubre</a></li>
-                <li><a href="#">Empieza</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="{{ path('descubre_proyectos') }}">Descubre</a></li>
+                <li><a href="{{ path('empieza')}}">Empieza</a></li>
+                <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
                 <li><a href="{{ path('nuevo_usuario') }}">Regístrate</a></li>
             </ul>
         </div>

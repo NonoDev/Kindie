@@ -16,12 +16,14 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/entrar", name="usuario_entrar", methods={"GET"})
+     *
+     * @Route("/entrar", name="usuario_entrar")
      */
     public function entrarAction()
     {
         $helper = $this->get('security.authentication_utils');
-        return $this->render('entrada.html.twig',
+        dump($helper->getLastAuthenticationError());
+        return $this->render(':default/usuario:entrada.html.twig',
             [
                 'last_username' => $helper->getLastUsername(),
                 'error'         => $helper->getLastAuthenticationError()
