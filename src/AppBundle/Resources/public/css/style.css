@@ -5,7 +5,7 @@ h1{
 }
 
 .parallax-container {
-    height: 300px;
+    height: 500px;
     margin: -20px 0 0 -1px;
 }
 
@@ -39,7 +39,7 @@ nav a.button-collapse i {
 /* |||||||||||||  SECCIONES |||||||||||||| */
 /* seccion principal */
 #principal{
-    background: url(../images/slider/1.jpg) no-repeat fixed;
+    background: url(../images/portada/stick.jpg) no-repeat fixed;
     height: 700px;
     background-size: cover;
     padding: 50px;

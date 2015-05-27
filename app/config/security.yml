@@ -4,7 +4,6 @@ security:
     # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
     encoders:
         AppBundle\Entity\Usuario: bcrypt
-        Symfony\Component\Security\Core\User\User: plaintext
 
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
@@ -32,6 +31,10 @@ security:
 
         portada:
             pattern:  ^/$
+            security: false
+
+        registro:
+            pattern:  ^/nuevo_usuario$
             security: false
 
         # secures part of the application

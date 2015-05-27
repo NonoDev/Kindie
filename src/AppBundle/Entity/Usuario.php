@@ -68,6 +68,14 @@ class Usuario implements UserInterface
     protected $nombreUsuario;
 
     /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean
+     */
+    protected $esAdmin;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="Favorito", mappedBy="usuario")
      *
      * @var Favorito
@@ -299,6 +307,29 @@ class Usuario implements UserInterface
     public function getNombreUsuario()
     {
         return $this->nombreUsuario;
+    }
+
+    /**
+     * Set esAdmin
+     *
+     * @param boolean $esAdmin
+     * @return Usuario
+     */
+    public function setesAdmin($esAdmin)
+    {
+        $this->esAdmin = $esAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get esAdmin
+     *
+     * @return boolean
+     */
+    public function getesAdmin()
+    {
+        return $this->esAdmin;
     }
 
     /**
