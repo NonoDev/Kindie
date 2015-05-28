@@ -1,7 +1,10 @@
 /* general */
 h1{
     font-weight: 200;
+}
 
+.card a{
+    color: #A0F !important;
 }
 
 .parallax-container {
@@ -60,6 +63,11 @@ nav a.button-collapse i {
 /* secciones */
 #opciones{
     background: #f3e5f5;
+}
+
+#recientes{
+    padding-bottom: 70px;
+
 }
 /* fin */
 /* FIN SECCIONES */

@@ -12,7 +12,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render(':default:portada.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $proyectos = $em->getRepository('AppBundle:Proyecto')
+            ->findAll()
+        ;
+        dump($proyectos);
+        return $this->render(':default:portada.html.twig', [
+            'proyectos' => $proyectos
+        ]);
     }
 
     /**

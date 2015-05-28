@@ -88,6 +88,48 @@
     </div>
     <section id="recientes">
         <h1 class="center">Proyectos Recientes</h1>
+        {% if proyectos %}
+            <div class="row">
+                {% for item in proyectos %}
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-menu right"></i></span>
+                            <p><a href="#">Visita el proyecto</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-close right"></i></span>
+                            <p class="descripcion truncate">{{ item.descripcion }}</p>
+                            <h5>Progreso</h5>
+                            <div class="progress">
+                                <div class="determinate purple accent-4" style="width: 70%"></div>
+                            </div>
+                            <p><i class="small mdi-maps-pin-drop"></i> {{ item.localizacion }}</p>
+                            <div class="row">
+                                <div class="col m4">
+                                    <strong>Meta</strong>
+                                    <p>{{ item.meta }} $</p>
+                                </div>
+                                <div class="col m4">
+                                    <strong>Conseguido</strong>
+                                    <p>{{ item.contribuciones }} $</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <h3>Aún no se ha iniciado ningún proyecto.</h3>
+                <a href="{{ path('empieza') }}" class="btn purple accent-4">Sé el primero</a>
+        {% endif %}
+        <h5 class="center-align">No te quedes aquí, da el paso! <a href="{{ path('descubre_proyectos') }}" class="btn purple accent-4">EXPLORA</a></h5>
     </section>
     <div class="parallax-container">
         <div class="parallax"><img src="{{ asset('bundles/app/images/portada/p2.jpg') }}"></div>

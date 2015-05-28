@@ -581,7 +581,9 @@ class Usuario implements UserInterface
      */
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        $roles = array(new Role('ROLE_USUARIO'));
+
+        return $roles;
     }
 
     /**
@@ -594,7 +596,7 @@ class Usuario implements UserInterface
      */
     public function getPassword()
     {
-        // TODO: Implement getPassword() method.
+        return $this->pass;
     }
 
     /**
