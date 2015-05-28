@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% block stylesheets %}
+
         <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}">
+        <link href='{{ asset('bundles/app/css/search.css') }}' rel='stylesheet' type='text/css'>
     {% endblock %}
     <nav class="white">
         <div class="nav-wrapper">
@@ -9,6 +11,28 @@
 
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
             <ul class="right hide-on-med-and-down">
+                <li><a><i class="mdi-action-find-replace"></i></a></li>
+                <li>
+                    <div id="morphsearch" class="morphsearch">
+
+                        <form class="morphsearch-form">
+                            <input class="morphsearch-input" type="search"/>
+                            <button class="morphsearch-submit" type="submit">Search</button>
+                        </form>
+                        <div class="morphsearch-content">
+                            <div class="dummy-column">
+
+                            </div>
+                            <div class="dummy-column">
+
+                            </div>
+                            <div class="dummy-column">
+
+                            </div>
+                        </div><!-- /morphsearch-content -->
+                        <span class="morphsearch-close"></span>
+                    </div><!-- /morphsearch -->
+                </li>
                 <li><a href="{{ path('descubre_proyectos') }}">Descubre</a></li>
                 <li><a href="{{ path('empieza') }}">Empieza</a></li>
                 <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
@@ -34,12 +58,12 @@
                         <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
                     </div>
                     <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
+                        <h5 class="white-text">Social</h5>
                         <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-twitter fa-2x"></i> Twitter</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-facebook fa-2x"></i> Facebook</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-google-plus fa-2x"></i>Google+</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-envelope-o fa-2x"></i> Email</a></li>
                         </ul>
                     </div>
                 </div>
