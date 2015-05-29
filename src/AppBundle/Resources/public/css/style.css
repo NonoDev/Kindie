@@ -7,6 +7,11 @@ h1{
     color: #A0F !important;
 }
 
+.progress {
+
+    background-color: rgb(212, 172, 236) !important;
+
+}
 .parallax-container {
     height: 500px;
     margin: -20px 0 0 -1px;

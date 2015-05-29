@@ -57,12 +57,6 @@ class Proyecto
      */
     protected $fechaFin;
 
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @var string
-     */
-    protected $genero;
 
     /**
      * @ORM\Column(type="string")
@@ -98,6 +92,13 @@ class Proyecto
      * @var Comentario
      */
     protected $comentarios = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Genero", mappedBy="proyecto")
+     *
+     * @var Genero
+     */
+    protected $generos = null;
 
     /**
      * @ORM\OneToMany(targetEntity="Multimedia", mappedBy="proyecto")
@@ -294,28 +295,6 @@ class Proyecto
         return $this->fechaFin;
     }
 
-    /**
-     * Set genero
-     *
-     * @param string $genero
-     * @return Proyecto
-     */
-    public function setGenero($genero)
-    {
-        $this->genero = $genero;
-
-        return $this;
-    }
-
-    /**
-     * Get genero
-     *
-     * @return string 
-     */
-    public function getGenero()
-    {
-        return $this->genero;
-    }
 
     /**
      * Set imagenPrincipal
@@ -440,6 +419,39 @@ class Proyecto
     public function getComentarios()
     {
         return $this->comentarios;
+    }
+
+    /**
+     * Add generos
+     *
+     * @param \AppBundle\Entity\Genero $generos
+     * @return Proyecto
+     */
+    public function addGeneros(\AppBundle\Entity\Genero $generos)
+    {
+        $this->generos[] = $generos;
+
+        return $this;
+    }
+
+    /**
+     * Remove generos
+     *
+     * @param \AppBundle\Entity\Genero $generos
+     */
+    public function removeGeneros(\AppBundle\Entity\Genero $generos)
+    {
+        $this->comentarios->removeElement($generos);
+    }
+
+    /**
+     * Get generos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGeneros()
+    {
+        return $this->generos;
     }
 
     /**
