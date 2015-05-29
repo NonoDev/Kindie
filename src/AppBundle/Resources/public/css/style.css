@@ -68,6 +68,13 @@ nav a.button-collapse i {
 /* secciones */
 #opciones{
     background: #f3e5f5;
+    max-width: 1000px;
+}
+
+#generos{
+{
+    max-width: 1000px;
+}
 }
 
 #recientes{

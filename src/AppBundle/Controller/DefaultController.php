@@ -17,9 +17,13 @@ class DefaultController extends Controller
         $proyectos = $em->getRepository('AppBundle:Proyecto')
             ->findAll()
         ;
-        dump($proyectos);
+        $generos = $em->getRepository('AppBundle:Genero')
+            ->findAll()
+            ;
+        dump($generos);
         return $this->render(':default:portada.html.twig', [
-            'proyectos' => $proyectos
+            'proyectos' => $proyectos,
+            'generos' => $generos
         ]);
     }
 

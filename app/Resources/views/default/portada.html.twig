@@ -142,7 +142,20 @@
         <div class="parallax"><img src="{{ asset('bundles/app/images/portada/p2.jpg') }}"></div>
     </div>
     <section id="generos">
-        <h1 class="center">Descubre</h1>
+        <h1 class="center">Explora entre infinitas obras</h1>
+        {% if generos %}
+
+        <div class="row center-align">
+            {% for genero in generos %}
+            <div class="col s12 m3">
+                <div class="card-panel teal center">
+          <span class="white-text">{{ genero.nombre }}
+          </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </section>
 {% endblock %}
 
