@@ -50,6 +50,23 @@ class ProyectoController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/genero", name="genero")
+     */
+    public function generoAction(Request $request)
+    {
+        $id = $request->query->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $genero = $em->getRepository('AppBundle:Genero')
+            ->find($id)
+        ;
+        dump($id);
+        return $this->render(':default/genero:genero.html.twig', [
+            'genero' => $genero
+        ]);
+    }
+
+
 }
 
 

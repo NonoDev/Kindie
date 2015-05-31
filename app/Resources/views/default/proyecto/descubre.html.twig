@@ -10,7 +10,7 @@
                     {% for genero in generos %}
                         <div class="col s12 m4 l2">
                             <div class="card-panel blue center">
-                                <a href="#"><span class="white-text">{{ genero.nombre }}
+                                <a href="{{ path('genero', {'id':genero.id}) }}"><span class="white-text">{{ genero.nombre }}
           </span></a>
                             </div>
                         </div>
