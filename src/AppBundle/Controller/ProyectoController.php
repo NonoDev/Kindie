@@ -12,7 +12,17 @@ class ProyectoController extends Controller
      */
     public function descubreAction()
     {
-        return $this->render(':default/proyecto:descubre.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $proyectos = $em->getRepository('AppBundle:Proyecto')
+            ->findAll()
+        ;
+        $generos = $em->getRepository('AppBundle:Genero')
+            ->findAll()
+        ;
+        return $this->render(':default/proyecto:descubre.html.twig', [
+            'generos' => $generos,
+            'proyectos' => $proyectos
+        ]);
     }
 
     /**

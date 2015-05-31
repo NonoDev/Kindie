@@ -104,7 +104,7 @@
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-close right"></i></span>
                             <p class="descripcion truncate">{{ item.descripcion }}</p>
-                            <h5>Progreso {{ (item.contribuciones/item.meta)*100 }}%</h5>
+                            <h5>{{ (item.contribuciones/item.meta)*100 }}% Conseguido</h5>
                             <div class="progress">
                                 <div class="determinate purple accent-4" style="width: {{ (item.contribuciones/item.meta)*100 }}%;"></div>
                             </div>
@@ -145,9 +145,9 @@
         <h1 class="center">Explora entre infinitas obras</h1>
         {% if generos %}
 
-        <div class="row center-align">
+        <div class="row">
             {% for genero in generos %}
-            <div class="col s12 m3">
+            <div class="col s12 m4 l2">
                 <div class="card-panel blue center">
           <a href="#"><span class="white-text">{{ genero.nombre }}
           </span></a>
@@ -157,5 +157,6 @@
         </div>
         {% endif %}
     </section>
+
 {% endblock %}
 

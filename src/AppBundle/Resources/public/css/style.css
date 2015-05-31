@@ -40,11 +40,7 @@ nav a.button-collapse i {
 }
 /* fin menu */
 
-/* slider */
-
-
-/* fin slider */
-/* |||||||||||||  SECCIONES |||||||||||||| */
+/* |||||||||||||  SECCIONES PORTADA |||||||||||||| */
 /* seccion principal */
 #principal{
     background: url(../images/portada/stick.jpg) no-repeat fixed;
@@ -73,16 +69,31 @@ nav a.button-collapse i {
 
 #generos
 {
-    max-width: 1000px;
+    text-align: center;
+    max-width: 1240px;
+    margin: 0 auto;
 }
-
 
 #recientes{
     padding-bottom: 70px;
 
 }
 /* fin */
-/* FIN SECCIONES */
+/* FIN SECCIONES PORTADA*/
+
+/* ||||||||||||| DESCUBRE |||||||||||||| */
+#principal-descubre{
+    background: url(../images/proyectos/confeti.png) no-repeat fixed;
+    height: 700px;
+    background-size: cover;
+    padding: 50px;
+}
+
+#principal-descubre .row{
+    margin-top: 100px;
+    max-width: 1240px;
+}
+/* fin descubre */
 /* footer */
 .page-footer{
     position: relative;
