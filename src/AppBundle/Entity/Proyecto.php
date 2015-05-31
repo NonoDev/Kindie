@@ -80,6 +80,15 @@ class Proyecto
     protected $meta;
 
     /**
+     *
+     * @ORM\Column(type="integer")
+     *
+     *
+     * @var integer
+     */
+    protected $visitas;
+
+    /**
      * @ORM\OneToOne(targetEntity="Favorito", mappedBy="proyecto")
      *
      * @var Favorito
@@ -178,6 +187,29 @@ class Proyecto
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * Set visitas
+     *
+     * @param integer $visitas
+     * @return Proyecto
+     */
+    public function setVisitas($visitas)
+    {
+        $this->visitas = $visitas;
+
+        return $this;
+    }
+
+    /**
+     * Get visitas
+     *
+     * @return integer
+     */
+    public function getVisitas()
+    {
+        return $this->visitas;
     }
 
     /**

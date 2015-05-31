@@ -2,7 +2,7 @@
 {% block title %} Kindie | Inicio {% endblock %}
 {% block contenido %}
 
-    <section id="principal">
+    <section id="principal" class="responsive-img">
         <div class="row">
             <div class="col s12 m10 offset-2">
                 <h1>Cabecera demo</h1>
@@ -148,9 +148,9 @@
         <div class="row center-align">
             {% for genero in generos %}
             <div class="col s12 m3">
-                <div class="card-panel teal center">
-          <span class="white-text">{{ genero.nombre }}
-          </span>
+                <div class="card-panel blue center">
+          <a href="#"><span class="white-text">{{ genero.nombre }}
+          </span></a>
                 </div>
             </div>
             {% endfor %}
