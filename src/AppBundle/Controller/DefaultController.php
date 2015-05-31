@@ -20,7 +20,7 @@ class DefaultController extends Controller
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
             ;
-        dump($generos);
+        //dump($generos);
         return $this->render(':default:portada.html.twig', [
             'proyectos' => $proyectos,
             'generos' => $generos

@@ -2,7 +2,7 @@
 {% block title 'Kindie | Descubre proyectos' %}
     {% block contenido %}
 
-        <section id="principal-descubre" class="responsive-img">
+        <section id="principal-descubre" class="responsive-img" data-type="parallax_section" data-speed="5">
             <h1 class="center">Explora este increíble universo creativo</h1>
             {% if generos %}
 
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-menu right"></i></span>
-                                    <p><a href="#">Visita el proyecto</a></p>
+                                    <p><a href="{{ path('proyecto', {'id':item.id}) }}">Visita el proyecto</a></p>
                                 </div>
                                 <div class="card-reveal">
                                     <span class="card-title grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-close right"></i></span>

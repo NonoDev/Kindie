@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProyectoController extends Controller
 {
@@ -33,6 +34,21 @@ class ProyectoController extends Controller
         return $this->render(':default/proyecto:empieza.html.twig');
     }
 
+    /**
+     * @Route("/proyecto", name="proyecto")
+     */
+    public function proyectoAction(Request $request)
+    {
+        $id = $request->query->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $proyecto = $em->getRepository('AppBundle:Proyecto')
+            ->find($id)
+        ;
+        dump($proyecto);
+        return $this->render(':default/proyecto:proyecto.html.twig', [
+            'proyecto' => $proyecto
+        ]);
+    }
 
 }
 
