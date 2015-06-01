@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comentario;
+use AppBundle\Entity\Proyecto;
 use AppBundle\Form\Type\ComentarioType;
+use AppBundle\Form\Type\ProyectoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -128,12 +130,28 @@ class ProyectoController extends Controller
      */
     public function nuevo_proyectoAction(Request $request)
     {
+        $proyecto = new Proyecto();
         $user=$this->getUser();
         $em = $this->getDoctrine()->getManager();
+        // crear el formulario
+        $formulario = $this->createForm(new ProyectoType(), $proyecto);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($request);
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll();
+        if ($formulario->isSubmitted() && $formulario->isValid()) {
+
+
+
+
+
+        }
         dump($user, $generos);
-        return $this->render(':default/proyecto:nuevo_proyecto.html.twig');
+        return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
+            'generos' => $generos,
+            'formulario' => $formulario->createView()
+        ]);
     }
 }
 

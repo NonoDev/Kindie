@@ -18,7 +18,7 @@ class ComentarioType extends AbstractType{
             ->add('texto', 'textarea', array(
                 'label' => 'Comentario',
                 'required' => true,
-                'attr' => array('class' => 'materialize-textarea')
+                'attr' => array('class' => 'materialize-textarea', 'length' => 500)
             ))
 
             ->add('comentar', 'submit', array(

@@ -74,6 +74,20 @@ class Usuario implements UserInterface
      */
     protected $esAdmin;
 
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean
+     */
+    protected $esCreador;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean
+     */
+    protected $esParticipante;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Favorito", mappedBy="usuario")
@@ -333,6 +347,52 @@ class Usuario implements UserInterface
     }
 
     /**
+     * Set esCreador
+     *
+     * @param boolean $esCreador
+     * @return Usuario
+     */
+    public function setEsCreador($esCreador)
+    {
+        $this->esCreador = $esCreador;
+
+        return $this;
+    }
+
+    /**
+     * Get esCreador
+     *
+     * @return boolean
+     */
+    public function getEsCreador()
+    {
+        return $this->esCreador;
+    }
+
+    /**
+     * Set esParticipante
+     *
+     * @param boolean $esParticipante
+     * @return Usuario
+     */
+    public function setEsParticipante($esParticipante)
+    {
+        $this->esParticipante = $esParticipante;
+
+        return $this;
+    }
+
+    /**
+     * Get esParticipante
+     *
+     * @return boolean
+     */
+    public function getEsParticipante()
+    {
+        return $this->esCreador;
+    }
+
+    /**
      * Add favoritos
      *
      * @param \AppBundle\Entity\Favorito $favoritos
@@ -582,7 +642,15 @@ class Usuario implements UserInterface
     public function getRoles()
     {
         $roles = array(new Role('ROLE_USUARIO'));
-
+        /*if ($this->getesAdmin()) {
+            $roles[] = new Role('ROLE_ADMIN');
+        }
+        if ($this->getEsCreador()) {
+            $roles[] = new Role('ROLE_CREADOR');
+        }
+        if ($this->getEsParticipante()) {
+            $roles[] = new Role('ROLE_PARTICIPANTE');
+        }*/
         return $roles;
     }
 

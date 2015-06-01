@@ -2,16 +2,20 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="portada")
+     *
      */
     public function indexAction()
     {
+        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
 
         $proyectos = $em->getRepository('AppBundle:Proyecto')
@@ -27,7 +31,8 @@ class DefaultController extends Controller
         //dump($generos);
         return $this->render(':default:portada.html.twig', [
             'proyectos' => $proyectos,
-            'generos' => $generos
+            'generos' => $generos,
+            'usuario' => $user
         ]);
     }
 
@@ -45,6 +50,9 @@ class DefaultController extends Controller
                 'error'         => $helper->getLastAuthenticationError()
             ]);
     }
+
+
+
 }
 
 
