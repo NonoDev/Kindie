@@ -123,7 +123,18 @@ class ProyectoController extends Controller
         ]);
     }
 
-
+    /**
+     * @Route("/nuevo_proyecto", name="nuevo_proyecto")
+     */
+    public function nuevo_proyectoAction(Request $request)
+    {
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $generos = $em->getRepository('AppBundle:Genero')
+            ->findAll();
+        dump($user, $generos);
+        return $this->render(':default/proyecto:nuevo_proyecto.html.twig');
+    }
 }
 
 

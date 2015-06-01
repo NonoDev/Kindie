@@ -153,6 +153,33 @@ textarea.materialize-textarea:focus:not([readonly]) {
 blockquote {
     border-left: 5px solid #a0f;
 }
+
+#comentarios .circle {
+    border-radius: 50%;
+    width: 80px;
+    float: left;
+    margin-right: 20px;
+}
+
+#comentarios .title {
+    font-weight: 500;
+    float: left;
+    color: #d181ff;
+}
+
+.comentario-item{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.comentario-item p {
+    margin-top: 2px;
+}
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 0px solid #26A69A !important;
+    box-shadow: 0px 2px 0px 0px #A0F !important;
+}
 /* fin proyecto */
 
 /* ||||||||||||| GENERO |||||||||| */
