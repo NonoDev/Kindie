@@ -1,8 +1,11 @@
 {% extends '::layout.html.twig' %}
 {% block title %}Kindie | {{ genero.nombre }}{% endblock %}
     {% block contenido %}
-        <section id="principal-genero">
+        <section id="principal-genero" style="background: url(../../../../../src/AppBundle/Resources/public/images/generos/{{ genero.nombre }}.png);">
             <h1>{{ genero.nombre }}</h1>
+        </section>
+        <section id="genero_proyectos">
+
         </section>
 
     {% endblock %}

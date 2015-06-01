@@ -114,11 +114,52 @@ nav a.button-collapse i {
 /* fin empieza */
 
 /* ||||||||||||| PROYECTO |||||||||| */
-#proyecto{
-
+.contador {
+    color: #fff;
+    background: #a0f;
+    padding: 3px 8px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+.tabs .tab a .active{
+    border-bottom: 2px solid #a0f !important;
+}
+.proyecto-arriba{
+    font-size: 40px;
+    padding: 0;
+    margin-bottom: -20px;
+    margin-top: 0px;
+    font-weight: 500;
+}
+#proyecto h6{
+    margin-bottom: 50px;
 
 }
+
+.tabs .tab a {
+    color: rgb(170, 0, 255) !important;
+}
+.tabs .tab a:hover {
+    color: #C876F2 !important;
+}
+
+#test1, #test2, #test3{
+    padding: 50px 100px;
+}
+
+blockquote {
+    border-left: 5px solid #a0f;
+}
 /* fin proyecto */
+
+/* ||||||||||||| GENERO |||||||||| */
+#principal-genero{
+    text-align: center;
+    padding-top: 100px;
+    height: 500px;
+    background-size: cover;
+}
+/* fin genero */
 /* footer */
 .page-footer{
     position: relative;

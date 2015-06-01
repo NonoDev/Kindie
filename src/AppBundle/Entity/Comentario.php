@@ -23,7 +23,7 @@ class Comentario
     protected $texto;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      * @var \Datetime
      */

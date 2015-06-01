@@ -11,12 +11,55 @@
                     <p><i class="small mdi-maps-pin-drop"></i> {{ proyecto.localizacion }}</p>
                 </div>
                 <div class="col s12 m6 l4">
-                    <p>{{ proyecto.contribuciones }} $</p>
+                    <p class="proyecto-arriba">{{ proyecto.contribuciones }} $</p>
                     <p>de {{ proyecto.meta }}$</p>
-                    <p>{{ proyecto.fechaFin|date('d/m/Y') }}</p>
-                    <p>Fecha límite</p>
-                    <a href="#" class="btn btn-large purple accent-4">Apóyalo</a>
+                    <p class="proyecto-arriba">{{ diferencia }}</p>
+                    <p>Días para lanzamiento</p>
+                    <a href="#" class="btn btn-large purple accent-4">Apóyalo</a><div id="favorito"><i class="mdi-action-favorite"></i> Favoritos </div>
                 </div>
+            </div>
+        </section>
+        <section id="detalle">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs purple-text">
+                        <li class="tab col s3"><a class="active" onclick="Materialize.showStaggeredList('#staggered-test')" href="#test1">Detalle</a></li>
+                        <li class="tab col s3"><a href="#test2">Comentarios <span class="contador">{{ contador }}</span></a></li>
+                        <li class="tab col s3"><a href="#test3">Actualizaciones</a></li>
+
+                    </ul>
+                </div>
+                <div id="test1" class="col s12">Test 2</div>
+                <div id="test2" class="col s12">
+                    <div id="comentarios">
+
+                        <div class="col s12 m10 l8 offset-l2">
+                            <blockquote>
+                                *Si desea realizar una pregunta o duda más directa al creador, puede mandarle un mensaje directo.
+                            </blockquote>
+                            {{ form(formulario) }}
+                        </div>
+                        <div class="col s12 m10 l8 offset-l2">
+                            <ul class="collection">
+                                {% if comentarios %}
+                                    {% for coment in comentarios %}
+                                <li class="collection-item avatar">
+                                    <img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}" alt="" class="circle">
+                                    <span class="title"></span>
+                                    <p>{{ coment.texto }}
+                                    </p>
+                                    <a href="#!" class="secondary-content">{{ coment.fecha|date('d/m/Y') }}<br/>{{ coment.fecha|date('H:i:s') }}</a>
+                                </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="test3" class="col s12">Test 3</div>
+
             </div>
         </section>
 

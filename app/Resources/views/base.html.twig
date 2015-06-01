@@ -19,6 +19,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
         <script src="{{ asset('bundles/app/js/classie.js') }}"></script>
         <script src="{{ asset('bundles/app/js/parallax.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+                var options = [
+                    {selector: '.class', offset: 200, callback: 'globalFunction()' },
+                    {selector: '.other-class', offset: 200, callback: 'globalFunction()' },
+                ];
+                Materialize.scrollFire(options);
+                $('ul.tabs').tabs();
+            });
+        </script>
         <!-- buscador -->
         <script>
             (function() {

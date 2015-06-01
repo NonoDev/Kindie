@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comentario;
+use AppBundle\Form\Type\ComentarioType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +15,7 @@ class ProyectoController extends Controller
      */
     public function descubreAction()
     {
+        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $proyectos = $em->getRepository('AppBundle:Proyecto')
             ->findAll()
@@ -20,6 +23,7 @@ class ProyectoController extends Controller
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
         ;
+        dump($user);
         return $this->render(':default/proyecto:descubre.html.twig', [
             'generos' => $generos,
             'proyectos' => $proyectos
@@ -39,14 +43,49 @@ class ProyectoController extends Controller
      */
     public function proyectoAction(Request $request)
     {
+        $comentario = new Comentario();
+        $user = $this->getUser();
         $id = $request->query->get('id');
+        // crear el formulario
+        $formulario = $this->createForm(new ComentarioType(), $comentario);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $proyecto = $em->getRepository('AppBundle:Proyecto')
             ->find($id)
         ;
-        dump($proyecto);
+        // diferencia de fechas
+        $fechaInicio = new \DateTime();
+        $fechaFin = $proyecto->getFechaFin();
+        $diff= date_diff($fechaInicio,$fechaFin);
+
+
+        // control del formulario de comentarios
+        if ($formulario->isSubmitted() && $formulario->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $comentario->setFecha(new \DateTime('now'));
+            $comentario->setProyecto($proyecto);
+            $comentario->setUsuario($user);
+            $texto = $formulario->get('texto')->getData();
+            $comentario->setTexto($texto);
+
+            $em->persist($comentario);
+            $em->flush();
+        }
+
+        // Obtener comentarios
+        $em = $this->getDoctrine()->getManager();
+        $comentarios = $em->getRepository('AppBundle:Comentario')
+            ->findBy(array('proyecto' => $id), array('fecha' => 'DESC'))
+        ;
+        dump($comentarios);
         return $this->render(':default/proyecto:proyecto.html.twig', [
-            'proyecto' => $proyecto
+            'comentarios' => $comentarios,
+            'contador' => count($comentarios),
+            'proyecto' => $proyecto,
+            'formulario' => $formulario->createView(),
+            'diferencia' => $diff->days
         ]);
     }
 
