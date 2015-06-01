@@ -20,6 +20,54 @@
         </section>
         <section id="popular">
             <h1 class="center">Lo más popular</h1>
+            {% if populares %}
+                <div class="row">
+                    {% for pop in populares %}
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" {% if pop.id % 2 == 0 %}src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}"
+                                            {% else %} src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}" {% endif %}>
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">{{ pop.nombre }} <i class="mdi-navigation-menu right"></i></span>
+                                    <p><a href="{{ path('proyecto', {'id':pop.id}) }}">Visita el proyecto</a></p>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">{{ pop.nombre }} <i class="mdi-navigation-close right"></i></span>
+                                    <p class="descripcion truncate">{{ pop.descripcion }}</p>
+                                    <h5>{{ (pop.contribuciones/pop.meta)*100 }}% Conseguido</h5>
+                                    <div class="progress">
+                                        <div class="determinate purple accent-4" style="width: {{ (pop.contribuciones/pop.meta)*100 }}%;"></div>
+                                    </div>
+                                    <p><i class="small mdi-maps-pin-drop"></i> {{ pop.localizacion }}</p>
+                                    <div class="row">
+                                        <div class="col m4">
+                                            <strong>Meta</strong>
+                                            <p>{{ pop.meta }} $</p>
+                                        </div>
+                                        <div class="col m4">
+                                            <strong>Conseguido</strong>
+                                            <p>{{ pop.contribuciones }} $</p>
+                                        </div>
+                                        <div class="col m4">
+                                            <strong>Fecha límite</strong>
+                                            <p>{{ pop.fechaFin|date("d/m/Y")}}</p>
+                                        </div>
+
+                                    </div>
+                                    <h5>Recompensa</h5>
+                                    <p>{{ pop.recompensa }}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h3 class="center">Aún no se ha iniciado ningún proyecto.</h3>
+                <a href="{{ path('empieza') }}" class="btn purple accent-4">Sé el primero</a>
+            {% endif %}
         </section>
         <section id="nuevo">
             <h1 class="center">Lo más nuevo</h1>

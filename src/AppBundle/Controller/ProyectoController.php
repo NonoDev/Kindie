@@ -18,15 +18,27 @@ class ProyectoController extends Controller
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $proyectos = $em->getRepository('AppBundle:Proyecto')
-            ->findAll()
+            ->createQueryBuilder('p')
+            ->setMaxResults(3)
+            ->addOrderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
         ;
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
         ;
+        $populares = $em->getRepository('AppBundle:Proyecto')
+            ->createQueryBuilder('p')
+            ->setMaxResults(3)
+            ->addOrderBy('p.visitas', 'DESC')
+            ->getQuery()
+            ->getResult();
+        dump($populares);
         dump($user);
         return $this->render(':default/proyecto:descubre.html.twig', [
             'generos' => $generos,
-            'proyectos' => $proyectos
+            'proyectos' => $proyectos,
+            'populares' => $populares
         ]);
     }
 
@@ -55,6 +67,12 @@ class ProyectoController extends Controller
         $proyecto = $em->getRepository('AppBundle:Proyecto')
             ->find($id)
         ;
+        // aumentar visitas
+        $visitas = $proyecto->getVisitas();
+        $proyecto->setVisitas($visitas+1);
+        $em->persist($proyecto);
+        $em->flush();
+        dump($visitas);
         // diferencia de fechas
         $fechaInicio = new \DateTime();
         $fechaFin = $proyecto->getFechaFin();

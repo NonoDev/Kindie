@@ -17,7 +17,8 @@ class ComentarioType extends AbstractType{
         $builder
             ->add('texto', 'textarea', array(
                 'label' => 'Comentario',
-                'required' => true
+                'required' => true,
+                'attr' => array('class' => 'materialize-textarea')
             ))
 
             ->add('comentar', 'submit', array(

@@ -70,6 +70,13 @@ class Proyecto
      *
      * @var string
      */
+    protected $descripcionCorta;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
     protected $descripcion;
 
     /**
@@ -372,6 +379,29 @@ class Proyecto
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    /**
+     * Set descripcionCorta
+     *
+     * @param string $descripcionCorta
+     * @return Proyecto
+     */
+    public function setDescripcionCorta($descripcionCorta)
+    {
+        $this->descripcionCorta = $descripcionCorta;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcionCorta
+     *
+     * @return string
+     */
+    public function getDescripcionCorta()
+    {
+        return $this->descripcionCorta;
     }
 
     /**

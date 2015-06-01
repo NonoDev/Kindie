@@ -1,5 +1,5 @@
 {% extends '::layout.html.twig' %}
-{% block title %}Kindie - {{ proyecto.nombre }}{% endblock %}
+{% block title %}Kindie | {{ proyecto.nombre }}{% endblock %}
     {% block contenido %}
         <section id="proyecto">
             <h1 class="center">{{ proyecto.nombre }}</h1>
@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col s12 m6 l4 offset-l3">
                     <img class="responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
-                    <p>{{ proyecto.descripcion }}</p>
+                    <p>{{ proyecto.descripcionCorta }}</p>
                     <p><i class="small mdi-maps-pin-drop"></i> {{ proyecto.localizacion }}</p>
                 </div>
                 <div class="col s12 m6 l4">
@@ -29,7 +29,12 @@
 
                     </ul>
                 </div>
-                <div id="test1" class="col s12">Test 2</div>
+                <div id="test1" class="col s12">
+                    <h2 class="center">Descripción</h2>
+                    <div class="col s12 m10 l8 offset-l2">
+                        {{ proyecto.descripcion }}
+                    </div>
+                </div>
                 <div id="test2" class="col s12">
                     <div id="comentarios">
 

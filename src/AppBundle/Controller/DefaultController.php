@@ -15,7 +15,11 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $proyectos = $em->getRepository('AppBundle:Proyecto')
-            ->findAll()
+            ->createQueryBuilder('p')
+            ->setMaxResults(3)
+            ->addOrderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
         ;
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
