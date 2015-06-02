@@ -144,8 +144,6 @@ class ProyectoController extends Controller
 
 
 
-
-
         }
         dump($user, $generos);
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
