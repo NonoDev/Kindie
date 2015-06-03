@@ -20,6 +20,10 @@ h1{
 .mi-dd{
     display: none;
     margin-top: -1px;
+    position: absolute;
+    top: 78px;
+    right: 0px;
+    width: 222px;
 }
 
 .mi-dd li{
