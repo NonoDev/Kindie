@@ -110,7 +110,7 @@ class Proyecto
     protected $comentarios = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Genero", mappedBy="proyecto")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Genero", inversedBy="proyecto")
      *
      * @var Genero
      */

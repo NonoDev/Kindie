@@ -11,8 +11,8 @@
 
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a><i class="mdi-action-find-replace"></i></a></li>
-                <li>
+                <li class="buscar"><a><i class="mdi-action-find-replace"></i></a></li>
+                <li class="buscador">
                     <div id="morphsearch" class="morphsearch">
 
                         <form class="morphsearch-form">
@@ -37,7 +37,7 @@
                 <li><a href="{{ path('empieza') }}">Empieza</a></li>
                 <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
                 <li><a href="{{ path('nuevo_usuario') }}">Regístrate</a></li>
-                <li><a href="#" class="mi-trigger">Lanzador</a>
+                <li><a href="#" class="mi-trigger"><img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}" class="img-perfil"> <span class="user-perfil">nombreUsuario</span></a>
                 <ul class="mi-dd">
                     <li>a</li>
                     <li>b</li>
@@ -94,7 +94,5 @@
             </div>
         </footer>
     {% endblock %}
-    {% block scripts %}
 
-    {% endblock %}
 {% endblock %}

@@ -30,7 +30,7 @@ class Genero
     protected $descripcion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="generos")
+     * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="generos")
      *
      * @var Proyecto
      */

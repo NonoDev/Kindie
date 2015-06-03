@@ -8,8 +8,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('bundles/app/css/circular_menu.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/form/formulario_full_base.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/form/form.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/form/cs-skin-boxes.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/form/cs-select.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <script src="{{ asset('bundles/app/js/formulario_full/modernizr.custom.js') }}"></script>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="{{ asset('bundles/app/js/snap.svg-min.js') }}"></script>
     </head>
@@ -21,6 +25,8 @@
         <script src="{{ asset('bundles/app/js/classie.js') }}"></script>
         <script src="{{ asset('bundles/app/js/parallax.js') }}"></script>
 
+        <script src="{{ asset('bundles/app/js/formulario_full/selectFx.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/formulario_full/fullscreenForm.js') }}"></script>
         <!-- buscador -->
         <script>
             (function() {
@@ -147,7 +153,35 @@
                         $(".mi-dd").slideToggle();
 
                     });
+                    $(".buscar").mouseover(function(){
+                        $(".buscador").css('background-color', 'rgba(0, 0, 0, 0.1)');
+
+                    });
+                    $(".buscar").mouseleave(function(){
+                        $(".buscador").css('background-color', 'rgba(0, 0, 0, 0)');
+
+                    });
                 });
+        </script>
+        <script>
+            (function() {
+                var formWrap = document.getElementById( 'fs-form-wrap' );
+
+                [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+                    new SelectFx( el, {
+                        stickyPlaceholder: false,
+                        onChange: function(val){
+                            document.querySelector('span.cs-placeholder').style.backgroundColor = val;
+                        }
+                    });
+                } );
+
+                new FForm( formWrap, {
+                    onReview : function() {
+                        classie.add( document.body, 'overview' ); // for demo purposes only
+                    }
+                } );
+            })();
         </script>
 
         {% block scripts %}{% endblock %}

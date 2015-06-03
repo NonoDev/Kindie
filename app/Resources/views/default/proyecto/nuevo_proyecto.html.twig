@@ -1,9 +1,51 @@
 {% extends '::layout.html.twig' %}
+
 {% block title 'Kindie | Creación de proyecto' %}
     {% block contenido %}
 
-        <section id="principal-nuevo_proyecto" class="responsive-img" data-type="parallax_section" data-speed="5">
-            {{ form(formulario) }}
-        </section>
+        <div class="container">
+            <h1 class="center">Creación de un nuevo proyecto</h1>
+            <div class="fs-form-wrap" id="fs-form-wrap">
+                <form id="myform" class="fs-form fs-form-full" autocomplete="off">
+                    <ol class="fs-fields">
+                        <li>
+                            <label class="fs-field-label fs-anim-upper" for="q1">Nombre del proyecto</label>
+                            <input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="Mi Proyecto" required/>
+                        </li>
+                        <li>
+                            <label class="fs-field-label fs-anim-upper" for="q2" data-info="No hace falta que sea muy larga, es la descripción que aparecerá en las miniaturas">Descripción corta</label>
+                            <textarea class="fs-anim-lower" id="q2" name="q2" placeholder="Descripción"></textarea>
+                        </li>
+                        <li>
+                            <label class="fs-field-label fs-anim-upper" for="q3" data-info="Indica la recompensa por participar en pocas palabras">Recompensa</label>
+                            <textarea class="fs-anim-lower" id="q3" name="q3" placeholder="Recompensa"></textarea>
+                        </li>
+                        <li>
+                            <label class="fs-field-label fs-anim-upper" for="q4">Localización</label>
+                            <input class="fs-anim-lower" id="q4" name="q4" type="text" placeholder="Nombre de la ciudad" required/>
+                        </li>
+                        <li>
+                            <label class="fs-field-label fs-anim-upper" for="q5" data-info="Es la fecha en la que se da por concluido el periodo de recaudación">Fecha de recaudación</label>
+                            <input class="fs-anim-lower datepicker" id="q5" name="q5" type="date" placeholder="Fecha final" required/>
+                        </li>
+                        <li>
+                            <label class="fs-field-label fs-anim-upper" for="q6" data-info="Será la imagen que aparezca en portada y miniatura del proyecto">Imagen destacada</label>
+                            <input class="fs-anim-lower file" id="q6" name="q6" type="file" placeholder="Selecciona una imagen" required/>
+                        </li>
+
+                        <li>
+                            <label class="fs-field-label fs-anim-upper" for="q7">Meta</label>
+                            <input class="fs-mark fs-anim-lower" id="q7" name="q7" type="number" placeholder="1000" step="100" min="0"/>
+                        </li>
+
+                    </ol><!-- /fs-fields -->
+                    <button class="fs-submit " type="submit">Send answers</button>
+                </form><!-- /fs-form -->
+            </div><!-- /fs-form-wrap -->
+
+            <!-- Related demos -->
+
+
+        </div><!-- /container -->
 
     {% endblock %}
