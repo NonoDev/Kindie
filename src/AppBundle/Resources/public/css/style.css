@@ -17,6 +17,18 @@ h1{
     margin: -20px 0 0 -1px;
 }
 
+.mi-dd{
+    display: none;
+}
+
+.mi-dd li{
+    clear: both;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    text-align: center;
+}
+
 /* fin */
 /* menu superior */
 nav a, nav .input-field input{

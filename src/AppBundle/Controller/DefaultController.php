@@ -11,7 +11,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="portada")
-     *
+     * 
      */
     public function indexAction()
     {

@@ -641,8 +641,8 @@ class Usuario implements UserInterface
      */
     public function getRoles()
     {
-        $roles = array(new Role('ROLE_USUARIO'));
-        /*if ($this->getesAdmin()) {
+        $roles = array(new Role('ROLE_USER'));
+        if ($this->getesAdmin()) {
             $roles[] = new Role('ROLE_ADMIN');
         }
         if ($this->getEsCreador()) {
@@ -650,7 +650,7 @@ class Usuario implements UserInterface
         }
         if ($this->getEsParticipante()) {
             $roles[] = new Role('ROLE_PARTICIPANTE');
-        }*/
+        }
         return $roles;
     }
 
