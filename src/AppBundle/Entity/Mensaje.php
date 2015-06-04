@@ -44,7 +44,7 @@ class Mensaje
     protected $remitente;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      * @var \Datetime
      */

@@ -17,6 +17,10 @@ h1{
     margin: -20px 0 0 -1px;
 }
 
+.collapsible-body{
+    padding: 20px !important;
+}
+
 .mi-dd{
     display: none;
     margin-top: -1px;
@@ -24,6 +28,7 @@ h1{
     top: 78px;
     right: 0px;
     width: 222px;
+    z-index: 1000;
 }
 
 .mi-dd li{

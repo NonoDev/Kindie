@@ -1,0 +1,40 @@
+{% extends '::layout.html.twig' %}
+{% block title 'Kindie | Mis mensajes' %}
+    {% block contenido %}
+        <h1 class="center">Gestión de mensajes</h1>
+        <div class="row">
+            <div class="col s12 m10 l8 offset-l2 offset-m1">
+        <ul class="collapsible popout" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="mdi-content-mail"></i>Bandeja de entrada <span>{{ contadorMensajes }}</span></div>
+                <div class="collapsible-body">
+                    {% if mensajes %}
+
+                        <ul class="collapsible" data-collapsible="accordion">
+                        {% for mensaje in mensajes %}
+                            <li>
+                                <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>{{ mensaje.tipo }}</div>
+                                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                            </li>
+                        {% endfor %}
+                            {% else %}
+                            <h2>Aun no hay mensajes</h2>
+
+                        </ul>
+
+                            {% endif %}
+
+                    </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="mdi-content-send"></i>Enviados <span>{{ contadorEnviados }}</span></div>
+                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="mdi-notification-sms-failed"></i>No leídos <span>{{ contadorNoLeidos }}</span></div>
+                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+            </li>
+        </ul>
+            </div>
+        </div>
+    {% endblock %}

@@ -161,6 +161,27 @@
                         $(".buscador").css('background-color', 'rgba(0, 0, 0, 0)');
 
                     });
+                    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                    $('.modal-trigger').leanModal();
+
+                    //frases aleatorias
+                    var frases = new Array();
+                    var autores = new Array();
+                    autores[1] = "Steve Jobs";
+                    autores[0] = "Edith Wharton";
+                    frases["Edith Wharton"] = "La creatividad no consiste en una nueva manera, sino en una nueva visión";
+                    frases["Steve Jobs"] = "La creatividad no consiste en una nueva manera, sino en una nueva visión guano";
+                    function rotar(){
+                        indice = Math.random()*(autores.length);
+                        indice = Math.floor(indice);
+                        $("#frases").text(frases[autores[indice]]);
+                    }
+
+
+                    setTimeout("rotar();",2000);
+
+
+
                 });
         </script>
         <script>

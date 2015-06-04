@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Mensaje;
 use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Proyecto;
+use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\ComentarioType;
 use AppBundle\Form\Type\ProyectoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -57,8 +59,10 @@ class ProyectoController extends Controller
      */
     public function proyectoAction(Request $request)
     {
-        $comentario = new Comentario();
         $user = $this->getUser();
+
+        $comentario = new Comentario();
+
         $id = $request->query->get('id');
         // crear el formulario
         $formulario = $this->createForm(new ComentarioType(), $comentario);
@@ -83,6 +87,7 @@ class ProyectoController extends Controller
 
         // control del formulario de comentarios
         if ($formulario->isSubmitted() && $formulario->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $comentario->setFecha(new \DateTime('now'));
             $comentario->setProyecto($proyecto);
@@ -99,12 +104,42 @@ class ProyectoController extends Controller
         $comentarios = $em->getRepository('AppBundle:Comentario')
             ->findBy(array('proyecto' => $id), array('fecha' => 'DESC'))
         ;
+
+        // MENSAJES //
+        $mensaje = new Mensaje();
+
+        // crear el formulario
+        $formulario1 = $this->createForm(new MensajeType(), $mensaje);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario1->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        $usuarioMensaje = $em->getRepository('AppBundle:Usuario')
+            ->find($proyecto->getUsuario());
+        ;
+        if ($formulario1->isSubmitted() && $formulario1->isValid()){
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setLeido(false);
+            $mensaje->setFecha(new \DateTime());
+            $mensaje->setUsuario($usuarioMensaje);
+
+            $em->persist($mensaje);
+            $em->flush();
+
+        }
+
+        // FIN MENSAJES //
         dump($comentarios);
         return $this->render(':default/proyecto:proyecto.html.twig', [
+            'usuario' => $user,
             'comentarios' => $comentarios,
             'contador' => count($comentarios),
             'proyecto' => $proyecto,
             'formulario' => $formulario->createView(),
+            'formularioMensaje' => $formulario1->createView(),
             'diferencia' => $diff->days
         ]);
     }

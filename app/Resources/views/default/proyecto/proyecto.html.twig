@@ -33,6 +33,16 @@
                             <li><a href="https://www.tumblr.com/tagged/codrops"><i class="fa fa-fw fa-tumblr"></i><span>Codrops on Tumblr</span></a></li>
                             <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=tympanus&loc=en_US"><i class="fa fa-fw fa-envelope"></i><span>Codrops RSS as Mail</span></a></li>
                         </ul>
+
+                    </div><br/>
+                    <a class="waves-effect waves-light btn purple accent-4 modal-trigger" href="#modalMensaje">Contacta con el creador</a>
+                    <div style="display: block; opacity: 0; bottom: -100%;" id="modalMensaje" class="modal bottom-sheet">
+                        <div class="modal-content">
+                            <h4>Modal Header</h4>
+                            <label><strong>Remitente: </strong></label><span>{{ usuario.nombreUsuario }}</span><br/>
+                            <label><strong>Para: </strong></label><span>{{ proyecto.usuario.nombreUsuario }}</span>
+                            {{ form(formularioMensaje) }}
+                        </div>
                     </div>
                 </div>
             </div>
