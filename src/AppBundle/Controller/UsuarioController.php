@@ -59,7 +59,7 @@ class UsuarioController extends Controller
         // Mensajes no leidos
         $em = $this->getDoctrine()->getManager();
         $noLeidos = $em->getRepository('AppBundle:Mensaje')
-            ->findBy(array('leido' => 0));
+            ->findBy(array('leido' => false, 'usuario' => $user->getId()));
 
         // Mensajes enviados
         $em = $this->getDoctrine()->getManager();

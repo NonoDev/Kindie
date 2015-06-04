@@ -37,6 +37,14 @@
                             <label class="fs-field-label fs-anim-upper" for="q7">Meta</label>
                             <input class="fs-mark fs-anim-lower" id="q7" name="q7" type="number" placeholder="1000" step="100" min="0"/>
                         </li>
+                        <li data-input-trigger>
+                            <label class="fs-field-label fs-anim-upper" for="q8" data-info="Selecciona los géneros a los que pertenece tu videojuego">Género del proyecto</label>
+                            <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+                                <span><input id="q8b" name="q8" type="checkbox" value="Plataformas"/><label for="q8b"><img src="{{ asset('bundles/app/images/generos/miniaturas/plataformas.png') }}">Plataformas</label></span>
+                                <span><input id="q8c" name="q8" type="checkbox" value="social"/><label for="q8c" class="radio-social">Become famous</label></span>
+                                <span><input id="q8a" name="q8" type="checkbox" value="mobile"/><label for="q8a" class="radio-mobile">Mobile market</label></span>
+                            </div>
+                        </li>
 
                     </ol><!-- /fs-fields -->
                     <button class="fs-submit " type="submit">Send answers</button>

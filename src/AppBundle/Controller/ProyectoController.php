@@ -154,9 +154,14 @@ class ProyectoController extends Controller
         $genero = $em->getRepository('AppBundle:Genero')
             ->find($id)
         ;
+        $em = $this->getDoctrine()->getManager();
+        $proyectos = $em->getRepository('AppBundle:Proyecto')
+            ->findBy(array('generos' => $id));
+
         dump($id);
         return $this->render(':default/genero:genero.html.twig', [
-            'genero' => $genero
+            'genero' => $genero,
+            'proyectos' => $proyectos
         ]);
     }
 

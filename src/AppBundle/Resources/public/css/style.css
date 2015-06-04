@@ -3,6 +3,8 @@ h1{
     font-weight: 200;
 }
 
+
+
 .card a{
     color: #A0F !important;
 }
@@ -222,11 +224,42 @@ textarea.materialize-textarea:focus:not([readonly]) {
 /* ||||||||||||| GENERO |||||||||| */
 #principal-genero{
     text-align: center;
-    padding-top: 100px;
-    height: 500px;
+    padding-top: 75px;
+    background: url(../images/generos/Plataformas.png) no-repeat;
     background-size: cover;
+    height: 300px;
+    color: #fff;
+    text-shadow: 0 0 5px 2px rgba(0,0,0,0.3);
+
 }
 /* fin genero */
+
+/* |||||||||| MENSAJES |||||||||| */
+.mensajes i{
+    color: #AA00FF;
+}
+
+.infoms{
+float: right;
+
+}
+
+.contador-blue, .contador-orange, .contador-green {
+    color: #fff;
+    padding: 3px 13px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+.contador-blue{
+    background: #2196f3;
+}
+.contador-green{
+    background: #43a047 ;
+}
+.contador-orange{
+    background: #ff9800;
+}
+/* fin de mensajes */
 /* footer */
 .page-footer{
     position: relative;

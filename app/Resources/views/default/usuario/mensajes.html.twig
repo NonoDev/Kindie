@@ -2,19 +2,19 @@
 {% block title 'Kindie | Mis mensajes' %}
     {% block contenido %}
         <h1 class="center">Gestión de mensajes</h1>
-        <div class="row">
+        <div class="row mensajes">
             <div class="col s12 m10 l8 offset-l2 offset-m1">
         <ul class="collapsible popout" data-collapsible="accordion">
             <li>
-                <div class="collapsible-header"><i class="mdi-content-mail"></i>Bandeja de entrada <span>{{ contadorMensajes }}</span></div>
+                <div class="collapsible-header"><i class="mdi-content-mail"></i>Bandeja de entrada <span class="contador-blue">{{ contadorMensajes }}</span></div>
                 <div class="collapsible-body">
                     {% if mensajes %}
 
                         <ul class="collapsible" data-collapsible="accordion">
                         {% for mensaje in mensajes %}
                             <li>
-                                <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>{{ mensaje.tipo }}</div>
-                                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ mensaje.tipo }} <span class="infoms">de <strong>{{ mensaje.remitente }}</strong>, el <strong>{{ mensaje.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-body"><p>{{ mensaje.texto }}</p></div>
                             </li>
                         {% endfor %}
                             {% else %}
@@ -27,12 +27,38 @@
                     </div>
             </li>
             <li>
-                <div class="collapsible-header"><i class="mdi-content-send"></i>Enviados <span>{{ contadorEnviados }}</span></div>
-                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                <div class="collapsible-header"><i class="mdi-content-send"></i>Enviados <span class="contador-green">{{ contadorEnviados }}</span></div>
+                <div class="collapsible-body">
+                    {% if enviados %}
+                    <ul class="collapsible" data-collapsible="accordion">
+                        {% for envio in enviados %}
+                            <li>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ envio.tipo }} <span class="infoms">a <strong>{{ envio.usuario.nombreUsuario }}</strong>, el <strong>{{ envio.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-body"><p>{{ envio.texto }}</p></div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {% else %}
+                        <h3 class="center">Aún no hay mensajes</h3>
+                    {% endif %}
+                </div>
             </li>
             <li>
-                <div class="collapsible-header"><i class="mdi-notification-sms-failed"></i>No leídos <span>{{ contadorNoLeidos }}</span></div>
-                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                <div class="collapsible-header"><i class="mdi-notification-sms-failed"></i>No leídos <span class="contador-orange">{{ contadorNoLeidos }}</span></div>
+                <div class="collapsible-body">
+                    {% if noLeidos %}
+                    <ul class="collapsible" data-collapsible="accordion">
+                        {% for nop in noLeidos %}
+                            <li>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ nop.tipo }} <span class="infoms">de <strong>{{ nop.remitente }}</strong>, el <strong>{{ nop.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-body"><p>{{ nop.texto }}</p></div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h3 class="center">Aún no hay mensajes</h3>
+                    {% endif %}
+                </div>
             </li>
         </ul>
             </div>

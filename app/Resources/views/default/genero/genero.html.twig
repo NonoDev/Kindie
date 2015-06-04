@@ -1,11 +1,59 @@
 {% extends '::layout.html.twig' %}
 {% block title %}Kindie | {{ genero.nombre }}{% endblock %}
     {% block contenido %}
-        <section id="principal-genero" style="background: url(../../../../../src/AppBundle/Resources/public/images/generos/{{ genero.nombre }}.png);">
+        <section id="principal-genero" class="responsive-img" data-type="parallax_section" data-speed="5">
             <h1>{{ genero.nombre }}</h1>
         </section>
         <section id="genero_proyectos">
+            <h1 class="center">Proyectos</h1>
+            {% if proyectos %}
+                <div class="row">
+                    {% for item in proyectos %}
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" {% if item.id % 2 == 0 %}src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}"
+                                            {% else %} src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}" {% endif %}>
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-menu right"></i></span>
+                                    <p><a href="{{ path('proyecto', {'id':item.id}) }}">Visita el proyecto</a></p>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-close right"></i></span>
+                                    <p class="descripcion truncate">{{ item.descripcion }}</p>
+                                    <h5>{{ (item.contribuciones/item.meta)*100 }}% Conseguido</h5>
+                                    <div class="progress">
+                                        <div class="determinate purple accent-4" style="width: {{ (item.contribuciones/item.meta)*100 }}%;"></div>
+                                    </div>
+                                    <p><i class="small mdi-maps-pin-drop"></i> {{ item.localizacion }}&nbsp; <i class="small mdi-image-style"></i> {{ item.generos.nombre }}</p>
+                                    <div class="row">
+                                        <div class="col m4">
+                                            <strong>Meta</strong>
+                                            <p>{{ item.meta }} $</p>
+                                        </div>
+                                        <div class="col m4">
+                                            <strong>Conseguido</strong>
+                                            <p>{{ item.contribuciones }} $</p>
+                                        </div>
+                                        <div class="col m4">
+                                            <strong>Fecha límite</strong>
+                                            <p>{{ item.fechaFin|date("d/m/Y")}}</p>
+                                        </div>
 
+                                    </div>
+                                    <h5>Recompensa</h5>
+                                    <p>{{ item.recompensa }}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h3 class="center">Aún no hay proyectos con este género.</h3>
+                <a href="{{ path('empieza') }}" class="btn purple accent-4">Sé el primero</a>
+            {% endif %}
         </section>
 
     {% endblock %}
