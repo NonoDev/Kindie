@@ -21,7 +21,7 @@
         {% block body %}{% endblock %}
         <!-- Compiled and minified JavaScript -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+        <script src="{{ asset('bundles/app/js/materialize.min.js') }}"></script>
         <script src="{{ asset('bundles/app/js/classie.js') }}"></script>
         <script src="{{ asset('bundles/app/js/parallax.js') }}"></script>
 
@@ -167,6 +167,39 @@
                     $(document).ready(function(){
                         $('.tooltipped').tooltip({delay: 50});
                     });
+
+                    // mi modal
+                    var maskHeight = $(document).height();
+                    var maskWidth = $(window).width();
+                    $('#mascara').css({'width':maskWidth,'height':maskHeight});
+                    $(".mi-modal-trigger2").click(function(){
+
+                        $('#mascara').fadeTo("slow",0.5);
+                        var winH = $(window).height();
+                        var winW = $(window).width();
+
+                        //transition effect
+                        $("#mi-modal2").slideDown();
+                    });
+                    $('#mascara').click(function () {
+                        $(this).fadeOut();
+                        $('#mi-modal2').fadeOut();
+                    });
+
+                    $(".mi-modal-trigger").click(function(){
+
+                        $('#mascara').fadeTo("slow",0.5);
+                        var winH = $(window).height();
+                        var winW = $(window).width();
+
+                        //transition effect
+                        $("#mi-modal").slideDown();
+                    });
+                    $('#mascara').click(function () {
+                        $(this).fadeOut();
+                        $('#mi-modal').fadeOut();
+                    });
+
 
                     //frases aleatorias
                     var frases = new Array();

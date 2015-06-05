@@ -4,7 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mensaje;
 use AppBundle\Form\Type\MensajeType;
+use AppBundle\Form\Type\UsuarioModificarType;
 use AppBundle\Form\Type\UsuarioType;
+use AppBundle\Form\Type\UsuarioModificarTypeType;
 use AppBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,7 +22,7 @@ class UsuarioController extends Controller
     {
         $usuario = new Usuario();
         // crear el formulario
-        $formulario = $this->createForm(new UsuarioType(), $usuario);
+        $formulario = $this->createForm(new UsuarioMoType(), $usuario);
 
         // Procesar el formulario si se ha enviado con un POST
         $formulario->handleRequest($peticion);
@@ -108,7 +110,7 @@ class UsuarioController extends Controller
         $user = $this->getUser();
         $usuario = new Usuario();
         // crear el formulario
-        $formulario = $this->createForm(new UsuarioType(), $usuario);
+        $formulario = $this->createForm(new UsuarioModificarType(), $usuario);
 
         // Procesar el formulario si se ha enviado con un POST
         $formulario->handleRequest($peticion);
@@ -123,7 +125,8 @@ class UsuarioController extends Controller
         }
 
         return $this->render(':default/usuario:editarPerfil.html.twig',[
-            'usuario' => $user
+            'usuario' => $user,
+            'formulario' => $formulario->createView()
         ]);
     }
 
