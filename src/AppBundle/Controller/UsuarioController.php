@@ -109,7 +109,22 @@ class UsuarioController extends Controller
     /**
      * @Route("/perfil", name="perfil")
      */
-    public function perfilAction(Request $peticion)
+    public function perfilAction()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $proyectos = $em->getRepository('AppBundle:Proyecto')
+            ->findby(array('usuario' => $user->getId()));
+        return $this->render(':default/usuario:perfil.html.twig',[
+            'usuario' => $user,
+            'proyectos' => $proyectos
+        ]);
+    }
+
+    /**
+     * @Route("/editarPerfil", name="editarPerfil")
+     */
+    public function editarPerfilAction(Request $peticion)
     {
         $user = $this->getUser();
         $usuario = new Usuario();
@@ -128,7 +143,9 @@ class UsuarioController extends Controller
 
         }
 
-        return $this->render(':default/usuario:perfil.html.twig');
+        return $this->render(':default/usuario:perfil.html.twig',[
+            'usuario' => $user
+        ]);
     }
 
 }
