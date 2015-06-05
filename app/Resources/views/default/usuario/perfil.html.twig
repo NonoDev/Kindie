@@ -1,6 +1,18 @@
 {% extends '::layout.html.twig' %}
 {% block title 'Kindie | Configuración de perfil del usuario' %}
     {% block contenido %}
-        <h2>Configuración perfil de usuario</h2>
+        <section id="principal-perfil" class="responsive-img" data-type="parallax_section" data-speed="5">
+            <h1 class="center">Visualiza y gestiona tu perfil</h1>
+            <div class="row mensajes">
+                <div class="col s12 m10 l8 offset-l2 offset-m1">
+                    <div class="info-perfil">
+                        <img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}">
+                    </div>
+                </div>
 
+            </div>
+        </section>
+        <section id="proyectos-perfil">
+            <h1 class="center">Tus proyectos</h1>
+        </section>
     {% endblock %}

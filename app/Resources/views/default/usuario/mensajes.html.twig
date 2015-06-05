@@ -12,10 +12,19 @@
 
                         <ul class="collapsible" data-collapsible="accordion">
                         {% for mensaje in mensajes %}
+
                             <li>
                                 <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ mensaje.tipo }} <span class="infoms">de <strong>{{ mensaje.remitente }}</strong>, el <strong>{{ mensaje.fecha|date('d/m/Y') }}</strong></span> </div>
-                                <div class="collapsible-body"><p>{{ mensaje.texto }}</p></div>
+                                <div class="collapsible-body">
+                                    <div id="acciones_ms">
+                                        <a href="#modalMensaje" class="responder tooltipped modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
+"></i></a>
+                                    </div>
+
+                                    <p>{{ mensaje.texto }}</p></div>
                             </li>
+
+
                         {% endfor %}
                             {% else %}
                             <h2>Aun no hay mensajes</h2>
@@ -62,6 +71,14 @@
             </li>
         </ul>
                 <blockquote class="center">*Recuerda que puedes contactar con cualquier usuario a través del poryecto sobre el que quieras consultar.</blockquote>
+            </div>
+            <div style="display: block; opacity: 0; bottom: -100%;" id="modalMensaje" class="modal">
+                <div class="modal-content">
+                    <h4>Modal Header</h4>
+                    <label><strong>Remitente: </strong></label><span>{{ usuario.nombreUsuario }}</span><br/>
+                    <label><strong>Para: </strong></label><span></span>
+
+                </div>
             </div>
 
         </div>

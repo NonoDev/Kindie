@@ -67,6 +67,34 @@ class UsuarioController extends Controller
             ->findBy(array('remitente' => $user->getId()));
         dump($noLeidos, $user);
 
+        // MENSAJES //
+        $mensaje = new Mensaje();
+
+        // crear el formulario
+        $formulario1 = $this->createForm(new MensajeType(), $mensaje);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario1->handleRequest($peticion);
+
+        $em = $this->getDoctrine()->getManager();
+        $usuarioMensaje = $em->getRepository('AppBundle:Usuario')
+            ->find($mensaje->getUsuario());
+        ;
+        if ($formulario1->isSubmitted() && $formulario1->isValid()){
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setLeido(false);
+            $mensaje->setFecha(new \DateTime());
+            $mensaje->setUsuario($usuarioMensaje);
+
+            $em->persist($mensaje);
+            $em->flush();
+
+        }
+
+        // FIN MENSAJES //
+
         return $this->render(':default/usuario:mensajes.html.twig', [
             'usuario' => $user,
             'mensajes' => $mensajes,
@@ -76,6 +104,31 @@ class UsuarioController extends Controller
             'enviados' => $enviados,
             'contadorEnviados' => count($enviados)
         ]);
+    }
+
+    /**
+     * @Route("/perfil", name="perfil")
+     */
+    public function perfilAction(Request $peticion)
+    {
+        $user = $this->getUser();
+        $usuario = new Usuario();
+        // crear el formulario
+        $formulario = $this->createForm(new UsuarioType(), $usuario);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($peticion);
+
+        // Si se ha enviado y el contenido es válido, guardar los cambios
+        if ($formulario->isSubmitted() && $formulario->isValid()){
+
+
+
+
+
+        }
+
+        return $this->render(':default/usuario:perfil.html.twig');
     }
 
 }

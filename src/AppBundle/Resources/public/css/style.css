@@ -267,7 +267,51 @@ float: right;
     margin-bottom: 100px !important;
     margin-top: 100px !important;
 }
+
+#acciones_ms{
+    text-align: right;
+}
+#acciones_ms i{
+    color: #888;
+}
+
+#acciones_ms i:hover{
+    color: #2196f3;
+}
+
 /* fin de mensajes */
+
+/* ||||||| USUARIO ||||||| */
+#principal-perfil{
+    text-align: center;
+    padding-top: 100px;
+    background: url(../images/usuario/seccion_perfil.jpg) no-repeat fixed;
+    height: 500px;
+    background-size: cover;
+}
+
+#principal-perfil h1{
+    margin: 20px;
+}
+
+
+.info-perfil {
+    margin: 0px auto;
+    background: rgba(255, 255, 255, 0.87) none repeat scroll 0% 0%;
+    padding: 30px;
+    float: left;
+    width: 100%;
+    box-shadow: 0px 0px 38px 17px rgba(255, 255, 255, 0.87);
+}
+
+.info-perfil img {
+    border: 0px none;
+    width: 250px;
+    float: left;
+}
+
+
+/* fin usuario /*
 /* footer */
 .page-footer{
     position: relative;
