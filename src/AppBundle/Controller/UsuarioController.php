@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mensaje;
+use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\UsuarioType;
 use AppBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,6 +28,8 @@ class UsuarioController extends Controller
         // Si se ha enviado y el contenido es válido, guardar los cambios
         if ($formulario->isSubmitted() && $formulario->isValid()){
             $usuario->setesAdmin(false);
+            $usuario->setEsCreador(false);
+            $usuario->setEsParticipante(false);
             // Guardar el usuario en la base de datos
                 $em = $this->getDoctrine()->getManager();
                 $helper =  $password = $this->container->get('security.password_encoder');
@@ -67,31 +70,7 @@ class UsuarioController extends Controller
             ->findBy(array('remitente' => $user->getId()));
         dump($noLeidos, $user);
 
-        // MENSAJES //
-        $mensaje = new Mensaje();
 
-        // crear el formulario
-        $formulario1 = $this->createForm(new MensajeType(), $mensaje);
-
-        // Procesar el formulario si se ha enviado con un POST
-        $formulario1->handleRequest($peticion);
-
-        $em = $this->getDoctrine()->getManager();
-        $usuarioMensaje = $em->getRepository('AppBundle:Usuario')
-            ->find($mensaje->getUsuario());
-        ;
-        if ($formulario1->isSubmitted() && $formulario1->isValid()){
-            // Guardar el mensaje en la base de datos
-            $em = $this->getDoctrine()->getManager();
-            $mensaje->setRemitente($user->getId());
-            $mensaje->setLeido(false);
-            $mensaje->setFecha(new \DateTime());
-            $mensaje->setUsuario($usuarioMensaje);
-
-            $em->persist($mensaje);
-            $em->flush();
-
-        }
 
         // FIN MENSAJES //
 
@@ -143,7 +122,7 @@ class UsuarioController extends Controller
 
         }
 
-        return $this->render(':default/usuario:perfil.html.twig',[
+        return $this->render(':default/usuario:editarPerfil.html.twig',[
             'usuario' => $user
         ]);
     }

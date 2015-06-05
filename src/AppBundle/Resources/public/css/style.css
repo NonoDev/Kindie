@@ -3,7 +3,30 @@ h1{
     font-weight: 200;
 }
 
+/* modal */
+#mi-modal, #mi-modal2{
+    position:fixed;
+    display:none;
+    top: 10%;
+    z-index:9999;
+    padding:20px;
+    background: #fff;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,0.5);
+}
 
+#mascara{
+    position:fixed;
+    top: -57%;
+    left: -26%;
+    z-index:9000;
+    background-color:#fff;
+    display:none;
+    width: 100%;
+}
+/* fin modal */
+.indicator{
+    background-color: #AA00FF !important;
+}
 
 .card a{
     color: #A0F !important;
@@ -149,6 +172,11 @@ nav a.button-collapse i {
 /* fin empieza */
 
 /* ||||||||||||| PROYECTO |||||||||| */
+#proyecto{
+    background: url(../images/proyectos/principal_proyecto.png) no-repeat fixed;
+    height: 500px;
+    background-size: cover;
+}
 .contador {
     color: #fff;
     background: #a0f;
@@ -218,6 +246,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .img-perfil{
     width: 80px;
+}
+
+#favorito{
+
 }
 /* fin proyecto */
 
@@ -292,6 +324,8 @@ float: right;
 
 #principal-perfil h1{
     margin: 20px;
+    margin-top: -50px;
+    margin-bottom: 40px;
 }
 
 

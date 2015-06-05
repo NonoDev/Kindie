@@ -1,5 +1,5 @@
 {% extends '::layout.html.twig' %}
-{% block title 'Kindie | Configuración de perfil del usuario' %}
+{% block title 'Kindie | Perfil del usuario' %}
     {% block contenido %}
         <section id="principal-perfil" class="responsive-img" data-type="parallax_section" data-speed="5">
             <h1 class="center">Visualiza y gestiona tu perfil</h1>
@@ -9,7 +9,7 @@
                         <img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}">
                         <p class="proyecto-arriba">{{ usuario.nombreUsuario }}</p>
                         <p>Proyectos apoyados: 0</p>
-                        <p><a href="#" class="btn purple accent-4"> Edita tu perfil</a> </p>
+                        <p><a href="{{ path('editarPerfil') }}" class="btn purple accent-4"> Edita tu perfil</a> </p>
                     </div>
                 </div>
 
