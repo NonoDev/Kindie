@@ -1,0 +1,16 @@
+{% extends '::layout.html.twig' %}
+{% block title %}Kindie | Desarrollo del proyecto{% endblock %}
+    {% block contenido %}
+        <section id="actualizaciones" class="responsive-img" data-type="parallax_section" data-speed="5">
+            <h1 class="center">Desarrollo del proyecto</h1>
+            <div class="row editar-perfil">
+                <div class="col s12 m8 l6 offset-m2 offset-l3 ">
+                    {{ form(formulario) }}
+                    <a href="{{ path('proyecto', {'id':proyecto.id}) }}" class="enlace-azul"><i class="mdi-navigation-arrow-back"></i> Vuelve al proyecto</a>
+                    <blockquote>Indica en el título lo más llamativo de los nuevos cambios, desarróllalo en la descripción</blockquote>
+                </div>
+            </div>
+
+        </section>
+
+    {% endblock %}

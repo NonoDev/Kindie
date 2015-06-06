@@ -264,6 +264,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
     background-size: cover;
     padding: 50px;
 }
+
+.actu a:hover{
+    color: #1ac7ff !important;
+    font-size: 17px !important;
+}
 /* fin proyecto */
 
 /* ||||||||||||| GENERO |||||||||| */

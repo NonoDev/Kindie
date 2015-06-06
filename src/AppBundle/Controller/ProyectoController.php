@@ -109,6 +109,13 @@ class ProyectoController extends Controller
             ->findBy(array('proyecto' => $id), array('fecha' => 'DESC'))
         ;
 
+        // Obtener actualizaciones
+        $em = $this->getDoctrine()->getManager();
+        $desarrollo = $em->getRepository('AppBundle:Desarrollo')
+            ->findBy(array('proyecto' => $id), array('fechaActualizacion' => 'DESC'))
+        ;
+
+
         // MENSAJES //
         $mensaje = new Mensaje();
 
@@ -136,7 +143,7 @@ class ProyectoController extends Controller
         }
 
         // FIN MENSAJES //
-        dump($comentarios);
+        dump($desarrollo);
         return $this->render(':default/proyecto:proyecto.html.twig', [
             'usuario' => $user,
             'comentarios' => $comentarios,
@@ -144,7 +151,8 @@ class ProyectoController extends Controller
             'proyecto' => $proyecto,
             'formulario' => $formulario->createView(),
             'formularioMensaje' => $formulario1->createView(),
-            'diferencia' => $diff->days
+            'diferencia' => $diff->days,
+            'desarrollo' => $desarrollo
         ]);
     }
 

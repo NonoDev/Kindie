@@ -81,7 +81,7 @@
                                     {% for coment in comentarios %}
                                 <li class="comentario-item">
                                     <img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}" alt="" class="circle">
-                                    <span class="title"> {{ coment.usuario.nombreUsuario }} {% if coment.usuario.id == usuario.id %} <a href="#" class="creador tooltipped" data-position="top" data-delay="50" data-tooltip="Creador" ><i class="mdi-image-color-lens
+                                    <span class="title"> {{ coment.usuario.nombreUsuario }} {% if coment.usuario.id == proyecto.usuario.id %} <a href="#" class="creador tooltipped" data-position="top" data-delay="50" data-tooltip="Creador" ><i class="mdi-image-color-lens
 "></i></a> {% endif %}</span>&nbsp;
                                     <span class="fecha"> el <strong>{{ coment.fecha|date('d/m/Y') }}</strong> a las <strong>{{ coment.fecha|date('H:i:s') }}</strong></span>
                                     <p>
@@ -97,7 +97,29 @@
                     </div>
 
                 </div>
-                <div id="test3" class="col s12"><a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}">Añade desarrollo</a></div>
+                <div id="test3" class="col s12">
+
+                    <div class="col s12 m10 l8 offset-l2 actu">
+                        <a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}" class="enlace-centrado actualizacion-btn"><i class="mdi-action-extension"></i> Añade actualizaciones</a>
+                    {% if desarrollo %}
+                    <ul class="cbp_tmtimeline">
+                        {% for actualizacion in desarrollo %}
+                        <li>
+                            <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>{{ actualizacion.fechaActualizacion|date('d/m/Y') }}</span> <span>{{ actualizacion.fechaActualizacion|date('H:i') }}</span></time>
+                            <div class="cbp_tmicon"></div>
+                            <div class="cbp_tmlabel">
+                                <h2>{{ actualizacion.titulo }}</h2>
+                                <p>{{ actualizacion.texto }}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                        {% else %}
+                        <h3 class="center">Aún no hay actualizaciones en este proyecto.</h3>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="tsc_divider5_black"></div>
                 <div id="test4" class="col s12">
                     <a href="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}">Añade imágenes</a>
                 </div>
