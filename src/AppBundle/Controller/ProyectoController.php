@@ -262,6 +262,20 @@ class ProyectoController extends Controller
             'proyecto' => $proyecto
         ]);
     }
+
+    /**
+     * @Route("/editarDetalle_proyecto", name="editarDetalle_proyecto")
+     */
+    public function editarDetalleAction(Request $request)
+    {
+        $id = $request->query->get('id');
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        // crear el formulario
+
+        dump($user);
+        return $this->render(':default/proyecto:editarDetalle.html.twig');
+    }
 }
 
 

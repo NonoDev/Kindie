@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="{{ asset('bundles/app/css/form/cs-skin-boxes.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/app/css/form/cs-select.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/app/css/tl.css') }}">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="{{ asset('bundles/app/js/tinymce/tinymce.min.js') }}"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="{{ asset('bundles/app/js/formulario_full/modernizr.custom.js') }}"></script>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -21,7 +23,8 @@
     <body>
         {% block body %}{% endblock %}
         <!-- Compiled and minified JavaScript -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
         <script src="{{ asset('bundles/app/js/materialize.min.js') }}"></script>
         <script src="{{ asset('bundles/app/js/classie.js') }}"></script>
         <script src="{{ asset('bundles/app/js/parallax.js') }}"></script>

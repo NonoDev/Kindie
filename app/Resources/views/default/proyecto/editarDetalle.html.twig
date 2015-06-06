@@ -2,15 +2,41 @@
 {% block title %}Kindie | Desarrollo del proyecto{% endblock %}
     {% block contenido %}
         <section id="actualizaciones" class="responsive-img" data-type="parallax_section" data-speed="5">
-            <h1 class="center">Desarrollo del proyecto</h1>
+            <h1 class="center">Edita el detalle de tu proyecto</h1>
             <div class="row editar-perfil">
-                <div class="col s12 m8 l6 offset-m2 offset-l3 ">
-                    {{ form(formulario) }}
-                    <a href="{{ path('proyecto', {'id':proyecto.id}) }}" class="enlace-azul"><i class="mdi-navigation-arrow-back"></i> Vuelve al proyecto</a>
-                    <blockquote>Indica en el título lo más llamativo de los nuevos cambios, desarróllalo en la descripción</blockquote>
+                <div class="col s12 m10 l8 offset-m1 offset-l2 ">
+
+                    <script type="text/javascript">
+                        tinymce.init({
+                            selector: "textarea",
+                            height: 500,
+                            language : 'es',
+                            plugins: [
+                                "advlist autolink lists link image charmap print preview anchor",
+                                "searchreplace visualblocks code fullscreen",
+                                "insertdatetime media table contextmenu paste"
+                            ],
+                            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                        });
+                    </script>
+
+                    <!-- Place this in the body of the page content -->
+                    <form method="post" action="{{ path('editarDetalle_proyecto') }}">
+                        <textarea name="editor" required="required"></textarea>
+                        <button type="submit" name="guardar" class="btn purple accent-4">Guardar</button>
+                    </form>
+
+
+
+
                 </div>
             </div>
 
         </section>
-
+        <div class="row editar-perfil">
+            <div class="col s12 m10 l8 offset-m1 offset-l2 ">
+                <h2 class="center">"El diseño debe seducir, educar y, quizás lo más importante, provocar una respuesta emocional."</h2>
+                <h6 class="center"><strong>April Greiman</strong></h6>
+                </div>
+            </div>
     {% endblock %}
