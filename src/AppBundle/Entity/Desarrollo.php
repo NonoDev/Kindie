@@ -20,6 +20,13 @@ class Desarrollo
      *
      * @var string
      */
+    protected $titulo;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
     protected $texto;
 
     /**
@@ -44,6 +51,29 @@ class Desarrollo
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set titulo
+     *
+     * @param string $titulo
+     * @return Desarrollo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    /**
+     * Get titulo
+     *
+     * @return string
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
     }
 
     /**

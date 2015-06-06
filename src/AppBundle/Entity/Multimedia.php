@@ -91,7 +91,7 @@ class Multimedia
 
     /**
      * @param string $ruta
-     * @return Imagen
+     * @return Multimedia
      */
     public function setRuta($ruta)
     {

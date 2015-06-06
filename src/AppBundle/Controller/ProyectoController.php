@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Desarrollo;
 use AppBundle\Entity\Mensaje;
 use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Multimedia;
 use AppBundle\Entity\Proyecto;
+use AppBundle\Form\Type\ActualizacionType;
 use AppBundle\Form\Type\ImagenType;
 use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\ComentarioType;
@@ -96,7 +98,7 @@ class ProyectoController extends Controller
             $comentario->setUsuario($user);
             $texto = $formulario->get('texto')->getData();
             $comentario->setTexto($texto);
-            
+
             $em->persist($comentario);
             $em->flush();
         }
@@ -215,6 +217,40 @@ class ProyectoController extends Controller
         dump($user);
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
             'formulario' => $formulario->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/desarrollo_proyecto", name="desarrollo_proyecto")
+     */
+    public function actualizacionAction(Request $request)
+    {
+        $id = $request->query->get('id');
+        $act = new Desarrollo();
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        // crear el formulario
+        $formulario = $this->createForm(new ActualizacionType(), $act);
+        $proyecto = $em->getRepository('AppBundle:Proyecto')
+            ->find($id)
+        ;
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($request);
+        if ($formulario->isSubmitted() && $formulario->isValid()) {
+
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+            $act->setProyecto($proyecto);
+            $act->setFechaActualizacion(new \DateTime());
+
+            $em->persist($act);
+            $em->flush();
+
+        }
+        dump($user);
+        return $this->render(':default/proyecto:actualizacion.html.twig', [
+            'formulario' => $formulario->createView(),
+            'usuario' => $user
         ]);
     }
 }
