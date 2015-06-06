@@ -250,7 +250,8 @@ class ProyectoController extends Controller
         dump($user);
         return $this->render(':default/proyecto:actualizacion.html.twig', [
             'formulario' => $formulario->createView(),
-            'usuario' => $user
+            'usuario' => $user,
+            'proyecto' => $proyecto
         ]);
     }
 }

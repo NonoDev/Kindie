@@ -2,7 +2,9 @@
 h1{
     font-weight: 200;
 }
-
+.enlace-azul:hover{
+    color: #1ac7ff;
+}
 /* modal */
 #mi-modal, #mi-modal2{
     position:fixed;
@@ -240,7 +242,7 @@ blockquote {
     margin-top: 2px;
 }
 textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 0px solid #AA00FF !important;
+    border-bottom: 1px solid #AA00FF !important;
     box-shadow: 0px 2px 0px 0px #A0F !important;
 }
 
@@ -254,6 +256,13 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .creador:hover{
     color: #1ac7ff !important;
+}
+
+#actualizaciones{
+    background: url(../images/proyectos/desarrollo.png) no-repeat fixed;
+    height: 700px;
+    background-size: cover;
+    padding: 50px;
 }
 /* fin proyecto */
 
