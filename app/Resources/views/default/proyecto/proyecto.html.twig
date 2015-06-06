@@ -34,11 +34,13 @@
                             <li><a href="https://github.com/codrops"><i class="fa fa-fw fa-github"></i><span>Codrops on GitHub</span></a></li>
                             <li><a href="http://www.pinterest.com/codrops/codrops/"><i class="fa fa-fw fa-pinterest"></i><span>Codrops on Pinterest</span></a></li>
                             <li><a href="https://www.tumblr.com/tagged/codrops"><i class="fa fa-fw fa-tumblr"></i><span>Codrops on Tumblr</span></a></li>
-                            <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=tympanus&loc=en_US"><i class="fa fa-fw fa-envelope"></i><span>Codrops RSS as Mail</span></a></li>
+                            <li><a href="#modalMensaje" class="modal-trigger"><i class="fa fa-fw fa-envelope"></i><span></span></a></li>
                         </ul>
 
-                    </div><br/><a class="waves-effect waves-light btn purple accent-4 modal-trigger" href="#modalMensaje">Contacta con el creador</a><br/>
-                    <div id="favorito"><i class="mdi-action-favorite"></i> Favoritos </div>
+                    </div><br/>
+                    <div id="favorito">
+                            <i class="fa fa-heart faa-pulse"></i>
+                            </div>
                     <div style="display: block; opacity: 0; bottom: -100%;" id="modalMensaje" class="modal bottom-sheet">
                         <div class="modal-content">
                             <h4>Modal Header</h4>
@@ -61,7 +63,7 @@
                     </ul>
                 </div>
                 <div id="test1" class="col s12">
-                    <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="enlace-centrado"><i class="mdi-action-extension"></i> Añade actualizaciones</a>
+                    <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="enlace-centrado"><i class="mdi-action-extension"></i> Edita el detalle</a>
                     <h2 class="center">Campaña del proyecto</h2>
 
                     <div class="col s12 m10 l8 offset-l2" id="campaña">
