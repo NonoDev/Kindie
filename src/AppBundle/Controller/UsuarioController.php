@@ -103,7 +103,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/editarPerfil", name="editarPerfil")
+     * @Route("/editarPerfil/", name="editarPerfil")
      */
     public function editarPerfilAction(Request $peticion)
     {
@@ -111,25 +111,39 @@ class UsuarioController extends Controller
         $usuario = new Usuario();
         // crear el formulario
         $formulario = $this->createForm(new UsuarioModificarType(), $usuario);
-
         // Procesar el formulario si se ha enviado con un POST
         $formulario->handleRequest($peticion);
-
         // Si se ha enviado y el contenido es válido, guardar los cambios
         if ($formulario->isSubmitted() && $formulario->isValid()){
-
-
-
-
-
         }
-
         return $this->render(':default/usuario:editarPerfil.html.twig',[
             'usuario' => $user,
             'formulario' => $formulario->createView()
         ]);
     }
 
+    /**
+     * @Route("/administracion", name="administracion")
+     */
+    public function administracionlAction(Request $peticion)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $usuarios = $em->getRepository('AppBundle:Usuario')
+            ->findAll();
+        $proyectos = $em->getRepository('AppBundle:Proyecto')
+            ->findBy(array('esValido' => false));
+
+        $comentarios = $em->getRepository('AppBundle:Comentario')
+            ->findAll();
+        return $this->render(':default/usuario:administracion.html.twig',[
+            'usuario' => $user,
+            'usuarios' => $usuarios,
+            'proyectos' => $proyectos,
+            'comentarios' => $comentarios,
+            'contador_proyectos' => count($proyectos)
+        ]);
+    }
 }
 
 

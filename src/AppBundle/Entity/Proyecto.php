@@ -96,6 +96,13 @@ class Proyecto
     protected $visitas;
 
     /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean
+     */
+    protected $esValido;
+
+    /**
      * @ORM\OneToOne(targetEntity="Favorito", mappedBy="proyecto")
      *
      * @var Favorito
@@ -217,6 +224,29 @@ class Proyecto
     public function getVisitas()
     {
         return $this->visitas;
+    }
+
+    /**
+     * Set esValido
+     *
+     * @param boolean $esValido
+     * @return Proyecto
+     */
+    public function setEsValido($esValido)
+    {
+        $this->esValido = $esValido;
+
+        return $this;
+    }
+
+    /**
+     * Get esValido
+     *
+     * @return boolean
+     */
+    public function getEsValido()
+    {
+        return $this->esValido;
     }
 
     /**
