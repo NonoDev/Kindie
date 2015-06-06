@@ -4,7 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mensaje;
 use AppBundle\Entity\Comentario;
+use AppBundle\Entity\Multimedia;
 use AppBundle\Entity\Proyecto;
+use AppBundle\Form\Type\ImagenType;
 use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\ComentarioType;
 use AppBundle\Form\Type\ProyectoType;
@@ -94,7 +96,7 @@ class ProyectoController extends Controller
             $comentario->setUsuario($user);
             $texto = $formulario->get('texto')->getData();
             $comentario->setTexto($texto);
-
+            
             $em->persist($comentario);
             $em->flush();
         }
@@ -188,6 +190,30 @@ class ProyectoController extends Controller
         dump($user, $generos);
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
             'generos' => $generos,
+            'formulario' => $formulario->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/multimedia_proyecto", name="multimedia_proyecto")
+     */
+    public function multimediaAction(Request $request)
+    {
+        $imagen = new Multimedia();
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        // crear el formulario
+        $formulario = $this->createForm(new ImagenType(), $imagen);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($request);
+        if ($formulario->isSubmitted() && $formulario->isValid()) {
+
+
+
+        }
+        dump($user);
+        return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
             'formulario' => $formulario->createView()
         ]);
     }
