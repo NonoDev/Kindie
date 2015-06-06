@@ -8,6 +8,7 @@ use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Multimedia;
 use AppBundle\Entity\Proyecto;
 use AppBundle\Form\Type\ActualizacionType;
+use AppBundle\Form\Type\EditarDetalleType;
 use AppBundle\Form\Type\ImagenType;
 use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\ComentarioType;
@@ -271,10 +272,28 @@ class ProyectoController extends Controller
         $id = $request->query->get('id');
         $user=$this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $proyecto = $em->getRepository('AppBundle:Proyecto')
+            ->find($id)
+        ;
         // crear el formulario
+        $formulario = $this->createForm(new EditarDetalleType(), $proyecto);
 
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($request);
+        if ($formulario->isSubmitted() && $formulario->isValid()) {
+
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($proyecto);
+            $em->flush();
+
+        }
         dump($user);
-        return $this->render(':default/proyecto:editarDetalle.html.twig');
+        return $this->render(':default/proyecto:editarDetalle.html.twig', [
+            'formulario' => $formulario->createView(),
+            'proyecto' => $proyecto
+        ]);
     }
 }
 

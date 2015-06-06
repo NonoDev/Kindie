@@ -61,10 +61,13 @@
                     </ul>
                 </div>
                 <div id="test1" class="col s12">
-                    <h2 class="center">Descripción</h2>
-                    <div class="col s12 m10 l8 offset-l2">
-                        {{ proyecto.descripcion }}
+                    <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="enlace-centrado"><i class="mdi-action-extension"></i> Añade actualizaciones</a>
+                    <h2 class="center">Campaña del proyecto</h2>
+
+                    <div class="col s12 m10 l8 offset-l2" id="campaña">
+                        {{ proyecto.descripcion|raw }}
                     </div>
+
                 </div>
                 <div id="test2" class="col s12">
                     <div id="comentarios">

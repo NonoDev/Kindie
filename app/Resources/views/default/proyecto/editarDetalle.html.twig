@@ -20,13 +20,9 @@
                         });
                     </script>
 
-                    <!-- Place this in the body of the page content -->
-                    <form method="post" action="{{ path('editarDetalle_proyecto') }}">
-                        <textarea name="editor" required="required"></textarea>
-                        <button type="submit" name="guardar" class="btn purple accent-4">Guardar</button>
-                    </form>
 
-
+{{ form(formulario) }}
+                    <a href="{{ path('proyecto', {'id':proyecto.id}) }}" class="enlace-azul"><i class="mdi-navigation-arrow-back"></i> Vuelve al proyecto</a>
 
 
                 </div>
