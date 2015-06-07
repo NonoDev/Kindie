@@ -7,10 +7,10 @@ body {
 	overflow-y: scroll;
 }
 
-input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+/*input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
      border-bottom: 0px solid #a0f !important;
      box-shadow: 0px 0px 0px 0px #a0f !important;
- }
+ }*/
 
 
 

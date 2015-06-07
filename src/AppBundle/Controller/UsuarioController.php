@@ -90,15 +90,48 @@ class UsuarioController extends Controller
     /**
      * @Route("/perfil", name="perfil")
      */
-    public function perfilAction()
+    public function perfilAction(Request $peticion)
     {
         $user = $this->getUser();
+        $id = $peticion->query->get('id');
         $em = $this->getDoctrine()->getManager();
+        $usuario_perfil = $em->getRepository('AppBundle:Usuario')
+            ->find($id);
+        $proyectos_usuario_perfil = $em->getRepository('AppBundle:Proyecto')
+            ->findby(array('usuario' => $usuario_perfil->getId()));
         $proyectos = $em->getRepository('AppBundle:Proyecto')
             ->findby(array('usuario' => $user->getId()));
+
+        // MENSAJES //
+        $mensaje = new Mensaje();
+
+        // crear el formulario
+        $formulario1 = $this->createForm(new MensajeType(), $mensaje);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario1->handleRequest($peticion);
+        ;
+        if ($formulario1->isSubmitted() && $formulario1->isValid()){
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setLeido(false);
+            $mensaje->setFecha(new \DateTime());
+            $mensaje->setUsuario($usuario_perfil);
+
+            $em->persist($mensaje);
+            $em->flush();
+
+        }
+
+        // FIN MENSAJES //
+        dump($usuario_perfil);
         return $this->render(':default/usuario:perfil.html.twig',[
             'usuario' => $user,
-            'proyectos' => $proyectos
+            'proyectos' => $proyectos,
+            'usuario_perfil' => $usuario_perfil,
+            'formularioMensaje' => $formulario1->createView(),
+            'proyectos_usuario_perfil' => $proyectos_usuario_perfil
         ]);
     }
 
@@ -107,7 +140,15 @@ class UsuarioController extends Controller
      */
     public function editarPerfilAction(Request $peticion)
     {
+
         $user = $this->getUser();
+        $id = $peticion->query->get('id');
+        if($user->getId()!= $id || $id == null){
+            // redireccionar a la portada
+            return new RedirectResponse(
+                $this->generateUrl('perfil')
+            );
+        }
         $usuario = new Usuario();
         // crear el formulario
         $formulario = $this->createForm(new UsuarioModificarType(), $usuario);
@@ -116,6 +157,7 @@ class UsuarioController extends Controller
         // Si se ha enviado y el contenido es válido, guardar los cambios
         if ($formulario->isSubmitted() && $formulario->isValid()){
         }
+        dump($id);
         return $this->render(':default/usuario:editarPerfil.html.twig',[
             'usuario' => $user,
             'formulario' => $formulario->createView()
