@@ -1,10 +1,30 @@
 {% extends '::base.html.twig' %}
-{% block title 'Kindie - Login' %}
+{% block title 'Kindie | Login' %}
+    {% block stylesheets %}<link rel="stylesheet" href="{{ asset('bundles/app/css/login.css') }}">{% endblock %}
     {% block body %}
-        <h1>Login</h1>
-        <form method="post" action="{{ url('usuario_comprobar') }}">
-            <fieldset>
-                <legend>Introduzca los datos de acceso</legend>
+        <div class="content">
+            <svg viewBox="0 0 800 300">
+
+                <!-- Symbol -->
+                <symbol id="s-text">
+                    <text text-anchor="middle" x="50%" y="50%" dy=".35em">
+                        KINDIE
+                    </text>
+                </symbol>
+
+                <!-- Duplicate symbols -->
+                <use xlink:href="#s-text" class="text"></use>
+                <use xlink:href="#s-text" class="text"></use>
+                <use xlink:href="#s-text" class="text"></use>
+                <use xlink:href="#s-text" class="text"></use>
+                <use xlink:href="#s-text" class="text"></use>
+
+            </svg>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 l4 offset-l4">
+        <form method="post" action="{{ url('usuario_comprobar') }}" class="z-depth-3">
+        <h5 class="center">LOGIN</h5>
                 <div class="form-group">
                     <label for="username">Nombre de usuario</label>
                     <input type="text" name="_username"
@@ -17,8 +37,11 @@
                     <input type="password" name="_password"
                            {% if last_username %}autofocus="1" {% endif %}
                            >
+
                 </div>
-                <button type="submit" class="btn waves-effect waves-light">Entrar en la aplicación</button>
-            </fieldset>
+                <button type="submit" class="btn purple accent-4 waves-effect waves-light">Entrar en la aplicación</button>
+
         </form>
+                </div>
+        </div>
     {% endblock %}

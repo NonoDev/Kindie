@@ -16,6 +16,17 @@ h1{
     box-shadow: 0 0 5px 2px rgba(0,0,0,0.5);
 }
 
+.modal.bottom-sheet {
+    top: auto;
+    bottom: -100%;
+    border-radius: 0px;
+    will-change: bottom, opacity;
+    max-height: 60% !important;
+    width: 80% !important;
+    padding: 50px;
+    margin: 0px auto !important;
+}
+
 #mascara{
     position:fixed;
     top: -57%;
