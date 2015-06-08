@@ -83,16 +83,16 @@ class ProyectoController extends Controller
     }
 
     /**
-     * @Route("/proyecto", name="proyecto")
+     * @Route("/proyecto/{id}", name="proyecto")
      */
-    public function proyectoAction(Request $request)
+    public function proyectoAction(Request $request, Proyecto $id)
     {
 
         $user = $this->getUser();
 
         $comentario = new Comentario();
 
-        $id = $request->query->get('id');
+        //$id = $request->query->get('id');
         // crear el formulario
         $formulario = $this->createForm(new ComentarioType(), $comentario);
 

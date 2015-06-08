@@ -35,13 +35,11 @@
                 </li>
                 <li><a href="{{ path('descubre_proyectos') }}">Descubre</a></li>
                 <li><a href="{{ path('empieza') }}">Empieza</a></li>
-                <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
-                <li><a href="{{ path('nuevo_usuario') }}">Regístrate</a></li>
                 {%  if app.user %}
-                <li><a href="#" class="mi-trigger"><img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}" class="img-perfil"> <span class="user-perfil"></span></a>
+                <li><a href="#" class="mi-trigger"><img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}" class="img-perfil"> <span class="user-perfil">{{ app.user.nombreUsuario }}</span></a>
                 <ul class="mi-dd">
-                    <li><a href="{{ path('mensajes_usuario') }}">Mensajes</a></li>
-                    <li><a href="{{ path('perfil') }}">Perfil</a></li>
+                    <li><a href="{{ path('mensajes_usuario') }}">Mensajes {% set count = app.user.mensajes|length %}{{ count }}</a></li>
+                    <li><a href="{{ path('perfil', {'id': app.user.id}) }}">Perfil</a></li>
                     <li><a href="#">Proyecto apoyados</a></li>
                     <li><a href="#">Favoritos</a></li>
                     <li><a href="#">Mi cuenta</a></li>
@@ -49,6 +47,9 @@
                     <li><a href="{{ path('administracion') }}">Panel de administración</a></li>
                     <li><a href="{{ path('usuario_salir') }}">Cerrar sesión</a></li>
                 </ul></li>
+                    {% else %}
+                        <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
+                        <li><a href="{{ path('nuevo_usuario') }}">Regístrate</a></li>
                     {% endif %}
                 <li></li>
             </ul>

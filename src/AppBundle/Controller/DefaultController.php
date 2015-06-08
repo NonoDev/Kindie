@@ -6,6 +6,7 @@ use AppBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -28,11 +29,12 @@ class DefaultController extends Controller
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
             ;
-        //dump($generos);
+        dump(count($user->getMensajes()));
         return $this->render(':default:portada.html.twig', [
             'proyectos' => $proyectos,
             'generos' => $generos,
-            'usuario' => $user
+            'usuario' => $user,
+            'mnl' => count($user->getMensajes())
         ]);
     }
 
