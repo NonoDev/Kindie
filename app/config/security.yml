@@ -10,7 +10,7 @@ security:
         ROLE_CREADOR: [ROLE_USER]
         ROLE_PARTICIPANTE: [ROLE_USER]
         ROLE_ADMIN: [ROLE_USER]
-        ROLE_SUPER_ADMIN: [ROLE_USUARIO, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -30,7 +30,7 @@ security:
             security: false
 
         portada:
-            pattern:  ^/$
+            pattern:  ^/portada$
             security: false
 
         registro:

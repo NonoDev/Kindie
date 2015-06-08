@@ -201,6 +201,18 @@ nav a.button-collapse i {
 .tabs .tab a .active{
     border-bottom: 2px solid #a0f !important;
 }
+
+#acciones_coments, #acciones_coments form{
+    float: right;
+}
+#eliminar_coment{
+    background: transparent none repeat scroll 0% 0%;
+    border: medium none;
+}
+
+#eliminar_coment:hover{
+    color: #e53935;
+}
 .proyecto-arriba{
     font-size: 40px;
     padding: 0;

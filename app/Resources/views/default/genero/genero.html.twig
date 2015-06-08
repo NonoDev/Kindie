@@ -21,7 +21,9 @@
                                 </div>
                                 <div class="card-reveal">
                                     <span class="card-title grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-close right"></i></span>
-                                    <p class="descripcion truncate">{{ item.descripcion }}</p>
+                                    <p>Por <strong><i><a href="{{ path('perfil', {'id': item.usuario.id}) }}">{{ item.usuario.nombreUsuario }}</a></i></strong></p>
+
+                                    <p class="descripcion truncate">{{ item.descripcionCorta }}</p>
                                     <h5>{{ (item.contribuciones/item.meta)*100 }}% Conseguido</h5>
                                     <div class="progress">
                                         <div class="determinate purple accent-4" style="width: {{ (item.contribuciones/item.meta)*100 }}%;"></div>
@@ -42,8 +44,7 @@
                                         </div>
 
                                     </div>
-                                    <h5>Recompensa</h5>
-                                    <p>{{ item.recompensa }}</p>
+
 
                                 </div>
                             </div>

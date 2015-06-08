@@ -23,10 +23,6 @@ class UsuarioModificarType extends AbstractType{
                 'label' => 'Nuevo DNI',
                 'required' => true
             ))
-            ->add('imagen', 'file', array(
-                'label' => 'Nueva imagen de perfil',
-                'required' => false
-            ))
             ->add('nombreCompleto', 'text', array(
                 'label' => 'Nuevo nombre completo',
                 'required' => true

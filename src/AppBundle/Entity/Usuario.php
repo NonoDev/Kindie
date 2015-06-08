@@ -155,7 +155,7 @@ class Usuario implements UserInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -178,7 +178,7 @@ class Usuario implements UserInterface
     /**
      * Get dni
      *
-     * @return string 
+     * @return string
      */
     public function getDni()
     {
@@ -201,7 +201,7 @@ class Usuario implements UserInterface
     /**
      * Get imagen
      *
-     * @return string 
+     * @return string
      */
     public function getImagen()
     {
@@ -224,7 +224,7 @@ class Usuario implements UserInterface
     /**
      * Get pass
      *
-     * @return string 
+     * @return string
      */
     public function getPass()
     {
@@ -247,7 +247,7 @@ class Usuario implements UserInterface
     /**
      * Get nombreCompleto
      *
-     * @return string 
+     * @return string
      */
     public function getNombreCompleto()
     {
@@ -270,7 +270,7 @@ class Usuario implements UserInterface
     /**
      * Get telefono
      *
-     * @return string 
+     * @return string
      */
     public function getTelefono()
     {
@@ -293,7 +293,7 @@ class Usuario implements UserInterface
     /**
      * Get apellidos
      *
-     * @return string 
+     * @return string
      */
     public function getApellidos()
     {
@@ -316,7 +316,7 @@ class Usuario implements UserInterface
     /**
      * Get nombreUsuario
      *
-     * @return string 
+     * @return string
      */
     public function getNombreUsuario()
     {
@@ -418,7 +418,7 @@ class Usuario implements UserInterface
     /**
      * Get favoritos
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFavoritos()
     {
@@ -451,7 +451,7 @@ class Usuario implements UserInterface
     /**
      * Get comentarios
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComentarios()
     {
@@ -484,7 +484,7 @@ class Usuario implements UserInterface
     /**
      * Get notificaciones
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotificaciones()
     {
@@ -517,7 +517,7 @@ class Usuario implements UserInterface
     /**
      * Get mensajes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getMensajes()
     {
@@ -550,7 +550,7 @@ class Usuario implements UserInterface
     /**
      * Get inversiones
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getInversiones()
     {
@@ -583,7 +583,7 @@ class Usuario implements UserInterface
     /**
      * Get proyectos
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProyectos()
     {
@@ -616,7 +616,7 @@ class Usuario implements UserInterface
     /**
      * Get participaciones
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getParticipaciones()
     {
@@ -651,6 +651,7 @@ class Usuario implements UserInterface
         if ($this->getEsParticipante()) {
             $roles[] = new Role('ROLE_PARTICIPANTE');
         }
+        dump($roles);
         return $roles;
     }
 
@@ -664,7 +665,7 @@ class Usuario implements UserInterface
      */
     public function getPassword()
     {
-        return $this->pass;
+        return $this->getPass();
     }
 
     /**
@@ -687,6 +688,7 @@ class Usuario implements UserInterface
     public function getUsername()
     {
         // TODO: Implement getUsername() method.
+        return $this->getNombreUsuario();
     }
 
     /**
@@ -699,4 +701,5 @@ class Usuario implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
 }

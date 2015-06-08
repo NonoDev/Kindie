@@ -15,6 +15,7 @@ use AppBundle\Form\Type\ComentarioType;
 use AppBundle\Form\Type\ProyectoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProyectoController extends Controller
@@ -60,10 +61,33 @@ class ProyectoController extends Controller
     }
 
     /**
+     * @Route("/eliminar_comentario", name="eliminar_comentario")
+     */
+    public function eliminarComentarioAction(Request $request)
+    {
+        if(isset($_POST['eliminar_coment'])){
+            $cometario = $_POST['eliminar_coment'];
+            $em = $this->getDoctrine()->getManager();
+            $coment = $em->getRepository('AppBundle:Comentario')
+                ->find($cometario);
+            $em->remove($coment);
+            $em->flush();
+
+            $id = $coment->getProyecto()->getId();
+
+            return new RedirectResponse(
+                $this->generateUrl('proyecto', array('id'=>$id))
+            );
+        }
+
+    }
+
+    /**
      * @Route("/proyecto", name="proyecto")
      */
     public function proyectoAction(Request $request)
     {
+
         $user = $this->getUser();
 
         $comentario = new Comentario();
@@ -210,21 +234,26 @@ class ProyectoController extends Controller
      */
     public function multimediaAction(Request $request)
     {
+        $id = $request->query->get('id');
         $imagen = new Multimedia();
         $user=$this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $proyecto = $em->getRepository('AppBundle:Proyecto')
+            ->find($id);
         // crear el formulario
         $formulario = $this->createForm(new ImagenType(), $imagen);
 
         // Procesar el formulario si se ha enviado con un POST
         $formulario->handleRequest($request);
+
         if ($formulario->isSubmitted() && $formulario->isValid()) {
-
-
-
+            $imagen->setRuta('galeria.png');
+            $imagen->setProyecto($proyecto);
+            $em->persist($imagen);
+            $em->flush();
         }
         dump($user);
-        return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
+        return $this->render(':default/proyecto:multimedia.html.twig', [
             'formulario' => $formulario->createView()
         ]);
     }

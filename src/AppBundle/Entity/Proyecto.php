@@ -700,4 +700,17 @@ class Proyecto
     {
         return $this->participantes;
     }
+
+    /**
+     * Set generos
+     *
+     * @param \AppBundle\Entity\Genero $generos
+     * @return Proyecto
+     */
+    public function setGeneros(\AppBundle\Entity\Genero $generos = null)
+    {
+        $this->generos = $generos;
+
+        return $this;
+    }
 }

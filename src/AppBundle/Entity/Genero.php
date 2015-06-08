@@ -114,4 +114,34 @@ class Genero
     {
         return $this->proyecto;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->proyecto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add proyecto
+     *
+     * @param \AppBundle\Entity\Proyecto $proyecto
+     * @return Genero
+     */
+    public function addProyecto(\AppBundle\Entity\Proyecto $proyecto)
+    {
+        $this->proyecto[] = $proyecto;
+
+        return $this;
+    }
+
+    /**
+     * Remove proyecto
+     *
+     * @param \AppBundle\Entity\Proyecto $proyecto
+     */
+    public function removeProyecto(\AppBundle\Entity\Proyecto $proyecto)
+    {
+        $this->proyecto->removeElement($proyecto);
+    }
 }

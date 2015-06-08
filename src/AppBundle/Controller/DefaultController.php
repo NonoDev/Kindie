@@ -10,8 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="portada")
-     *
+     * @Route("/")
+     * @Route("/portada", name="portada")
      */
     public function indexAction()
     {

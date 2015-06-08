@@ -22,7 +22,7 @@ class UsuarioController extends Controller
     {
         $usuario = new Usuario();
         // crear el formulario
-        $formulario = $this->createForm(new UsuarioMoType(), $usuario);
+        $formulario = $this->createForm(new UsuarioType(), $usuario);
 
         // Procesar el formulario si se ha enviado con un POST
         $formulario->handleRequest($peticion);
@@ -149,13 +149,20 @@ class UsuarioController extends Controller
                 $this->generateUrl('perfil')
             );
         }
-        $usuario = new Usuario();
+        $em = $this->getDoctrine()->getManager();
+        $usuario = $em->getRepository('AppBundle:Usuario')
+            ->find($id);
         // crear el formulario
         $formulario = $this->createForm(new UsuarioModificarType(), $usuario);
         // Procesar el formulario si se ha enviado con un POST
         $formulario->handleRequest($peticion);
         // Si se ha enviado y el contenido es válido, guardar los cambios
         if ($formulario->isSubmitted() && $formulario->isValid()){
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($usuario);
+            $em->flush();
         }
         dump($id);
         return $this->render(':default/usuario:editarPerfil.html.twig',[

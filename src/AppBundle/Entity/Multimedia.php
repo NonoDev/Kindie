@@ -140,10 +140,11 @@ class Multimedia
         if (null === $this->imagen) {
             return;
         }
-        $this->imagen->move(
+        $a = $this->imagen->move(
             $this->getUploadRootDir(),
             $this->ruta
         );
+        dump($a);
         $this->imagen = null;
     }
     /**

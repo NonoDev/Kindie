@@ -15,11 +15,16 @@ class ImagenType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fichero', 'file', [
+            ->add('imagen', 'file', [
                 'label' => 'Añadir fotografía',
                 'data_class' => null,
                 'required' => true
-            ]);
+            ])
+            ->add('guardar', 'submit', array(
+                'label' => 'Guardar cambios',
+                'attr' => array('class' => 'btn purple accent-4 waves-effect waves-light')
+    ));
+
     }
 
     /**
