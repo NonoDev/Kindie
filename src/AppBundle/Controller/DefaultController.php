@@ -29,12 +29,10 @@ class DefaultController extends Controller
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
             ;
-        dump(count($user->getMensajes()));
         return $this->render(':default:portada.html.twig', [
             'proyectos' => $proyectos,
             'generos' => $generos,
-            'usuario' => $user,
-            'mnl' => count($user->getMensajes())
+            'usuario' => $user
         ]);
     }
 

@@ -15,6 +15,34 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 class UsuarioController extends Controller
 {
+
+    /**
+     * @Route("/marcar_leidos/{id}", name="marcar_leidos")
+     */
+    public function marcarLeidosAction(Mensaje $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $usuario = $em->getRepository('AppBundle:Usuario')
+            ->find($id);
+        dump($usuario);
+        if(isset($_POST['marcar-leidos'])){
+            $em = $this->getDoctrine()->getManager();
+            $mensajes = $em->getRepository('AppBundle:Mensaje')
+                ->findBy(array('usuario'=>$usuario));
+            foreach($mensajes as $item){
+                $item->setLeido(true);
+                $em->persist($item);
+                $em->flush();
+            }
+
+
+            return new RedirectResponse(
+                $this->generateUrl('mensajes_usuario')
+            );
+        }
+
+    }
+
     /**
      * @Route("/nuevo_usuario", name="nuevo_usuario")
      */
@@ -60,7 +88,7 @@ class UsuarioController extends Controller
         $em = $this->getDoctrine()->getManager();
         // Mensajes del usuario
         $mensajes = $em->getRepository('AppBundle:Mensaje')
-            ->findBy(array('usuario' => $user->getId()));
+            ->findBy(array('usuario' => $user->getId(), 'leido' => true));
         ;
         // Mensajes no leidos
         $em = $this->getDoctrine()->getManager();
@@ -71,7 +99,7 @@ class UsuarioController extends Controller
         $em = $this->getDoctrine()->getManager();
         $enviados = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('remitente' => $user->getId()));
-        dump($noLeidos, $user);
+
 
 
 
