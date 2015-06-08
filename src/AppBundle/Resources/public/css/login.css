@@ -50,6 +50,19 @@ form {
 
 
 }
+
+#opciones{
+    padding: 20px;
+    text-align: center;
+}
+
+#opciones a{
+    color: #AA00FF;
+}
+
+#opciones a:hover{
+    font-weight: 500;
+}
 .content {
   font: 800 14.5em/1  'Open Sans', Impact; }
 
