@@ -61,15 +61,14 @@ class ProyectoController extends Controller
     }
 
     /**
-     * @Route("/eliminar_comentario", name="eliminar_comentario")
+     * @Route("/eliminar_comentario/{id}", name="eliminar_comentario")
      */
-    public function eliminarComentarioAction(Request $request)
+    public function eliminarComentarioAction(Comentario $id)
     {
         if(isset($_POST['eliminar_coment'])){
-            $cometario = $_POST['eliminar_coment'];
             $em = $this->getDoctrine()->getManager();
             $coment = $em->getRepository('AppBundle:Comentario')
-                ->find($cometario);
+                ->find($id);
             $em->remove($coment);
             $em->flush();
 
@@ -168,7 +167,7 @@ class ProyectoController extends Controller
         }
 
         // FIN MENSAJES //
-        dump($desarrollo);
+
         return $this->render(':default/proyecto:proyecto.html.twig', [
             'usuario' => $user,
             'comentarios' => $comentarios,

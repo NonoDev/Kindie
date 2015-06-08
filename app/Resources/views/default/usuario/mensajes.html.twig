@@ -1,3 +1,4 @@
+
 {% extends '::layout.html.twig' %}
 {% block title 'Kindie | Mis mensajes' %}
     {% block contenido %}
@@ -26,6 +27,7 @@
                                         <label><strong>Remitente: </strong></label><span>{{ mensaje.usuario.nombreUsuario }}</span><br/>
                                         <label><strong>Para: </strong></label><span>{{ mensaje.remitente }}</span><br/>
                                         <label><strong>Asunto: </strong></label><span>Re+ {{ mensaje.tipo }}</span>
+                                        
                                     </div>
                                     <div id="mascara"></div>
 

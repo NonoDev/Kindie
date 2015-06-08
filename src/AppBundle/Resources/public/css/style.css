@@ -66,22 +66,33 @@ h1{
     position: absolute;
     top: 78px;
     right: 0px;
-    width: 222px;
+    width: 300px;
     z-index: 1000;
+    box-shadow: 1px 10px 10px 0px rgba(0,0,0,0.3);
 }
 
 .mi-dd li{
     clear: both;
     width: 100%;
-    background: #fff;
+    background: #FFF none repeat scroll 0% 0%;
     color: #000;
     text-align: center;
+    padding: 0 0 14px 0;
+    height: 54px;
+    line-height: 38px;
+}
+.mi-dd li:hover{
+    background: rgba(0,0,0,0.3);
 }
 .buscador{
     padding: 0px 10px;
 }
 .mi-trigger{
     height: 78px;
+}
+
+.mi-trigger .contador-blue{
+    float: right;
 }
 
 .user-perfil{

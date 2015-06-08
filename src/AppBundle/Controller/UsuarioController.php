@@ -55,6 +55,7 @@ class UsuarioController extends Controller
      */
     public function mensajesAction(Request $peticion)
     {
+
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         // Mensajes del usuario
@@ -74,6 +75,29 @@ class UsuarioController extends Controller
 
 
 
+        // MENSAJES //
+        $mensaje = new Mensaje();
+
+        // crear el formulario
+        $formulario1 = $this->createForm(new MensajeType(), $mensaje);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario1->handleRequest($peticion);
+
+        $em = $this->getDoctrine()->getManager();
+        if ($formulario1->isSubmitted() && $formulario1->isValid()){
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setLeido(false);
+            $mensaje->setFecha(new \DateTime());
+          ;
+
+            $em->persist($mensaje);
+            $em->flush();
+
+        }
+
         // FIN MENSAJES //
 
         return $this->render(':default/usuario:mensajes.html.twig', [
@@ -83,7 +107,8 @@ class UsuarioController extends Controller
             'noLeidos' => $noLeidos,
             'contadorNoLeidos' => count($noLeidos),
             'enviados' => $enviados,
-            'contadorEnviados' => count($enviados)
+            'contadorEnviados' => count($enviados),
+            'formulario' => $formulario1
         ]);
     }
 
@@ -193,6 +218,19 @@ class UsuarioController extends Controller
             'contador_proyectos' => count($proyectos)
         ]);
     }
+
+
+    public function devuelveRemitente($id){
+        $em = $this->getDoctrine()->getManager();
+        $remitente = $em->getRepository('AppBundle:Usuario')
+            ->find($id);
+        $ret = $remitente->getNombreUsuario();
+
+        return $ret;
+    }
+
+
+
 }
 
 
