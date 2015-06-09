@@ -41,7 +41,7 @@
                 <ul class="mi-dd">
                     <li><a href="{{ path('mensajes_usuario') }}">Mensajes <span class="contador-blue"> {{ count_ms }}</span></a></li>
                     <li><a href="{{ path('perfil', {'id': app.user.id}) }}">Perfil</a></li>
-                    <li><a href="#">Proyecto apoyados</a></li>
+                    <li><a href="{{ path('proyectos_apoyados') }}">Proyectos apoyados</a></li>
                     <li><a href="#">Favoritos</a></li>
                     <li><a href="{{ path('cuenta', {'id':app.user.id}) }}">Mi cuenta</a></li>
                     <li><a href="{{ path('notificaciones') }}">Notificaciones <span class="contador-green"> {{ count_not }}</span></a></li>

@@ -19,7 +19,7 @@ class NotificacionController extends Controller
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $notificaciones = $em->getRepository('AppBundle:Notificacion')
-            ->findAll();
+            ->findBy(array('usuario' => $user));
 
 
         return $this->render(':default/usuario:notificaciones.html.twig', [

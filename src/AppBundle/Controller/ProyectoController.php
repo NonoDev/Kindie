@@ -357,6 +357,18 @@ class ProyectoController extends Controller
             'formulario' => $formulario->createView()
         ]);
     }
+
+    /**
+     * @Route("/proyectos_apoyados", name="proyectos_apoyados")
+     */
+    public function apoyadosAction()
+    {
+        $user=$this->getUser();
+
+
+
+        return $this->render(':default/proyecto:proyectosApoyados.html.twig');
+    }
 }
 
 
