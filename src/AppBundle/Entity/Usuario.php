@@ -51,6 +51,13 @@ class Usuario implements UserInterface
      *
      * @var string
      */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
     protected $telefono;
 
     /**
@@ -252,6 +259,29 @@ class Usuario implements UserInterface
     public function getNombreCompleto()
     {
         return $this->nombreCompleto;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Usuario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**

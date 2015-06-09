@@ -228,7 +228,7 @@ class UsuarioController extends Controller
      * @Route("/administracion", name="administracion")
      * @Security(expression="has_role('ROLE_ADMIN')")
      */
-    public function administracionlAction(Request $peticion)
+    public function administracionAction(Request $peticion)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -248,15 +248,20 @@ class UsuarioController extends Controller
         ]);
     }
 
-
-    public function devuelveRemitente($id){
+    /**
+     * @Route("/cuenta", name="cuenta")
+     */
+    public function cuentaAction(Request $peticion)
+    {
+        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $remitente = $em->getRepository('AppBundle:Usuario')
-            ->find($id);
-        $ret = $remitente->getNombreUsuario();
 
-        return $ret;
+        return $this->render(':default/usuario:cuenta.html.twig',[
+            'usuario' => $user,
+        ]);
     }
+
+
 
 
 
