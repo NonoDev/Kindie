@@ -37,7 +37,7 @@ class Inversion
     protected $proyecto;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      * @var \Datetime
      */

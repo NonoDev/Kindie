@@ -323,6 +323,17 @@ class ProyectoController extends Controller
             'proyecto' => $proyecto
         ]);
     }
+
+    /**
+     * @Route("/participar_proyecto/{id}", name="participar_proyecto")
+     */
+    public function participarAction(Request $request, Proyecto $id)
+    {
+        $user=$this->getUser();
+
+
+        return $this->render(':default/proyecto:participar.html.twig');
+    }
 }
 
 
