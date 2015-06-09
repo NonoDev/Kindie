@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Desarrollo;
+use AppBundle\Entity\Inversion;
 use AppBundle\Entity\Mensaje;
 use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Multimedia;
@@ -12,6 +13,7 @@ use AppBundle\Form\Type\EditarDetalleType;
 use AppBundle\Form\Type\ImagenType;
 use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\ComentarioType;
+use AppBundle\Form\Type\ParticiparType;
 use AppBundle\Form\Type\ProyectoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -176,7 +178,8 @@ class ProyectoController extends Controller
             'formulario' => $formulario->createView(),
             'formularioMensaje' => $formulario1->createView(),
             'diferencia' => $diff->days,
-            'desarrollo' => $desarrollo
+            'desarrollo' => $desarrollo,
+            'participantes' => count($proyecto->getParticipantes())
         ]);
     }
 
@@ -330,9 +333,37 @@ class ProyectoController extends Controller
     public function participarAction(Request $request, Proyecto $id)
     {
         $user=$this->getUser();
+        $inversion = new Inversion();
+        // crear el formulario
+        $formulario = $this->createForm(new ParticiparType(), $inversion);
 
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($request);
+        if ($formulario->isSubmitted() && $formulario->isValid()) {
 
-        return $this->render(':default/proyecto:participar.html.twig');
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+
+            $inversion->setProyecto($id);
+            $inversion->setUsuario($user);
+            $inversion->setFecha(new \DateTime());
+            $em->persist($inversion);
+            $em->flush();
+
+            $em = $this->getDoctrine()->getManager();
+            $cont = $inversion->getCantidad() + $id->getContribuciones();
+            $id->setContribuciones($cont);
+            $id->addParticipante($user);
+            $em->persist($id);
+            $em->flush();
+
+        }
+
+        dump($id->getParticipantes()->getValues());
+        return $this->render(':default/proyecto:participar.html.twig', [
+            'proyecto' => $id,
+            'formulario' => $formulario->createView()
+        ]);
     }
 }
 

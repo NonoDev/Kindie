@@ -14,12 +14,16 @@
 
                 </div>
                 <div class="col s12 m6 l4">
-                    <p class="proyecto-arriba">{{ proyecto.contribuciones }} $</p>
-                    <p>de {{ proyecto.meta }}$</p>
-                    <p class="proyecto-arriba">{{ diferencia }}</p>
-                    <p>Días para lanzamiento</p>
-                    <a href="{{ path('participar_proyecto', {'id' : proyecto.id}) }}" class="btn btn-large purple accent-4">Apóyalo</a>
-                    <div id="menu" class="menu">
+                    <p class="proyecto-arriba">{{ proyecto.contribuciones }} €</p>
+                    <p>de {{ proyecto.meta }}€</p>
+                    <p class="proyecto-arriba">{{ diferencia+1 }}</p>
+                    <p>Días para recaudar</p>
+                    <p class="proyecto-arriba">{{ participantes }}</p>
+                    <p>Inversores</p>
+                    {% if usuario.id != proyecto.usuario.id %}
+                        <a href="{{ path('participar_proyecto', {'id' : proyecto.id}) }}" class="btn btn-large purple accent-4">Apóyalo</a>
+                    {% endif %}
+                        <div id="menu" class="menu">
 					<span class="morph-shape" data-morph-active="M251,150c0,93.5-29.203,143-101,143S49,243.5,49,150C49,52.5,78.203,7,150,7S251,51.5,251,150z">
 						<svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="none">
                             <path d="M281,150c0,71.797-59.203,131-131,131S19,221.797,19,150S78.203,19,150,19S281,78.203,281,150z"/>

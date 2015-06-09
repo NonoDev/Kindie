@@ -304,6 +304,13 @@ textarea.materialize-textarea:focus:not([readonly]) {
     color: #1ac7ff !important;
     font-size: 17px !important;
 }
+
+#participar{
+    background: url(../images/proyectos/participar.png) no-repeat fixed;
+    height: 700px;
+    background-size: cover;
+    padding: 50px;
+}
 /* fin proyecto */
 
 /* ||||||||||||| GENERO |||||||||| */

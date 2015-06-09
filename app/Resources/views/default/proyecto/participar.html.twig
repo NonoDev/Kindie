@@ -2,8 +2,15 @@
 {% block title %}Kindie | Apoyo a proyectos{% endblock %}
     {% block contenido %}
         <section id="participar" class="responsive-img" data-type="parallax_section" data-speed="5">
-
-
+            <h1 class="center">{{ proyecto.nombre }}</h1>
+            <h6 class="center">Por <strong><i><a href="{{ path('perfil', {'id': proyecto.usuario.id}) }}">{{ proyecto.usuario.nombreUsuario }}</a></i></strong></h6>
+            <div class="row ">
+                <div class="col s12 m8 l6 offset-m2 offset-l3 ">
+                    {{ form(formulario) }}
+                    <a href="{{ path('proyecto', {'id':proyecto.id}) }}" class="enlace-azul"><i class="mdi-navigation-arrow-back"></i> Vuelve al proyecto</a>
+                    <blockquote>Poner algo decente y que ayude</blockquote>
+                </div>
+            </div>
         </section>
 
     {% endblock %}
