@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mensaje;
+use AppBundle\Form\Type\CuentaType;
 use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\UsuarioModificarType;
 use AppBundle\Form\Type\UsuarioType;
@@ -249,15 +250,32 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/cuenta", name="cuenta")
+     * @Route("/cuenta/{id}", name="cuenta")
      */
-    public function cuentaAction(Request $peticion)
+    public function cuentaAction(Request $peticion, Usuario $id)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $usuario = $em->getRepository('AppBundle:Usuario')
+            ->find($id);
+        // crear el formulario
+        $formulario = $this->createForm(new CuentaType(), $usuario);
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($peticion);
+        // Si se ha enviado y el contenido es válido, guardar los cambios
+
+        if ($formulario->isSubmitted() && $formulario->isValid()){
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+            $helper =  $password = $this->container->get('security.password_encoder');
+            $usuario->setPass($helper->encodePassword($usuario, $usuario->getPass()));
+            $em->persist($usuario);
+            $em->flush();
+        }
 
         return $this->render(':default/usuario:cuenta.html.twig',[
             'usuario' => $user,
+            'formulario' => $formulario->createView()
         ]);
     }
 
