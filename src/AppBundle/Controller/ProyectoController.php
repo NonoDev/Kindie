@@ -7,6 +7,7 @@ use AppBundle\Entity\Inversion;
 use AppBundle\Entity\Mensaje;
 use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Multimedia;
+use AppBundle\Entity\Notificacion;
 use AppBundle\Entity\Proyecto;
 use AppBundle\Form\Type\ActualizacionType;
 use AppBundle\Form\Type\EditarDetalleType;
@@ -334,6 +335,7 @@ class ProyectoController extends Controller
     {
         $user=$this->getUser();
         $inversion = new Inversion();
+        $notificacion = new Notificacion();
         // crear el formulario
         $formulario = $this->createForm(new ParticiparType(), $inversion);
 
@@ -350,11 +352,25 @@ class ProyectoController extends Controller
             $em->persist($inversion);
             $em->flush();
 
+            // Añadir la cantidad a las contribuciones totales del proyecto
             $em = $this->getDoctrine()->getManager();
             $cont = $inversion->getCantidad() + $id->getContribuciones();
             $id->setContribuciones($cont);
-            $id->addParticipante($user);
+            $participantes = $id->getParticipantes($user);
+                if(count($participantes) == 0) {
+                    $id->addParticipante($user);
+                }
             $em->persist($id);
+            $em->flush();
+
+            // Mandar notificacion al creador del proyecto
+            $em = $this->getDoctrine()->getManager();
+            $notificacion->setUsuario($id->getUsuario());
+            $notificacion->setDescripcion('El usuario ' . $user->getNombreUsuario() . ' ha realizado una inversión en tu proyecto ' . $id->getNombre() . ' por valor de ' . $inversion->getCantidad() . '€.');
+            $notificacion->setTipo('Inversión');
+            $notificacion->setLeida(false);
+            $notificacion->setFecha(new \DateTime());
+            $em->persist($notificacion);
             $em->flush();
 
         }

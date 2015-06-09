@@ -16,7 +16,7 @@ class ParticiparType extends AbstractType{
     {
         $builder
             ->add('cantidad', 'number', array(
-                'label' => 'Cantidad a invertir, invierte al menos 1€',
+                'label' => 'Cantidad a invertir, al menos 1€',
                 'required' => true
             ))
 

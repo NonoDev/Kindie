@@ -37,7 +37,7 @@ class Notificacion
     protected $leida;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      * @var \Datetime
      */
