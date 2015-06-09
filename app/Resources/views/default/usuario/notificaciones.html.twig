@@ -1,0 +1,105 @@
+
+{% extends '::layout.html.twig' %}
+{% block title 'Kindie | Mis mensajes' %}
+    {% block contenido %}
+        <h1 class="center">Gestión de mensajes</h1>
+
+        <div class="row mensajes">
+            <div class="col s12 m10 l8 offset-l2 offset-m1">
+        <ul class="collapsible popout" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="mdi-content-mail"></i>Bandeja de entrada <span class="contador-blue">{{ contadorMensajes }}</span></div>
+                <div class="collapsible-body">
+                    {% if mensajes %}
+
+                        <ul class="collapsible" data-collapsible="accordion">
+                        {% for mensaje in mensajes %}
+
+                            <li>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ mensaje.tipo }} <span class="infoms">de <strong>{{ mensaje.remitente }}</strong>, el <strong>{{ mensaje.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-body">
+                                    <div id="acciones_ms">
+                                        <a href="#modalMensaje" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
+"></i></a>
+                                    </div>
+                                    <div id="mi-modal" class="col s12 m10 l8 offset-l2 offset-m1">
+                                        <h4>Modal Header</h4>
+                                        <label><strong>Remitente: </strong></label><span>{{ mensaje.usuario.nombreUsuario }}</span><br/>
+                                        <label><strong>Para: </strong></label><span>{{ mensaje.remitente }}</span><br/>
+                                        <label><strong>Asunto: </strong></label><span>Re+ {{ mensaje.tipo }}</span>
+
+                                    </div>
+                                    <div id="mascara"></div>
+
+                                    <p>{{ mensaje.texto }}</p></div>
+                            </li>
+
+
+                        {% endfor %}
+                        </ul>
+                            {% else %}
+                            <h3>Aun no hay mensajes</h3>
+
+
+
+                            {% endif %}
+
+                    </div>
+            </li>
+            <!-- enviados -->
+            <li>
+                <div class="collapsible-header"><i class="mdi-content-send"></i>Enviados <span class="contador-green">{{ contadorEnviados }}</span></div>
+                <div class="collapsible-body">
+                    {% if enviados %}
+                    <ul class="collapsible" data-collapsible="accordion">
+                        {% for envio in enviados %}
+                            <li>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ envio.tipo }} <span class="infoms">a <strong>{{ envio.usuario.nombreUsuario }}</strong>, el <strong>{{ envio.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-body">
+                                    <div id="acciones_ms">
+                                        <!--<a href="#modalMensaje" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
+"></i></a>-->
+                                    </div>
+                                    <p>{{ envio.texto }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {% else %}
+                        <h3 class="center">Aún no hay mensajes</h3>
+                    {% endif %}
+                </div>
+            </li>
+            <!-- no leídos -->
+            <li>
+                <div class="collapsible-header"><i class="mdi-notification-sms-failed"></i>No leídos <span class="contador-orange">{{ contadorNoLeidos }}</span></div>
+                <div class="collapsible-body">
+                    <form method="post" action="{{ path('marcar_leidos', {'id' : usuario.id}) }}" name="form-noleidos">
+                    {% if noLeidos %}
+                    <ul class="collapsible" data-collapsible="accordion">
+                        {% for nop in noLeidos %}
+                            <li>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ nop.tipo }} <span class="infoms">de <strong>{{ nop.remitente }}</strong>, el <strong>{{ nop.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-body">
+                                    <p>{{ nop.texto }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        <button name="marcar-leidos" class="btn blue" type="submit">Marcar como leídos</button>
+                    {% else %}
+                        <h3 class="center">Aún no hay mensajes</h3>
+                    {% endif %}
+
+                    </form>
+                </div>
+            </li>
+        </ul>
+
+                <blockquote class="center">*Recuerda que puedes contactar con cualquier usuario a través del poryecto sobre el que quieras consultar.</blockquote>
+            </div>
+
+
+
+        </div>
+    {% endblock %}

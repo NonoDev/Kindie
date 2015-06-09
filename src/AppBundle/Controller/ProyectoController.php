@@ -6,12 +6,10 @@ use AppBundle\Entity\Desarrollo;
 use AppBundle\Entity\Inversion;
 use AppBundle\Entity\Mensaje;
 use AppBundle\Entity\Comentario;
-use AppBundle\Entity\Multimedia;
 use AppBundle\Entity\Notificacion;
 use AppBundle\Entity\Proyecto;
 use AppBundle\Form\Type\ActualizacionType;
 use AppBundle\Form\Type\EditarDetalleType;
-use AppBundle\Form\Type\ImagenType;
 use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\ComentarioType;
 use AppBundle\Form\Type\ParticiparType;
@@ -232,34 +230,7 @@ class ProyectoController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/multimedia_proyecto", name="multimedia_proyecto")
-     */
-    public function multimediaAction(Request $request)
-    {
-        $id = $request->query->get('id');
-        $imagen = new Multimedia();
-        $user=$this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $proyecto = $em->getRepository('AppBundle:Proyecto')
-            ->find($id);
-        // crear el formulario
-        $formulario = $this->createForm(new ImagenType(), $imagen);
 
-        // Procesar el formulario si se ha enviado con un POST
-        $formulario->handleRequest($request);
-
-        if ($formulario->isSubmitted() && $formulario->isValid()) {
-            $imagen->setRuta('galeria.png');
-            $imagen->setProyecto($proyecto);
-            $em->persist($imagen);
-            $em->flush();
-        }
-        dump($user);
-        return $this->render(':default/proyecto:multimedia.html.twig', [
-            'formulario' => $formulario->createView()
-        ]);
-    }
 
     /**
      * @Route("/desarrollo_proyecto", name="desarrollo_proyecto")
@@ -373,6 +344,11 @@ class ProyectoController extends Controller
             $em->persist($notificacion);
             $em->flush();
 
+            // Mandar notificacion al creador del proyecto
+            $em = $this->getDoctrine()->getManager();
+            $user->setEsParticipante(true);
+            $em->persist($user);
+            $em->flush();
         }
 
         dump($id->getParticipantes()->getValues());
