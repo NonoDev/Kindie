@@ -32,7 +32,7 @@ class NotificacionController extends Controller
             $em->flush();
 
         }
-        
+
         return $this->render(':default/usuario:notificaciones.html.twig', [
             'notificaciones' => $notificaciones
         ]);

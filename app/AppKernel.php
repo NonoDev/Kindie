@@ -3,6 +3,7 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -17,6 +18,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle()
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

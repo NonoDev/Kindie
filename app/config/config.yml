@@ -3,6 +3,8 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
+genemu_form:
+    autocomplete: ~
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
@@ -24,6 +26,8 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    serializer:
+        enabled: true
 
 # Twig Configuration
 twig:
