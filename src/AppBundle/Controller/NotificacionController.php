@@ -18,10 +18,21 @@ class NotificacionController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $noLeidas = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => 0));
+        $em = $this->getDoctrine()->getManager();
         $notificaciones = $em->getRepository('AppBundle:Notificacion')
             ->findBy(array('usuario' => $user));
 
+        foreach($noLeidas as $noL){
+            $em = $this->getDoctrine()->getManager();
+            $noL->setLeida(true);
 
+            $em->persist($noL);
+            $em->flush();
+
+        }
+        
         return $this->render(':default/usuario:notificaciones.html.twig', [
             'notificaciones' => $notificaciones
         ]);
