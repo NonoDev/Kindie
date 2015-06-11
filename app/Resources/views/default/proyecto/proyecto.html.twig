@@ -73,7 +73,10 @@
                 </div>
                 <!-- DETALLE -->
                 <div id="test1" class="col s12">
-                    <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="enlace-centrado"><i class="mdi-action-extension"></i> Edita el detalle</a>
+                    <div class="row">
+                    <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Edita el detalle</a>
+
+                    </div>
                     <h2 class="center">Campaña del proyecto</h2>
 
                     <div class="col s12 m10 l8 offset-l2" id="campaña">
@@ -126,8 +129,10 @@
                 </div>
                 <div id="test3" class="col s12">
                     <div class="col s12 m10 l8 offset-l2 actu">
-                        <a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}" class="enlace-centrado actualizacion-btn"><i class="mdi-action-extension"></i> Añade actualizaciones</a>
-                        {% if desarrollo %}
+                        <div class="row">
+                            <a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Añadir</a>
+                        </div>
+                            {% if desarrollo %}
                             <ul class="cbp_tmtimeline">
                                 {% for actualizacion in desarrollo %}
                                     <li>
@@ -148,9 +153,86 @@
                 </div>
 
                 <div id="test4" class="col s12">
-                    <a href="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}">Añade imágenes</a>
+                    <div class="row">
+                        <a href="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3">Añade imágenes</a>
+                    </div>
+                    <div class="row">
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}">
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <img class="materialboxed responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                        </div>
+
+
+                    </div>
+
                 </div>
             </div>
+
         </section>
 
     {% endblock %}

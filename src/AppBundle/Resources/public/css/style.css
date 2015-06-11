@@ -284,9 +284,17 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .img-perfil{
     width: 80px;
 }
+.grid {
+    background: #EEE;
+    max-width: 1200px;
+}
 
 #favorito {
     margin: 36px 0px 0px !important;
+}
+
+#test4 .row{
+    padding: 40px 0 30px 0;
 }
 
 #favorito i{
