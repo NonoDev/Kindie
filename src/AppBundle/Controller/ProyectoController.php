@@ -210,23 +210,37 @@ class ProyectoController extends Controller
     {
         $proyecto = new Proyecto();
         $user=$this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        // crear el formulario
-        $formulario = $this->createForm(new ProyectoType(), $proyecto);
 
-        // Procesar el formulario si se ha enviado con un POST
-        $formulario->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll();
-        if ($formulario->isSubmitted() && $formulario->isValid()) {
 
+        dump($_POST);
+        if(isset($_POST['crear'])){
+            $em = $this->getDoctrine()->getManager();
+            $proyecto->setUsuario($user);
+            $proyecto->setContribuciones(0);
+            $proyecto->setFechaInicio(new \DateTime());
+            $proyecto->setVisitas(0);
+            $proyecto->setEsValido(0);
+            $proyecto->setNombre($_POST['nombre']);
+            $proyecto->setDescripcionCorta($_POST['descrpcion_corta']);
+            $genero = $em->getRepository('AppBundle:Genero')
+                ->findOneBy(array('nombre' => $_POST['genero'] ));
+            $proyecto->setGeneros($genero);
+            $proyecto->setRecompensa($_POST['recompensa']);
+            $proyecto->setLocalizacion($_POST['localizacion']);
+            $proyecto->setImagenPrincipal($_POST['imagen_destacada']);
+            $proyecto->setFechaFin(new \DateTime($_POST['fechaFin']));
+            $proyecto->setDescripcion("");
+            $proyecto->setMeta($_POST['meta']);
 
-
+            $em->persist($proyecto);
+            $em->flush();
         }
         dump($user, $generos);
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
-            'generos' => $generos,
-            'formulario' => $formulario->createView()
+            'generos' => $generos
         ]);
     }
 
@@ -268,11 +282,10 @@ class ProyectoController extends Controller
     }
 
     /**
-     * @Route("/editarDetalle_proyecto", name="editarDetalle_proyecto")
+     * @Route("/editarDetalle_proyecto/{id}", name="editarDetalle_proyecto")
      */
-    public function editarDetalleAction(Request $request)
+    public function editarDetalleAction(Request $request, Proyecto $id)
     {
-        $id = $request->query->get('id');
         $user=$this->getUser();
         $em = $this->getDoctrine()->getManager();
         $proyecto = $em->getRepository('AppBundle:Proyecto')

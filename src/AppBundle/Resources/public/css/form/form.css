@@ -658,10 +658,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 button.fs-submit,
 button.fs-continue {
     padding: 0.6em 1.5em;
-    border: 3px solid #232529;
-    border-radius: 40px;
+    border: none;
+    border-radius: 2px;
     font-weight: 700;
-    color: rgba(0,0,0,0.4);
+    color: #fff;
+    background: #a0f;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
 }
 
 .fs-form-overview .fs-submit,
@@ -679,14 +681,14 @@ button.fs-continue {
     position: absolute;
     right: 0;
     bottom: 0;
-    margin: 0 40px 60px 0;
+    margin: 0 40px 0px 0;
     font-size: 1.25em;
 }
 
 button.fs-submit:hover,
 button.fs-submit:focus,
 button.fs-continue:hover {
-    background: #232529;
+    background: #7800b4;
     color: #fff;
 }
 
