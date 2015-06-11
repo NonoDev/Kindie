@@ -17,7 +17,7 @@
 	height: 80px;
 	padding: 0;
 	margin: 0;
-    box-shadow: 0px 0px 10px rgba(170, 0, 255, 0.3);
+    box-shadow: 0px 0px 10px rgba(170, 0, 255, 0.7);
     border: medium none;
     border-radius: 50%;
 	outline: none;
@@ -28,6 +28,12 @@
 	z-index: 1000;
 
 }
+
+.trigger:hover {
+    background: #a0f;
+    color: #fff;
+}
+
 
 .trigger span {
 	opacity: 0;

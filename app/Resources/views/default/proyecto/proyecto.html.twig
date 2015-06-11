@@ -23,6 +23,9 @@
                     {% if usuario.id != proyecto.usuario.id %}
                         <a href="{{ path('participar_proyecto', {'id' : proyecto.id}) }}" class="btn btn-large purple accent-4">Apóyalo</a>
                     {% endif %}
+                    <div id="favorito">
+                        <a href="{{ path('favoritos', {'id':proyecto.id}) }}" id="favoritos"><i class="fa fa-heart"></i> Favoritos</a>
+                    </div><br/>
                         <div id="menu" class="menu">
 					<span class="morph-shape" data-morph-active="M251,150c0,93.5-29.203,143-101,143S49,243.5,49,150C49,52.5,78.203,7,150,7S251,51.5,251,150z">
 						<svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="none">
@@ -46,9 +49,7 @@
                                 </ul>
 
                     </div><br/>
-                    <div id="favorito">
-                            <i class="fa fa-heart faa-pulse"></i>
-                            </div>
+
                     <div style="display: block; opacity: 0; bottom: -100%;" id="modalMensaje" class="modal bottom-sheet">
                         <div class="modal-content">
                             <h4>Modal Header</h4>

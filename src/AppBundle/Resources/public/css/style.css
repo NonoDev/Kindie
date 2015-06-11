@@ -285,8 +285,19 @@ textarea.materialize-textarea:focus:not([readonly]) {
     width: 80px;
 }
 
-#favorito{
+#favorito {
+    margin: 36px 0px 0px !important;
+}
 
+#favorito i{
+    font-size: 20px;
+}
+.fav{
+    color: red;
+}
+
+#favorito a:hover{
+    color: #e53935;
 }
 
 .creador:hover{
