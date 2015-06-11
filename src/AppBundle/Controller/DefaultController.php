@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\UserRepository;
 
 class DefaultController extends Controller
 {
@@ -29,6 +30,9 @@ class DefaultController extends Controller
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
             ;
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findByLeido($user);
+        dump($mnl);
         return $this->render(':default:portada.html.twig', [
             'proyectos' => $proyectos,
             'generos' => $generos,

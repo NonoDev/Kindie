@@ -16,5 +16,10 @@ class UserRepository extends EntityRepository{
             ->getResult();
     }
 
+    public function findByLeido(){
+        return $this->getEntityManager()->createQuery('SELECT m FROM AppBundle:Mensaje m WHERE m.leido = FALSE ')
+            ->getResult();
+    }
+
 
 }

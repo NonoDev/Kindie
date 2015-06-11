@@ -187,6 +187,7 @@ class ProyectoController extends Controller
      */
     public function generoAction(Request $request)
     {
+        $user = $this->getUser();
         $id = $request->query->get('id');
         $em = $this->getDoctrine()->getManager();
         $genero = $em->getRepository('AppBundle:Genero')
@@ -196,7 +197,9 @@ class ProyectoController extends Controller
         $proyectos = $em->getRepository('AppBundle:Proyecto')
             ->findBy(array('generos' => $id));
 
-        dump($id);
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findByLeido($user);
+        dump($mnl);
         return $this->render(':default/genero:genero.html.twig', [
             'genero' => $genero,
             'proyectos' => $proyectos
