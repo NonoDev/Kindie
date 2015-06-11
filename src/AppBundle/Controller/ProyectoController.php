@@ -237,6 +237,13 @@ class ProyectoController extends Controller
 
             $em->persist($proyecto);
             $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('editarDetalle_proyecto', array('id'=>$proyecto->getId()))
+            );
+
+
+
         }
         dump($user, $generos);
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
