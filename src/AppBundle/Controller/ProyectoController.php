@@ -159,6 +159,7 @@ class ProyectoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $mensaje->setRemitente($user->getId());
             $mensaje->setLeido(false);
+            $mensaje->setDenunciado(false);
             $mensaje->setFecha(new \DateTime());
             $mensaje->setUsuario($usuarioMensaje);
 
@@ -198,7 +199,7 @@ class ProyectoController extends Controller
             ->findBy(array('generos' => $id));
 
         $mnl = $em->getRepository('AppBundle:Mensaje')
-            ->findByLeido($user);
+            ->findBy(array('usuario' => $user, 'leido' => false));
         dump($mnl);
         return $this->render(':default/genero:genero.html.twig', [
             'genero' => $genero,

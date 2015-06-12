@@ -18,15 +18,6 @@ class FavoritosController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        /*$query = $em->getRepository('AppBundle:Favorito')
-            ->createQueryBuilder('f')
-            ->where('f.proyecto = :proyecto')
-            ->andWhere('f.usuario = :usuario')
-            ->setMaxResults(1)
-            ->setParameters(['proyecto'=> $id, 'usuario'=> $user ])
-            ->getQuery()
-            ->getResult();
-        ;*/
         $favorito = $em->getRepository('AppBundle:Favorito')
             ->findOneBy(array('proyecto' => $id, 'usuario' => $user));
 
@@ -48,6 +39,23 @@ class FavoritosController extends Controller
         );
     }
 
+
+    /**
+     * @Route("/listar_favoritos", name="listar_favoritos")
+     */
+    public function listar_favoritosAction()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $favoritos = $em->getRepository('AppBundle:Favorito')
+            ->findBy(array('usuario' => $user));
+
+
+
+        return $this->render(':default/usuario:favoritos.html.twig', [
+            'favoritos' => $favoritos
+        ]);
+    }
 
 
 }

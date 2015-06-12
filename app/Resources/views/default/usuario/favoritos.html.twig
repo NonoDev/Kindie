@@ -3,4 +3,17 @@
     {% block contenido %}
         <h2 class="center">Favoritos</h2>
 
+        <div class="row">
+            {% if favoritos %}
+                {% for fav in favoritos %}
+                    <a href="{{ path('proyecto', {'id':fav.proyecto.id}) }}">
+                    <div class="col s12 m6 l3">
+                        <img src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}" class="responsive-img">
+                        <h6>{{ fav.proyecto.nombre }}</h6>
+                        <p>{{ fav.usuario.nombreUsuario }}</p>
+                    </div>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
     {% endblock %}
