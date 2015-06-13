@@ -19,13 +19,13 @@ class UsuarioType extends AbstractType{
                 'label' => 'Nombre de usuario',
                 'required' => true
             ))
+            ->add('email', 'email', array(
+                'label' => 'Email',
+                'required' => true
+            ))
             ->add('dni', 'text', array(
                 'label' => 'DNI',
                 'required' => true
-            ))
-            ->add('imagen', 'file', array(
-                'label' => 'Imagen de perfil',
-                'required' => false
             ))
             ->add('pass', 'password', array(
                 'label' => 'Contraseña',

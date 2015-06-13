@@ -23,6 +23,7 @@ class UsuarioController extends Controller
     public function registroAction(Request $peticion)
     {
         $usuario = new Usuario();
+
         // crear el formulario
         $formulario = $this->createForm(new UsuarioType(), $usuario);
 
@@ -39,12 +40,15 @@ class UsuarioController extends Controller
                 $helper =  $password = $this->container->get('security.password_encoder');
                 $usuario->setPass($helper->encodePassword($usuario, $usuario->getPass()));
 
+
                 $em->persist($usuario);
                 $em->flush();
 
-
-
+            return new RedirectResponse(
+                $this->generateUrl('imagen_usuario')
+            );
         }
+
 
         return $this->render(':default/usuario:registro.html.twig', array(
             'usuario' => $usuario,
