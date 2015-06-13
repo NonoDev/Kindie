@@ -6,7 +6,7 @@
             <h6 class="center">Por <strong><i><a href="{{ path('perfil', {'id': proyecto.usuario.id}) }}">{{ proyecto.usuario.nombreUsuario }}</a></i></strong></h6>
             <div class="row">
                 <div class="col s12 m8 l6 offset-l2">
-                    <img class="responsive-img" src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}">
+                    <img class="responsive-img" src="{{ proyecto.imagenPrincipal }}">
                     <p>{{ proyecto.descripcionCorta }}</p>
                     <p><i class="small mdi-maps-pin-drop"></i> {{ proyecto.localizacion }}&nbsp; <i class="small mdi-image-style"></i> {{ proyecto.generos.nombre }}
 
@@ -159,8 +159,8 @@
                     <div class="row">
                         {% if multimedia %}
                             {% for ima in multimedia %}
-                                <div class="col s12 m6 l4">
-                                    <img class="materialboxed responsive-img" src="/{{ ima.ruta }}">
+                                <div class="col s12 m6 l3">
+                                    <img class="materialboxed responsive-img" src="{{ ima.ruta }}">
                                 </div>
                             {% endfor %}
                         {% endif %}

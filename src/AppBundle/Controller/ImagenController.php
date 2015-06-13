@@ -28,7 +28,7 @@ class ImagenController extends Controller
                    dump("El archivo ". basename( $_FILES["upload"]["name"]). " ha sido subido con éxito");
                    $em = $this->getDoctrine()->getManager();
                    $imagen->setProyecto($id);
-                   $imagen->setRuta($ruta_final.$_FILES['upload']['name']);
+                   $imagen->setRuta("/".$ruta_final.$_FILES['upload']['name']);
                    $em->persist($imagen);
                    $em->flush();
                }

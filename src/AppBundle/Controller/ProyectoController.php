@@ -219,7 +219,8 @@ class ProyectoController extends Controller
     {
         $proyecto = new Proyecto();
         $user=$this->getUser();
-
+        $ruta_final = "uploads/principales_proyectos/";
+        $tipos = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png', 'image/gif');
         $em = $this->getDoctrine()->getManager();
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll();
@@ -239,10 +240,18 @@ class ProyectoController extends Controller
             $proyecto->setGeneros($genero);
             $proyecto->setRecompensa($_POST['recompensa']);
             $proyecto->setLocalizacion($_POST['localizacion']);
-            $proyecto->setImagenPrincipal($_POST['imagen_destacada']);
             $proyecto->setFechaFin(new \DateTime($_POST['fechaFin']));
             $proyecto->setDescripcion("");
             $proyecto->setMeta($_POST['meta']);
+
+            if(isset($_FILES['imagen_destacada'])){
+                if(in_array($_FILES['imagen_destacada']['type'], $tipos)){
+                    if(move_uploaded_file($_FILES['imagen_destacada']['tmp_name'], $ruta_final.$_FILES['imagen_destacada']['name']));
+                    dump("El archivo ". basename( $_FILES["imagen_destacada"]["name"]). " ha sido subido con éxito");
+                    $em = $this->getDoctrine()->getManager();
+                    $proyecto->setImagenPrincipal("/".$ruta_final.$_FILES['imagen_destacada']['name']);
+                }
+            }
 
             $em->persist($proyecto);
             $em->flush();

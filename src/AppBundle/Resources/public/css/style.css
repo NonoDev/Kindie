@@ -209,6 +209,9 @@ nav a.button-collapse i {
     margin-left: 10px;
     border-radius: 4px;
 }
+.card .card-image img {
+    max-height: 284px !important;
+}
 .tabs .tab a .active{
     border-bottom: 2px solid #a0f !important;
 }
