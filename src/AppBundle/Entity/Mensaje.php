@@ -150,7 +150,7 @@ class Mensaje
      */
     public function setDenunciado($denunciado)
     {
-        $this->leido = $denunciado;
+        $this->denunciado = $denunciado;
 
         return $this;
     }

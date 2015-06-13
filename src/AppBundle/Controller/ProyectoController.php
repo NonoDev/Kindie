@@ -361,7 +361,7 @@ class ProyectoController extends Controller
             // Mandar notificacion al creador del proyecto
             $em = $this->getDoctrine()->getManager();
             $notificacion->setUsuario($id->getUsuario());
-            $notificacion->setDescripcion('El usuario ' . $user->getNombreUsuario() . ' ha realizado una inversión en tu proyecto ' . $id->getNombre() . ' por valor de ' . $inversion->getCantidad() . '€.');
+            $notificacion->setDescripcion('El usuario ' . $user->getNombreUsuario() . ' ha realizado una inversión en tu proyecto <strong>' . $id->getNombre() . '</strong> por valor de ' . $inversion->getCantidad() . '€.');
             $notificacion->setTipo('Inversión');
             $notificacion->setLeida(false);
             $notificacion->setFecha(new \DateTime());
@@ -389,9 +389,13 @@ class ProyectoController extends Controller
     {
         $user=$this->getUser();
 
-
-
-        return $this->render(':default/proyecto:proyectosApoyados.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $apoyados = $em->getRepository('AppBundle:Inversion')
+            ->findBy(array('usuario' => $user));
+        dump($user->getInversiones());
+        return $this->render(':default/proyecto:proyectosApoyados.html.twig', [
+            'apoyados' => $apoyados
+        ]);
     }
 }
 
