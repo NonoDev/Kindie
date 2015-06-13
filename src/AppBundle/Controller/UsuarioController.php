@@ -44,9 +44,6 @@ class UsuarioController extends Controller
                 $em->persist($usuario);
                 $em->flush();
 
-            return new RedirectResponse(
-                $this->generateUrl('imagen_usuario')
-            );
         }
 
 
