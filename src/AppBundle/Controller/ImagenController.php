@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Multimedia;
+use AppBundle\Entity\Proyecto;
 use AppBundle\Form\Type\ImagenType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,32 +14,29 @@ use Symfony\Component\HttpFoundation\Request;
 class ImagenController extends Controller
 {
     /**
-     * @Route("/multimedia_proyecto", name="multimedia_proyecto")
+     * @Route("/multimedia_proyecto/{id}", name="multimedia_proyecto")
      */
-    public function multimediaAction(Request $request)
+    public function multimediaAction(Request $request, Proyecto $id)
     {
-        $id = $request->query->get('id');
+        $ruta_final = "uploads/img/";
+        $tipos = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png', 'image/gif');
         $imagen = new Multimedia();
-        $user=$this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $proyecto = $em->getRepository('AppBundle:Proyecto')
-            ->find($id);
-        // crear el formulario
-        $formulario = $this->createForm(new ImagenType(), $imagen);
-
-        // Procesar el formulario si se ha enviado con un POST
-        $formulario->handleRequest($request);
-
-        if ($formulario->isSubmitted() && $formulario->isValid()) {
-            $imagen->setRuta('galeria.png');
-            $imagen->setProyecto($proyecto);
-            $em->persist($imagen);
-            $em->flush();
+        if(isset($_POST['subir'])){
+           if(isset($_FILES['upload'])){
+               if(in_array($_FILES['upload']['type'], $tipos)){
+                   if(move_uploaded_file($_FILES['upload']['tmp_name'], $ruta_final.$_FILES['upload']['name']));
+                   dump("El archivo ". basename( $_FILES["upload"]["name"]). " ha sido subido con éxito");
+                   $em = $this->getDoctrine()->getManager();
+                   $imagen->setProyecto($id);
+                   $imagen->setRuta($ruta_final.$_FILES['upload']['name']);
+                   $em->persist($imagen);
+                   $em->flush();
+               }
+           }
         }
-        dump($user);
         return $this->render(':default/proyecto:multimedia.html.twig', [
-            'formulario' => $formulario->createView()
-        ]);
+                'proyecto' => $id
+            ]);
     }
 
 

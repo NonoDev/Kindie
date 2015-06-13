@@ -2,6 +2,18 @@
 {% block title %}Kindie | Gestión de Imágenes del proyecto{% endblock %}
     {% block contenido %}
 <h1>Weeeeeeeeeeeeeeeeee</h1>
-        {{ form(formulario) }}
 
+
+        <form method="post" action="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}" enctype="multipart/form-data">
+            <div class="file-field input-field">
+                <input class="file-path validate" type="text"/>
+                <div class="btn">
+                    <span>File</span>
+                    <input type="file" name="upload"/>
+                </div>
+            </div>
+            <button type="submit" name="subir">
+                Subir
+            </button>
+        </form>
     {% endblock %}

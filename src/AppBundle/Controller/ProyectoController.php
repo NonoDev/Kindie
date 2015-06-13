@@ -170,6 +170,10 @@ class ProyectoController extends Controller
 
         // FIN MENSAJES //
 
+        // galería
+        $multimedia = $em->getRepository('AppBundle:Multimedia')
+            ->findBy(array('proyecto' => $id));
+
         return $this->render(':default/proyecto:proyecto.html.twig', [
             'usuario' => $user,
             'comentarios' => $comentarios,
@@ -179,7 +183,8 @@ class ProyectoController extends Controller
             'formularioMensaje' => $formulario1->createView(),
             'diferencia' => $diff->days,
             'desarrollo' => $desarrollo,
-            'participantes' => count($proyecto->getParticipantes())
+            'participantes' => count($proyecto->getParticipantes()),
+            'multimedia' => $multimedia
         ]);
     }
 
