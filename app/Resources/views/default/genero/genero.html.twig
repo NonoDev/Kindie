@@ -1,11 +1,12 @@
 {% extends '::layout.html.twig' %}
 {% block title %}Kindie | {{ genero.nombre }}{% endblock %}
     {% block contenido %}
-        <section id="principal-genero" class="responsive-img" data-type="parallax_section" data-speed="5">
+
+        <section id="principal-genero" class="responsive-img" data-type="parallax_section" data-speed="5" style="background: url(/bundles/app/images/generos/{{ genero.nombre }}.png);">
             <h1>{{ genero.nombre }}</h1>
         </section>
         <section id="genero_proyectos">
-            <h1 class="center">Proyectos</h1>
+            <h1 class="center">Proyectos de {{ genero.nombre }}</h1>
             {% if proyectos %}
                 <div class="row">
                     {% for item in proyectos %}
