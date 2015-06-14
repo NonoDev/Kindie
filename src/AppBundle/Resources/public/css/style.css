@@ -260,7 +260,7 @@ blockquote {
 }
 
 #comentarios .circle {
-    border-radius: 50%;
+    border-radius: 5%;
     width: 80px;
     float: left;
     margin-right: 20px;

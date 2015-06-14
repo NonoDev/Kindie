@@ -17,7 +17,7 @@ class ImagenController extends Controller
     /**
      * @Route("/multimedia_proyecto/{id}", name="multimedia_proyecto")
      */
-    public function multimediaAction(Request $request, Proyecto $id)
+    public function multimediaAction(Proyecto $id)
     {
         $user = $this->getUser();
         $ruta_final = "uploads/img/";
@@ -73,6 +73,36 @@ class ImagenController extends Controller
             ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/usuario:imagen_perfil.html.twig', [
             'mnl' => count($mnl)
+        ]);
+    }
+
+    /**
+     * @Route("/imagen_proyecto/{id}", name="imagen_proyecto")
+     */
+    public function imagenProyectoAction(Proyecto $id)
+    {
+        $user = $this->getUser();
+        $ruta_final = "uploads/principales_proyectos/";
+        $tipos = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png', 'image/gif');
+        if(isset($_POST['subir'])){
+            if(isset($_FILES['upload'])){
+                if(in_array($_FILES['upload']['type'], $tipos)){
+                    if(move_uploaded_file($_FILES['upload']['tmp_name'], $ruta_final.$_FILES['upload']['name']));
+                    dump("El archivo ". basename( $_FILES["upload"]["name"]). " ha sido subido con éxito");
+                    $em = $this->getDoctrine()->getManager();
+                    $id->setImagenPrincipal("/".$ruta_final.$_FILES['upload']['name']);
+                    $em->persist($id);
+                    $em->flush();
+                }
+            }
+        }
+        $em = $this->getDoctrine()->getManager();
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        return $this->render(':default/proyecto:imagenProyecto.html.twig', [
+            'mnl' => count($mnl),
+            'proyecto' => $id
         ]);
     }
 
