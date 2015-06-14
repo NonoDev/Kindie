@@ -12,7 +12,7 @@ use AppBundle\Entity\UserRepository;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="inicio")
      * @Route("/portada", name="portada")
      */
     public function indexAction()
@@ -30,13 +30,14 @@ class DefaultController extends Controller
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll()
             ;
+        // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
-            ->findByLeido($user);
-        dump($mnl);
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default:portada.html.twig', [
             'proyectos' => $proyectos,
             'generos' => $generos,
-            'usuario' => $user
+            'usuario' => $user,
+            'mnl' => count($mnl)
         ]);
     }
 

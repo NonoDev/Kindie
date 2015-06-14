@@ -32,9 +32,12 @@ class NotificacionController extends Controller
             $em->flush();
 
         }
-
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/usuario:notificaciones.html.twig', [
-            'notificaciones' => $notificaciones
+            'notificaciones' => $notificaciones,
+            'mnl' => count($mnl)
         ]);
     }
 

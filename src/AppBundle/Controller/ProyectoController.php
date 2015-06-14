@@ -44,12 +44,14 @@ class ProyectoController extends Controller
             ->addOrderBy('p.visitas', 'DESC')
             ->getQuery()
             ->getResult();
-        dump($populares);
-        dump($user);
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/proyecto:descubre.html.twig', [
             'generos' => $generos,
             'proyectos' => $proyectos,
-            'populares' => $populares
+            'populares' => $populares,
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -58,7 +60,14 @@ class ProyectoController extends Controller
      */
     public function empiezaAction()
     {
-        return $this->render(':default/proyecto:empieza.html.twig');
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        return $this->render(':default/proyecto:empieza.html.twig', [
+            'mnl' => count($mnl)
+        ]);
     }
 
     /**
@@ -89,10 +98,8 @@ class ProyectoController extends Controller
     {
 
         $user = $this->getUser();
-
         $comentario = new Comentario();
 
-        //$id = $request->query->get('id');
         // crear el formulario
         $formulario = $this->createForm(new ComentarioType(), $comentario);
 
@@ -174,6 +181,11 @@ class ProyectoController extends Controller
         $multimedia = $em->getRepository('AppBundle:Multimedia')
             ->findBy(array('proyecto' => $id));
 
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+
+
         return $this->render(':default/proyecto:proyecto.html.twig', [
             'usuario' => $user,
             'comentarios' => $comentarios,
@@ -184,7 +196,8 @@ class ProyectoController extends Controller
             'diferencia' => $diff->days,
             'desarrollo' => $desarrollo,
             'participantes' => count($proyecto->getParticipantes()),
-            'multimedia' => $multimedia
+            'multimedia' => $multimedia,
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -202,13 +215,14 @@ class ProyectoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $proyectos = $em->getRepository('AppBundle:Proyecto')
             ->findBy(array('generos' => $id));
-
+        // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
-        dump($mnl);
+
         return $this->render(':default/genero:genero.html.twig', [
             'genero' => $genero,
-            'proyectos' => $proyectos
+            'proyectos' => $proyectos,
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -263,9 +277,12 @@ class ProyectoController extends Controller
 
 
         }
-        dump($user, $generos);
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
-            'generos' => $generos
+            'generos' => $generos,
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -298,11 +315,15 @@ class ProyectoController extends Controller
             $em->flush();
 
         }
-        dump($user);
+
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/proyecto:actualizacion.html.twig', [
             'formulario' => $formulario->createView(),
             'usuario' => $user,
-            'proyecto' => $proyecto
+            'proyecto' => $proyecto,
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -330,10 +351,13 @@ class ProyectoController extends Controller
             $em->flush();
 
         }
-        dump($user);
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/proyecto:editarDetalle.html.twig', [
             'formulario' => $formulario->createView(),
-            'proyecto' => $proyecto
+            'proyecto' => $proyecto,
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -388,11 +412,14 @@ class ProyectoController extends Controller
             $em->persist($user);
             $em->flush();
         }
-
-        dump($id->getParticipantes()->getValues());
+        $em = $this->getDoctrine()->getManager();
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/proyecto:participar.html.twig', [
             'proyecto' => $id,
-            'formulario' => $formulario->createView()
+            'formulario' => $formulario->createView(),
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -406,9 +433,12 @@ class ProyectoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $apoyados = $em->getRepository('AppBundle:Inversion')
             ->findBy(array('usuario' => $user));
-        dump($user->getInversiones());
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/proyecto:proyectosApoyados.html.twig', [
-            'apoyados' => $apoyados
+            'apoyados' => $apoyados,
+            'mnl' => count($mnl)
         ]);
     }
 }

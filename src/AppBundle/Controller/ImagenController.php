@@ -19,6 +19,7 @@ class ImagenController extends Controller
      */
     public function multimediaAction(Request $request, Proyecto $id)
     {
+        $user = $this->getUser();
         $ruta_final = "uploads/img/";
         $tipos = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png', 'image/gif');
         $imagen = new Multimedia();
@@ -35,8 +36,13 @@ class ImagenController extends Controller
                }
            }
         }
+        $em = $this->getDoctrine()->getManager();
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/proyecto:multimedia.html.twig', [
-                'proyecto' => $id
+                'proyecto' => $id,
+                'mnl' => count($mnl)
             ]);
     }
 
@@ -61,7 +67,13 @@ class ImagenController extends Controller
                 }
             }
         }
-        return $this->render(':default/usuario:imagen_perfil.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        return $this->render(':default/usuario:imagen_perfil.html.twig', [
+            'mnl' => count($mnl)
+        ]);
     }
 
 

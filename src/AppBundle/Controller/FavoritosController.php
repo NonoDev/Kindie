@@ -50,10 +50,13 @@ class FavoritosController extends Controller
         $favoritos = $em->getRepository('AppBundle:Favorito')
             ->findBy(array('usuario' => $user));
 
-
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
 
         return $this->render(':default/usuario:favoritos.html.twig', [
-            'favoritos' => $favoritos
+            'favoritos' => $favoritos,
+            'mnl' => count($mnl)
         ]);
     }
 

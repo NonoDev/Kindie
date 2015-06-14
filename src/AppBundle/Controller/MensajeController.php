@@ -96,7 +96,8 @@ class MensajeController extends Controller
             'contadorNoLeidos' => count($noLeidos),
             'enviados' => $enviados,
             'contadorEnviados' => count($enviados),
-            'formulario' => $formulario1
+            'formulario' => $formulario1,
+            'mnl' => count($noLeidos)
         ]);
     }
 

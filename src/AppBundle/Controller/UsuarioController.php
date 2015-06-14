@@ -11,6 +11,7 @@ use AppBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 class UsuarioController extends Controller
@@ -39,10 +40,13 @@ class UsuarioController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $helper =  $password = $this->container->get('security.password_encoder');
                 $usuario->setPass($helper->encodePassword($usuario, $usuario->getPass()));
-
+            $usuario->setImagen('/uploads/perfiles/perfil_demo.jpg');
 
                 $em->persist($usuario);
                 $em->flush();
+            return new RedirectResponse(
+                $this->generateUrl('imagen_usuario')
+            );
 
         }
 
@@ -91,13 +95,16 @@ class UsuarioController extends Controller
         }
 
         // FIN MENSAJES //
-        dump($usuario_perfil);
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/usuario:perfil.html.twig',[
             'usuario' => $user,
             'proyectos' => $proyectos,
             'usuario_perfil' => $usuario_perfil,
             'formularioMensaje' => $formulario1->createView(),
-            'proyectos_usuario_perfil' => $proyectos_usuario_perfil
+            'proyectos_usuario_perfil' => $proyectos_usuario_perfil,
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -130,10 +137,13 @@ class UsuarioController extends Controller
             $em->persist($usuario);
             $em->flush();
         }
-        dump($id);
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/usuario:editarPerfil.html.twig',[
             'usuario' => $user,
-            'formulario' => $formulario->createView()
+            'formulario' => $formulario->createView(),
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -152,12 +162,17 @@ class UsuarioController extends Controller
 
         $comentarios = $em->getRepository('AppBundle:Comentario')
             ->findAll();
+
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
         return $this->render(':default/usuario:administracion.html.twig',[
             'usuario' => $user,
             'usuarios' => $usuarios,
             'proyectos' => $proyectos,
             'comentarios' => $comentarios,
-            'contador_proyectos' => count($proyectos)
+            'contador_proyectos' => count($proyectos),
+            'mnl' => count($mnl)
         ]);
     }
 
@@ -185,9 +200,14 @@ class UsuarioController extends Controller
             $em->flush();
         }
 
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+
         return $this->render(':default/usuario:cuenta.html.twig',[
             'usuario' => $user,
-            'formulario' => $formulario->createView()
+            'formulario' => $formulario->createView(),
+            'mnl' => count($mnl)
         ]);
     }
 
