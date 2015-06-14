@@ -1,0 +1,14 @@
+{% extends '::layout.html.twig' %}
+{% block title %}Kindie | Proyectos apoyados{% endblock %}
+    {% block contenido %}
+        <section id="editar-coment" class="responsive-img" data-type="parallax_section" data-speed="5">
+            <div class="row ">
+                <div class="col s12 m8 l6 offset-m2 offset-l3 ">
+                    {{ form(formulario) }}
+                    <a href="{{ path('proyecto', {'id':proyecto.id}) }}" class="enlace-azul"><i class="mdi-navigation-arrow-back"></i> Vuelve al proyecto</a>
+                    <blockquote>Recuerda que no debes utilizar lenguaje agresivo, obsceno o con carácter publicitario en los proyectos. Todos los
+                    comentarios son susceptibles de ser denunciados y, a consecuencia de ello, eliminados de nuestra base de datos.</blockquote>
+                </div>
+            </div>
+        </section>
+    {% endblock %}

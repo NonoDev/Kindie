@@ -109,7 +109,7 @@
                                             <span class="fecha"> el <strong>{{ coment.fecha|date('d/m/Y') }}</strong> a las <strong>{{ coment.fecha|date('H:i:s') }}</strong></span>
                                             {% if usuario.id == coment.usuario.id %}
                                             <div id="acciones_coments">
-                                                <a href="#modalMensajeEditar" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" ><i class="mdi-editor-border-color"></i></a>
+                                                <a href="{{ path('editar_comentario', {'id': coment.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" ><i class="mdi-editor-border-color"></i></a>
                                                 <form method="post" action="{{ path('eliminar_comentario', {'id':coment.id}) }}">
                                                     <button name="eliminar_coment" id="eliminar_coment" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit">
                                                         <i class="mdi-action-delete"></i>
