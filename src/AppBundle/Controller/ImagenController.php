@@ -40,9 +40,13 @@ class ImagenController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:multimedia.html.twig', [
                 'proyecto' => $id,
-                'mnl' => count($mnl)
+                'mnl' => count($mnl),
+                'nnl' => count($nnl)
             ]);
     }
 
@@ -71,8 +75,12 @@ class ImagenController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/usuario:imagen_perfil.html.twig', [
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -100,9 +108,13 @@ class ImagenController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:imagenProyecto.html.twig', [
             'mnl' => count($mnl),
-            'proyecto' => $id
+            'proyecto' => $id,
+            'nnl' => count($nnl)
         ]);
     }
 

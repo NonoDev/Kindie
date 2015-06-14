@@ -87,6 +87,10 @@ class MensajeController extends Controller
         }
 
         // FIN MENSAJES //
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
+
 
         return $this->render(':default/usuario:mensajes.html.twig', [
             'usuario' => $user,
@@ -97,7 +101,8 @@ class MensajeController extends Controller
             'enviados' => $enviados,
             'contadorEnviados' => count($enviados),
             'formulario' => $formulario1,
-            'mnl' => count($noLeidos)
+            'mnl' => count($noLeidos),
+            'nnl' => count($nnl)
         ]);
     }
 

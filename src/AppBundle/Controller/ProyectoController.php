@@ -47,11 +47,15 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:descubre.html.twig', [
             'generos' => $generos,
             'proyectos' => $proyectos,
             'populares' => $populares,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -65,8 +69,12 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:empieza.html.twig', [
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -185,7 +193,9 @@ class ProyectoController extends Controller
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
 
-
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:proyecto.html.twig', [
             'usuario' => $user,
             'comentarios' => $comentarios,
@@ -197,7 +207,8 @@ class ProyectoController extends Controller
             'desarrollo' => $desarrollo,
             'participantes' => count($proyecto->getParticipantes()),
             'multimedia' => $multimedia,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -218,11 +229,15 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
 
         return $this->render(':default/genero:genero.html.twig', [
             'genero' => $genero,
             'proyectos' => $proyectos,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -280,9 +295,13 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
             'generos' => $generos,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -319,11 +338,15 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:actualizacion.html.twig', [
             'formulario' => $formulario->createView(),
             'usuario' => $user,
             'proyecto' => $proyecto,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -354,10 +377,14 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:editarDetalle.html.twig', [
             'formulario' => $formulario->createView(),
             'proyecto' => $proyecto,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -399,7 +426,7 @@ class ProyectoController extends Controller
             // Mandar notificacion al creador del proyecto
             $em = $this->getDoctrine()->getManager();
             $notificacion->setUsuario($id->getUsuario());
-            $notificacion->setDescripcion('El usuario ' . $user->getNombreUsuario() . ' ha realizado una inversión en tu proyecto <strong>' . $id->getNombre() . '</strong> por valor de ' . $inversion->getCantidad() . '€.');
+            $notificacion->setDescripcion('El usuario ' . $user->getNombreUsuario() . ' ha realizado una inversión en tu proyecto ' . $id->getNombre() . ' por valor de ' . $inversion->getCantidad() . '€.');
             $notificacion->setTipo('Inversión');
             $notificacion->setLeida(false);
             $notificacion->setFecha(new \DateTime());
@@ -416,10 +443,14 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:participar.html.twig', [
             'proyecto' => $id,
             'formulario' => $formulario->createView(),
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -436,9 +467,13 @@ class ProyectoController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/proyecto:proyectosApoyados.html.twig', [
             'apoyados' => $apoyados,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 }

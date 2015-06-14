@@ -98,13 +98,17 @@ class UsuarioController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/usuario:perfil.html.twig',[
             'usuario' => $user,
             'proyectos' => $proyectos,
             'usuario_perfil' => $usuario_perfil,
             'formularioMensaje' => $formulario1->createView(),
             'proyectos_usuario_perfil' => $proyectos_usuario_perfil,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -140,10 +144,14 @@ class UsuarioController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/usuario:editarPerfil.html.twig',[
             'usuario' => $user,
             'formulario' => $formulario->createView(),
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -166,13 +174,17 @@ class UsuarioController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/usuario:administracion.html.twig',[
             'usuario' => $user,
             'usuarios' => $usuarios,
             'proyectos' => $proyectos,
             'comentarios' => $comentarios,
             'contador_proyectos' => count($proyectos),
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 
@@ -203,11 +215,14 @@ class UsuarioController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
-
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default/usuario:cuenta.html.twig',[
             'usuario' => $user,
             'formulario' => $formulario->createView(),
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 

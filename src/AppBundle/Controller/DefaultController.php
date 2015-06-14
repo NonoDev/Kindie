@@ -33,11 +33,15 @@ class DefaultController extends Controller
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default:portada.html.twig', [
             'proyectos' => $proyectos,
             'generos' => $generos,
             'usuario' => $user,
-            'mnl' => count($mnl)
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
         ]);
     }
 

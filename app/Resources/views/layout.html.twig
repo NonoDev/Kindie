@@ -36,15 +36,14 @@
                 <li><a href="{{ path('descubre_proyectos') }}">Descubre</a></li>
                 <li><a href="{{ path('empieza') }}">Empieza</a></li>
                 {%  if app.user %}
-                    {% set count_ms = app.user.mensajes|length %}{% set count_not = app.user.notificaciones|length %}
-                <li><a href="#" class="mi-trigger"><img src="{{ app.user.imagen }}" class="img-perfil"> <span class="user-perfil">{{ app.user.nombreUsuario }}</span><span>{% if count_ms + count_not > 0 %}<i class="mdi-action-announcement"></i>{% endif %} </span></a>
+                <li><a href="#" class="mi-trigger"><img src="{{ app.user.imagen }}" class="img-perfil"> <span class="user-perfil">{{ app.user.nombreUsuario }}</span><span>{% if mnl + nnl > 0 %}<i class="mdi-action-announcement"></i>{% endif %} </span></a>
                 <ul class="mi-dd">
                     <li><a href="{{ path('mensajes_usuario') }}">Mensajes <span class="contador-blue"> {{ mnl }}</span></a></li>
                     <li><a href="{{ path('perfil', {'id': app.user.id}) }}">Perfil</a></li>
                     <li><a href="{{ path('proyectos_apoyados') }}">Proyectos apoyados</a></li>
                     <li><a href="{{ path('listar_favoritos') }}">Favoritos</a></li>
                     <li><a href="{{ path('cuenta', {'id':app.user.id}) }}">Mi cuenta</a></li>
-                    <li><a href="{{ path('notificaciones') }}">Notificaciones <span class="contador-green"> {{ count_not }}</span></a></li>
+                    <li><a href="{{ path('notificaciones') }}">Notificaciones <span class="contador-green"> {{ nnl }}</span></a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('administracion') }}">Panel de administración</a></li>
                     {% endif %}

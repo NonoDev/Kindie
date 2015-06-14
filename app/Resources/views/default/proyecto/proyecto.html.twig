@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col s12 m8 l6 offset-l2">
                     {% if usuario.id == proyecto.usuario.id %}
-                        <a href="{{ path('imagen_proyecto', {'id':proyecto.id}) }}"><img class="responsive-img" src="{{ proyecto.imagenPrincipal }}"></a>
+                        <a href="{{ path('imagen_proyecto', {'id':proyecto.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Cambia la imagen pricipal"><img class="responsive-img" src="{{ proyecto.imagenPrincipal }}"></a>
                     {% else %}
                     <img class="responsive-img" src="{{ proyecto.imagenPrincipal }}">
                     {% endif %}
