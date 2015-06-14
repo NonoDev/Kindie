@@ -8,7 +8,7 @@
                 <div class="row mensajes">
                     <div class="col s12 m10 l8 offset-l2 offset-m1">
                         <div class="info-perfil">
-                            <img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}">
+                            <img src="{{ usuario_perfil.imagen }}">
                             <p class="proyecto-arriba">{{ usuario_perfil.nombreUsuario }}</p>
                             <p>Proyectos apoyados: 0</p>
                             <p><a href="#modalMensaje" class="modal-trigger btn purple accent-4" ><span>Contacta con él</span></a></p>
@@ -33,8 +33,7 @@
                             <div class="col s12 m6 l4">
                                 <div class="card">
                                     <div class="card-image waves-effect waves-block waves-light">
-                                        <img class="activator" {% if item.id % 2 == 0 %}src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}"
-                                                {% else %} src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}" {% endif %}>
+                                        <img class="activator" src="{{ item.imagenPrincipal }}">
                                     </div>
                                     <div class="card-content">
                                         <span class="card-title activator grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-menu right"></i></span>
@@ -82,7 +81,7 @@
             <div class="row mensajes">
                 <div class="col s12 m10 l8 offset-l2 offset-m1">
                     <div class="info-perfil">
-                        <img src="{{ asset('bundles/app/images/usuario/perfil_demo.jpg') }}">
+                        <a href="{{ path('imagen_usuario') }}"><img src="{{ usuario.imagen }}"></a>
                         <p class="proyecto-arriba">{{ usuario.nombreUsuario }}</p>
                         <p>Proyectos apoyados: 0</p>
                         <p><a href="{{ path('editarPerfil', {'id':usuario.id})}}" class="btn purple accent-4"> Edita tu perfil</a> </p>
@@ -99,8 +98,7 @@
                         <div class="col s12 m6 l4">
                             <div class="card">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" {% if item.id % 2 == 0 %}src="{{ asset('bundles/app/images/proyectos/demo_proyectos.jpg') }}"
-                                            {% else %} src="{{ asset('bundles/app/images/proyectos/demo2_proyectos.jpg') }}" {% endif %}>
+                                    <img class="activator" src="{{ item.imagenPrincipal }}">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-menu right"></i></span>

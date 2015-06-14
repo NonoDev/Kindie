@@ -91,8 +91,10 @@ h1{
     height: 78px;
 }
 
-.mi-trigger .contador-blue{
+.mi-trigger i{
     float: right;
+    margin: 0 0px 0 15px;
+    color: #03a9f4;
 }
 
 .user-perfil{
@@ -284,8 +286,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
     box-shadow: 0px 2px 0px 0px #A0F !important;
 }
 
-.img-perfil{
-    width: 80px;
+.img-perfil {
+    width: 95px;
+    border-radius: 5px;
+    max-height: 65px;
 }
 .grid {
     background: #EEE;
@@ -434,6 +438,7 @@ float: right;
     border: 0px none;
     width: 250px;
     float: left;
+    border-radius: 10px;
 }
 
 .editar-perfil input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]){

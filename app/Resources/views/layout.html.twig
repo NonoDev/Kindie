@@ -37,7 +37,7 @@
                 <li><a href="{{ path('empieza') }}">Empieza</a></li>
                 {%  if app.user %}
                     {% set count_ms = app.user.mensajes|length %}{% set count_not = app.user.notificaciones|length %}
-                <li><a href="#" class="mi-trigger"><img src="{{ app.user.imagen }}" class="img-perfil"> <span class="user-perfil">{{ app.user.nombreUsuario }}</span><span class="contador-blue">{{ count_ms + count_not }}</span></a>
+                <li><a href="#" class="mi-trigger"><img src="{{ app.user.imagen }}" class="img-perfil"> <span class="user-perfil">{{ app.user.nombreUsuario }}</span><span>{% if count_ms + count_not > 0 %}<i class="mdi-action-announcement"></i>{% endif %} </span></a>
                 <ul class="mi-dd">
                     <li><a href="{{ path('mensajes_usuario') }}">Mensajes <span class="contador-blue"> {{ count_ms }}</span></a></li>
                     <li><a href="{{ path('perfil', {'id': app.user.id}) }}">Perfil</a></li>
