@@ -46,7 +46,7 @@
                             <li><a href="#"><i class="fa fa-fw fa-pinterest"></i><span>Codrops on Pinterest</span></a></li>
                             <li><a href="#"><i class="fa fa-fw fa-tumblr"></i><span>Codrops on Tumblr</span></a></li>
                             {% if usuario.id == proyecto.usuario.id %}
-                            <li><a href="#" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Edita tu proyecto"><i class="fa fa-fw fa-edit"></i><span></span></a></li>
+                            <li><a href="{{ path('editar_proyecto', {'id':proyecto.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Edita tu proyecto"><i class="fa fa-fw fa-edit"></i><span></span></a></li>
                             {% else %}
                                 <li><a href="#" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visita el perfil del creador"><i class="fa fa-fw fa-user"></i><span></span></a></li>
                                 {% endif %}

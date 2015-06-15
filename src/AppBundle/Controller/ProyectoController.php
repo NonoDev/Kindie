@@ -477,6 +477,36 @@ class ProyectoController extends Controller
     }
 
 
+    /**
+     * @Route("/editar_proyecto/{id}", name="editar_proyecto")
+     */
+    public function editarProyectoAction(Proyecto $id, Request $request)
+    {
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+// crear el formulario
+        $formulario = $this->createForm(new ProyectoType(), $id);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario->handleRequest($request);
+        if ($formulario->isSubmitted() && $formulario->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($id);
+            $em->flush();
+        }
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
+        return $this->render(':default/proyecto:editarProyecto.html.twig', [
+            'mnl' => count($mnl),
+            'nnl' => count($nnl),
+            'formulario' => $formulario->createView()
+        ]);
+    }
 }
 
 

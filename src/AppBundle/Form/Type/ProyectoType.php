@@ -14,7 +14,7 @@ class ProyectoType extends AbstractType{
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /*$builder
+        $builder
             ->add('nombre', 'text', array(
                 'label' => 'Nombre del proyecto',
                 'required' => true
@@ -22,10 +22,6 @@ class ProyectoType extends AbstractType{
             ->add('recompensa', 'text', array(
                 'label' => 'Recompensa',
                 'required' => true
-            ))
-            ->add('imagenPrincipal', 'file', array(
-                'label' => 'Imagen Principal del proyecto',
-                'required' => false
             ))
             ->add('localizacion', 'text', array(
                 'label' => 'Localización',
@@ -45,10 +41,10 @@ class ProyectoType extends AbstractType{
                 'required' => true
             ))
             ->add('crear', 'submit', array(
-                'label' => 'Crear',
+                'label' => 'Guardar',
                 'attr' => array('class' => 'btn purple accent-4 waves-effect waves-light')
             ));
-*/
+
 
     }
 
