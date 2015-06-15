@@ -476,6 +476,34 @@ class ProyectoController extends Controller
             'nnl' => count($nnl)
         ]);
     }
+
+    /**
+     * @Route("/buscador_proyectos", name="buscador_proyectos")
+     */
+    public function buscadorAction()
+    {
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $proyectos = null;
+        if(isset($_POST['buscar'])) {
+            $proyectos = $em->getRepository('AppBundle:Proyecto')->createQueryBuilder('p')
+                ->where('p.nombre LIKE :nombre')
+                ->setParameter('nombre', '%' . $_POST['search'] . '%')
+                ->getQuery()
+                ->getResult();
+        }
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
+        return $this->render(':default/proyecto:buscador.html.twig', [
+            'proyectos' => $proyectos,
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
+        ]);
+    }
 }
 
 

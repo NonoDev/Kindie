@@ -5,6 +5,8 @@ h1{
 .enlace-azul:hover{
     color: #1ac7ff;
 }
+
+
 /* modal */
 #mi-modal, #mi-modal2{
     position:fixed;

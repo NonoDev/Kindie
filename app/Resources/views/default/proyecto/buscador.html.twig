@@ -1,0 +1,54 @@
+{% extends '::layout.html.twig' %}
+{% block title %}Kindie | Buscador de proyectos{% endblock %}
+    {% block contenido %}
+        <section id="buscador" class="responsive-img" data-type="parallax_section" data-speed="5">
+            <div class="row">
+                {% if proyectos %}
+                    {% for item in proyectos %}
+                        <div class="col s12 m4 l3">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ item.imagenPrincipal }}" >
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-menu right"></i></span>
+                                <p><a href="{{ path('proyecto', {'id':item.id}) }}">Visita el proyecto</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">{{ item.nombre }} <i class="mdi-navigation-close right"></i></span>
+                                <p>Por <strong><i><a href="{{ path('perfil', {'id': item.usuario.id}) }}">{{ item.usuario.nombreUsuario }}</a></i></strong></p>
+                                <p class="descripcion truncate">{{ item.descripcionCorta }}</p>
+                                <h5>{{ (item.contribuciones/item.meta)*100 }}% Conseguido</h5>
+                                <div class="progress">
+                                    <div class="determinate purple accent-4" style="width: {{ (item.contribuciones/item.meta)*100 }}%;"></div>
+                                </div>
+                                <p><i class="small mdi-maps-pin-drop"></i> {{ item.localizacion }}&nbsp; <i class="small mdi-image-style"></i> {{ item.generos.nombre }}</p>
+                                <div class="row">
+                                    <div class="col m4">
+                                        <strong>Meta</strong>
+                                        <p>{{ item.meta }} $</p>
+                                    </div>
+                                    <div class="col m4">
+                                        <strong>Conseguido</strong>
+                                        <p>{{ item.contribuciones }} $</p>
+                                    </div>
+                                    <div class="col m4">
+                                        <strong>Fecha límite</strong>
+                                        <p>{{ item.fechaFin|date("d/m/Y")}}</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <h5 class="center">No hay coincidencias con su búsqueda, inténtelo de nuevo.</h5>
+                {% endif %}
+            </div>
+
+        </section>
+
+    {% endblock %}

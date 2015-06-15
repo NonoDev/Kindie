@@ -16,7 +16,7 @@ class EditarDetalleType extends AbstractType{
     {
         $builder
             ->add('descripcion', 'textarea', array(
-                'required' => true,
+                'required' => false,
             ))
 
             ->add('comentar', 'submit', array(
