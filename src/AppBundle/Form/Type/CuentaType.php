@@ -17,11 +17,10 @@ class CuentaType extends AbstractType{
         $builder
             ->add('email', 'email', array(
                 'label' => 'Correo electrónico',
-                'required' => true
             ))
             ->add('pass', 'password', array(
                 'label' => 'Nueva contraseña',
-                'required' => true
+                'required' => false
             ))
             ->add('enviar', 'submit', array(
                 'label' => 'Guardar cambios',

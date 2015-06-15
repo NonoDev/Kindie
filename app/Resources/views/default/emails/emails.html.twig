@@ -1,0 +1,6 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <img src="{{ asset('bundles/app/images/kindie.png') }}">
+    <p>Se ha realizado la inversión en el proyecto {{ proyecto.nombre }} por valor de {{ inversion.cantidad }} euros.</p>
+    <p>Gracias por participar de forma activa y facilitar el apoyo hacia los desarrolladores sin recursos.</p>
+{% endblock %}

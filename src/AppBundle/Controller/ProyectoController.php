@@ -390,11 +390,25 @@ class ProyectoController extends Controller
             $em->persist($notificacion);
             $em->flush();
 
-            // Mandar notificacion al creador del proyecto
             $em = $this->getDoctrine()->getManager();
             $user->setEsParticipante(true);
             $em->persist($user);
             $em->flush();
+
+            // correo electrónico al participante
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Inversión en '.$id->getNombre())
+                ->setFrom('kindieOficial@gmail.com')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView(
+                    // app/Resources/views/Emails/registration.html.twig
+                        ':default/emails:emails.html.twig',
+                        array('proyecto' => $id, 'usuario' => $user, 'inversion' => $inversion)
+                    ),
+                    'text/html'
+                );
+            $this->get('mailer')->send($message);
         }
         $em = $this->getDoctrine()->getManager();
         // mensajes no leidos
