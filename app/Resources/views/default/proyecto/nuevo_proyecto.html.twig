@@ -42,9 +42,13 @@
                             <label class="fs-field-label fs-anim-upper" for="q8" data-info="Selecciona los géneros a los que pertenece tu videojuego">Género del proyecto</label>
                             <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
                                 {% for gen in generos %}
-                                    <span><input id="{{ gen.id }}" name="genero" type="checkbox" value="{{ gen.nombre }}"/><label for="{{ gen.id }}"><img src="{{ asset('bundles/app/images/generos/miniaturas/plataformas.png') }}">{{ gen.nombre }}</label></span>
+                                    <span><input id="{{ gen.id }}" name="genero" type="checkbox" value="{{ gen.nombre }}"/><label for="{{ gen.id }}"><img src="/bundles/app/images/generos/miniaturas/{{ gen.nombre }}.png">{{ gen.nombre }}</label></span>
                                 {% endfor %}
 
+
+                            </div>
+                            <div class="row">
+                                <blockquote>Cada proyecto tiene solamente un género</blockquote>
                             </div>
                         </li>
 

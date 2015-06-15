@@ -98,7 +98,6 @@ class ProyectoController extends Controller
         }
 
     }
-
     /**
      * @Route("/proyecto/{id}", name="proyecto")
      */
@@ -503,6 +502,27 @@ class ProyectoController extends Controller
             'mnl' => count($mnl),
             'nnl' => count($nnl)
         ]);
+    }
+
+    /**
+     * @Route("/eliminar_act/{id}", name="eliminar_act")
+     */
+    public function eliminarActualizacionAction(Desarrollo $id)
+    {
+        if(isset($_POST['eliminar_act'])){
+            $em = $this->getDoctrine()->getManager();
+            $act = $em->getRepository('AppBundle:Desarrollo')
+                ->find($id);
+            $em->remove($act);
+            $em->flush();
+
+            $miid = $act->getProyecto()->getId();
+
+            return new RedirectResponse(
+                $this->generateUrl('proyecto', array('id'=>$miid))
+            );
+        }
+
     }
 }
 

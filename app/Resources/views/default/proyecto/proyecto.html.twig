@@ -131,6 +131,7 @@
                     </div>
 
                 </div>
+                <!-- Actualizaciones -->
                 <div id="test3" class="col s12">
                     <div class="col s12 m10 l8 offset-l2 actu">
                         <div class="row">
@@ -145,6 +146,10 @@
                                         <div class="cbp_tmlabel">
                                             <h2>{{ actualizacion.titulo }}</h2>
                                             <p>{{ actualizacion.texto }}</p>
+                                            <i class="mdi-content-create right"></i>
+                                            <form method="post" action="{{ path('eliminar_act', {'id' : actualizacion.id}) }}">
+                                                <button value="" name="eliminar_act" class="tooltipped right" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit" ><i class="mdi-action-delete right"></i></button>
+                                            </form>
                                         </div>
                                     </li>
                                 {% endfor %}
