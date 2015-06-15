@@ -198,6 +198,26 @@ nav a.button-collapse i {
 
 }
 
+#empieza1, #empieza2 .row, #empiezafinal{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+#empieza2 h4{
+    color: #fff;
+
+}
+
+#empiezafinal {
+    text-align: center;
+}
+
+#empiezafinal h6{
+    margin-bottom: 50px;
+}
+
+
 /* fin empieza */
 
 /* ||||||||||||| PROYECTO |||||||||| */

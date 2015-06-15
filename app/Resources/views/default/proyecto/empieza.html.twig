@@ -1,13 +1,52 @@
 {% extends '::layout.html.twig' %}
 {% block title 'Kindie - Comienza tu aventura' %}
     {% block contenido %}
-        <section id="principal-empieza" data-type="parallax_section" data-speed="20">
+        <section id="principal-empieza" data-type="parallax_section" data-speed="5">
             <h1 class="center" id="frases">
                 "La creatividad no consiste en una nueva manera, sino en una nueva visión"
             </h1>
             <h6 class="center"><i><strong>--Edith Wharton</strong></i></h6>
             <br/>
             <a href="{{ path('nuevo_proyecto') }}" class="btn purple accent-4">Empieza un proyecto</a>
+        </section>
+        <section id="empieza1">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h4>Kindie es una excelente forma de hacer realidad tu proyecto creativo </h4>
+                    <h5>Aprovéchate de esta excelente comunidad y sumérgete de
+                        lleno en el mundo del crowdfunding participándo de forma activa en ella.
+                    Comenta en proyectos, interactúa con otros usuarios, comienza tu propio proyecto, hay infinidad de posibilidades en Kindie.</h5>
+                </div>
+                <div class="col s12 m6 l6">
+                    <img src="{{ asset('bundles/app/images/empieza1.png') }}" class="responsive-img">
+                </div>
+            </div>
+        </section>
+        <section id="empieza2" class="purple accent-4">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <img src="{{ asset('bundles/app/images/responsive.png') }}" class="responsive-img">
+                </div>
+                <div class="col s12 m6 l6">
+                    <h4>Promociona tu proyecto en cualquier plataforma</h4>
+                    <h5>Con Kindie estarás seguro de que tu proyecto lucirá perfecto en cualquier plataforma, gracias a su diseño totalmente adaptativo a cualquier
+                    resolución de pantalla</h5>
+                </div>
+            </div>
+        </section>
+        <section id="empiezafinal">
+            <div class="row">
+                <div class="col s12 m10 l10 offset-l1 offset-m1">
+
+<h2 class="center">Kindie no es sólo una forma de financiar tu proyecto, sino de formar una comunidad alrededor de el</h2>
+<h6 class="center"><strong><i>Juan A. Valera</i></strong>, creador de Kindie</h6>
+                </div>
+                <div class="col s12 m8 l6 offset-l3 offset-m2">
+                    <a href="{{ path('nuevo_proyecto') }}" class="btn purple accent-4">Empieza el tuyo</a>
+                    o
+                    <a href="{{ path('descubre_proyectos') }}" class="btn blue">Explora</a>
+                </div>
+            </div>
         </section>
 
     {% endblock %}
