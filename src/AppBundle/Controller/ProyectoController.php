@@ -306,48 +306,6 @@ class ProyectoController extends Controller
 
 
 
-    /**
-     * @Route("/desarrollo_proyecto", name="desarrollo_proyecto")
-     */
-    public function actualizacionAction(Request $request)
-    {
-        $id = $request->query->get('id');
-        $act = new Desarrollo();
-        $user=$this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        // crear el formulario
-        $formulario = $this->createForm(new ActualizacionType(), $act);
-        $proyecto = $em->getRepository('AppBundle:Proyecto')
-            ->find($id)
-        ;
-        // Procesar el formulario si se ha enviado con un POST
-        $formulario->handleRequest($request);
-        if ($formulario->isSubmitted() && $formulario->isValid()) {
-
-            // Guardar el mensaje en la base de datos
-            $em = $this->getDoctrine()->getManager();
-            $act->setProyecto($proyecto);
-            $act->setFechaActualizacion(new \DateTime());
-
-            $em->persist($act);
-            $em->flush();
-
-        }
-
-        // mensajes no leidos
-        $mnl = $em->getRepository('AppBundle:Mensaje')
-            ->findBy(array('usuario' => $user, 'leido' => false));
-        // notis no leídas
-        $nnl = $em->getRepository('AppBundle:Notificacion')
-            ->findBy(array('usuario' => $user, 'leida' => false));
-        return $this->render(':default/proyecto:actualizacion.html.twig', [
-            'formulario' => $formulario->createView(),
-            'usuario' => $user,
-            'proyecto' => $proyecto,
-            'mnl' => count($mnl),
-            'nnl' => count($nnl)
-        ]);
-    }
 
     /**
      * @Route("/editarDetalle_proyecto/{id}", name="editarDetalle_proyecto")
@@ -504,26 +462,7 @@ class ProyectoController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/eliminar_act/{id}", name="eliminar_act")
-     */
-    public function eliminarActualizacionAction(Desarrollo $id)
-    {
-        if(isset($_POST['eliminar_act'])){
-            $em = $this->getDoctrine()->getManager();
-            $act = $em->getRepository('AppBundle:Desarrollo')
-                ->find($id);
-            $em->remove($act);
-            $em->flush();
 
-            $miid = $act->getProyecto()->getId();
-
-            return new RedirectResponse(
-                $this->generateUrl('proyecto', array('id'=>$miid))
-            );
-        }
-
-    }
 }
 
 

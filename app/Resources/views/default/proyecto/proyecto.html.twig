@@ -146,7 +146,7 @@
                                         <div class="cbp_tmlabel">
                                             <h2>{{ actualizacion.titulo }}</h2>
                                             <p>{{ actualizacion.texto }}</p>
-                                            <i class="mdi-content-create right"></i>
+                                            <a href="{{ path('editar_desarrollo_proyecto', {'id': actualizacion.id}) }}" class="tooltipped right" data-position="top" data-delay="50" data-tooltip="Editar"> <i class="mdi-content-create right"></i></a>
                                             <form method="post" action="{{ path('eliminar_act', {'id' : actualizacion.id}) }}">
                                                 <button value="" name="eliminar_act" class="tooltipped right" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit" ><i class="mdi-action-delete right"></i></button>
                                             </form>
