@@ -359,6 +359,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
     background-size: cover;
     padding: 50px;
 }
+
+#imagenes-gal button{
+    background: none;
+    border: none;
+}
 /* fin proyecto */
 
 /* ||||||||||||| GENERO |||||||||| */

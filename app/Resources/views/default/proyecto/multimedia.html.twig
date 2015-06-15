@@ -16,7 +16,23 @@
             <button type="submit" name="subir" class="btn purple accent-4">
                 Subir
             </button>
+            <a href="{{ path('proyecto', {'id':proyecto.id}) }}">Ve al proyecto</a>
         </form>
         </div>
+        </div>
+        <div class="row" id="imagenes-gal">
+            <h3 class="center">Edición de mi galería</h3>
+            {% if multimedia %}
+                {% for ima in multimedia %}
+                    <div class="col s12 m6 l3">
+                    <form method="post" action="{{ path('eliminar_imagen', {'id': ima.id}) }}">
+                        <button type="submit" name="eliminar-ima" class="tooltipped right" data-position="top" data-delay="50" data-tooltip="Eliminar imagen"><i class="mdi-content-clear right"></i></button>
+
+                    </form>
+                        <img class="materialboxed responsive-img" src="{{ ima.ruta }}">
+
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     {% endblock %}

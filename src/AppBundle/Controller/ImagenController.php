@@ -37,6 +37,9 @@ class ImagenController extends Controller
            }
         }
         $em = $this->getDoctrine()->getManager();
+        $multimedia = $em->getRepository('AppBundle:Multimedia')
+            ->findBy(array('proyecto' => $id));
+
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
@@ -46,7 +49,8 @@ class ImagenController extends Controller
         return $this->render(':default/proyecto:multimedia.html.twig', [
                 'proyecto' => $id,
                 'mnl' => count($mnl),
-                'nnl' => count($nnl)
+                'nnl' => count($nnl),
+                'multimedia' => $multimedia
             ]);
     }
 
@@ -117,6 +121,26 @@ class ImagenController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/eliminar_imagen/{id}", name="eliminar_imagen")
+     */
+    public function eliminarComentarioAction(Multimedia $id)
+    {
+        if(isset($_POST['eliminar-ima'])){
+            $em = $this->getDoctrine()->getManager();
+            $imagen = $em->getRepository('AppBundle:Multimedia')
+                ->find($id);
+            $em->remove($imagen);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('multimedia_proyecto', array('id'=>$id->getProyecto()->getId()))
+            );
+
+        }
+
+
+    }
 
 }
 
