@@ -15,6 +15,7 @@
                 <table id="tabla_usuarios" class="display">
                     <thead>
                     <tr>
+                        <th>Imagen</th>
                         <th>Usuario</th>
                         <th>Email</th>
                         <th>Administrador</th>
@@ -27,6 +28,7 @@
                     <tbody>
                     {% for user in usuarios %}
                     <tr>
+                        <td><img src="{{ user.imagen }}" class="responsive-img materialboxed"></td>
                         <td>{{ user.nombreUsuario }}</td>
                         <td>{{ user.email }}</td>
                         <td>{% if user.esAdmin %}Si{% else %}No{% endif %}</td>
@@ -48,6 +50,7 @@
                 <table id="tabla_pro" class="display">
                     <thead>
                     <tr>
+                        <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Descripción corta</th>
@@ -57,6 +60,7 @@
                     <tbody>
                     {% for pro in proyectos %}
                         <tr>
+                            <td><img src="{{ pro.imagenPrincipal }}" class="responsive-img materialboxed"></td>
                             <td>{{ pro.nombre }}</td>
                             <td>{{ pro.usuario.nombreUsuario }}</td>
                             <td>{{ pro.descripcionCorta }}</td>

@@ -243,7 +243,7 @@ nav a.button-collapse i {
 #acciones_coments, #acciones_coments form{
     float: right;
 }
-#eliminar_coment, #denunciar_coment{
+#eliminar_coment, #denunciar_coment, #eliminar_act{
     background: transparent none repeat scroll 0% 0%;
     border: medium none;
 }
@@ -477,6 +477,13 @@ float: right;
     box-shadow: 0px 1px 0px 0px #a0f !important;
 }
 /* fin usuario /*
+
+/* ADMINISTRRACION */
+#tabla_usuarios img, #tabla_pro img{
+    width: 60px;
+}
+
+/* FIN ADMINISTRACION */
 /* footer */
 .page-footer{
     position: relative;
