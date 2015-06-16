@@ -99,7 +99,9 @@
                             {{ form(formulario) }}
                         </div>
                         <div class="col s12 m10 l8 offset-l2">
-                            <ul class="lista-cometarios">
+                            <div class="holder">
+                            </div>
+                            <ul class="lista-cometarios" id="itemContainer">
                                 {% if comentarios %}
                                     {% for coment in comentarios %}
                                         <li class="comentario-item">
@@ -124,8 +126,12 @@
 
                                         </li>
                                     {% endfor %}
+
                                 {% endif %}
+
                             </ul>
+                            <div class="holder">
+                            </div>
                         </div>
 
                     </div>
