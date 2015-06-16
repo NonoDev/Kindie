@@ -78,26 +78,7 @@ class ProyectoController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/eliminar_comentario/{id}", name="eliminar_comentario")
-     */
-    public function eliminarComentarioAction(Comentario $id)
-    {
-        if(isset($_POST['eliminar_coment'])){
-            $em = $this->getDoctrine()->getManager();
-            $coment = $em->getRepository('AppBundle:Comentario')
-                ->find($id);
-            $em->remove($coment);
-            $em->flush();
 
-            $id = $coment->getProyecto()->getId();
-
-            return new RedirectResponse(
-                $this->generateUrl('proyecto', array('id'=>$id))
-            );
-        }
-
-    }
     /**
      * @Route("/proyecto/{id}", name="proyecto")
      */
@@ -135,6 +116,7 @@ class ProyectoController extends Controller
             $comentario->setFecha(new \DateTime('now'));
             $comentario->setProyecto($proyecto);
             $comentario->setUsuario($user);
+            $comentario->setDenunciado(false);
             $texto = $formulario->get('texto')->getData();
             $comentario->setTexto($texto);
 

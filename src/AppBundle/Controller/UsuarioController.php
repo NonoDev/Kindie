@@ -169,7 +169,7 @@ class UsuarioController extends Controller
             ->findBy(array('esValido' => false));
 
         $comentarios = $em->getRepository('AppBundle:Comentario')
-            ->findAll();
+            ->findBy(array('denunciado' => true));
 
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')

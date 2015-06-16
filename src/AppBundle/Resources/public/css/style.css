@@ -243,13 +243,17 @@ nav a.button-collapse i {
 #acciones_coments, #acciones_coments form{
     float: right;
 }
-#eliminar_coment{
+#eliminar_coment, #denunciar_coment{
     background: transparent none repeat scroll 0% 0%;
     border: medium none;
 }
 
 #eliminar_coment:hover{
     color: #e53935;
+}
+
+#denunciar_coment:hover{
+    color: #e5d727;
 }
 .proyecto-arriba{
     font-size: 40px;

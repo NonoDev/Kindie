@@ -110,26 +110,30 @@
                                     <span class="title"> {{ coment.usuario.nombreUsuario }} {% if coment.usuario.id == proyecto.usuario.id %} <a href="#" class="creador tooltipped" data-position="top" data-delay="50" data-tooltip="Creador" ><i class="mdi-image-color-lens
 "></i></a> {% endif %}</span>&nbsp;
                                             <span class="fecha"> el <strong>{{ coment.fecha|date('d/m/Y') }}</strong> a las <strong>{{ coment.fecha|date('H:i:s') }}</strong></span>
-                                            {% if usuario.id == coment.usuario.id %}
                                             <div id="acciones_coments">
+                                                <form method="post" action="{{ path('denunciar_comentario', {'id':coment.id}) }}">
+                                                    <button name="denunciar_coment" id="denunciar_coment" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Reportar por contenido inadecuado, racista, xenófobo o que incumpla cuaquier norma de la comunidad. Será revisado en moderación" type="submit">
+                                                        <i class="mdi-action-info"></i>
+                                                    </button>
+                                                </form>
+                                            {% if usuario.id == coment.usuario.id %}
+
+
                                                 <a href="{{ path('editar_comentario', {'id': coment.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" ><i class="mdi-editor-border-color"></i></a>
                                                 <form method="post" action="{{ path('eliminar_comentario', {'id':coment.id}) }}">
                                                     <button name="eliminar_coment" id="eliminar_coment" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit">
                                                         <i class="mdi-action-delete"></i>
                                                     </button>
                                                 </form>
-                                            </div>
+
                                             {% endif %}
+                                                </div>
                                             <p>
 
                                                 {{ coment.texto }}
                                             </p>
-
                                         </li>
                                     {% endfor %}
-
-
-
                             </ul>
                             <div class="holder">
                             </div>
