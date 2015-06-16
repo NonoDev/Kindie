@@ -507,6 +507,43 @@ class ProyectoController extends Controller
             'formulario' => $formulario->createView()
         ]);
     }
+
+    /**
+     * @Route("/reportar_proyecto/{id}", name="reportar_proyecto")
+     */
+    public function reportarProyectoAction(Proyecto $id)
+    {
+        $user=$this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $mensaje = new Mensaje();
+        if(isset($_POST['enviar'])){
+            $em = $this->getDoctrine()->getManager();
+            $id->setEsValido(false);
+            $em->persist($id);
+            $em->flush();
+            $mensaje->setFecha(new \DateTime());
+            $mensaje->setLeido(false);
+            $mensaje->setUsuario($id->getUsuario());
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setTipo('Reporte');
+            $mensaje->setTexto('El usuario '.$user->getNombreUsuario().' ha reportado tu proyecto '. $id->getNombre() .' por el siguiente motivo: '. $_POST['motivo'] .'.
+            Tu proyecto va a ser revisado para ver si incumple alguna de las normas de publicación de los proyectos. Disculpe las molestias.');
+
+            $em->persist($mensaje);
+            $em->flush();
+        }
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
+        return $this->render(':default/proyecto:reportarProyectos.html.twig', [
+            'proyecto' => $id,
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
+        ]);
+    }
 }
 
 

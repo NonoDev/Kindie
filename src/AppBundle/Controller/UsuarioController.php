@@ -157,7 +157,7 @@ class UsuarioController extends Controller
 
     /**
      * @Route("/administracion", name="administracion")
-     * @Security(expression="has_role('ROLE_ADMIN')")
+     *
      */
     public function administracionAction(Request $peticion)
     {

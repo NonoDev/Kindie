@@ -36,12 +36,7 @@ class Mensaje
      */
     protected $leido;
 
-    /**
-     * @ORM\Column(type="boolean")
-     *
-     * @var boolean
-     */
-    protected $denunciado;
+
 
     /**
      * @ORM\Column(type="integer")
@@ -142,28 +137,7 @@ class Mensaje
     {
         return $this->leido;
     }
-    /**
-     * Set denunciado
-     *
-     * @param boolean $denunciado
-     * @return Mensaje
-     */
-    public function setDenunciado($denunciado)
-    {
-        $this->denunciado = $denunciado;
 
-        return $this;
-    }
-
-    /**
-     * Get denunciado
-     *
-     * @return boolean
-     */
-    public function getDenunciado()
-    {
-        return $this->denunciado;
-    }
 
     /**
      * Set remitente

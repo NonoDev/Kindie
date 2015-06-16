@@ -44,9 +44,9 @@
                     <li><a href="{{ path('listar_favoritos') }}">Favoritos</a></li>
                     <li><a href="{{ path('cuenta', {'id':app.user.id}) }}">Mi cuenta</a></li>
                     <li><a href="{{ path('notificaciones') }}">Notificaciones <span class="contador-green"> {{ nnl }}</span></a></li>
-                    {% if is_granted('ROLE_ADMIN') %}
+
                         <li><a href="{{ path('administracion') }}">Panel de administración</a></li>
-                    {% endif %}
+
                     <li><a href="{{ path('usuario_salir') }}">Cerrar sesión</a></li>
                 </ul></li>
                     {% else %}

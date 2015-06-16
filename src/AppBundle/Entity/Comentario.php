@@ -35,6 +35,12 @@ class Comentario
  * @var Usuario
  */
     protected $usuario;
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean
+     */
+    protected $denunciado;
 
     /**
      * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="comentarios")
@@ -99,6 +105,29 @@ class Comentario
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+    /**
+     * Set denunciado
+     *
+     * @param boolean $denunciado
+     * @return Mensaje
+     */
+    public function setDenunciado($denunciado)
+    {
+        $this->denunciado = $denunciado;
+
+        return $this;
+    }
+
+    /**
+     * Get denunciado
+     *
+     * @return boolean
+     */
+    public function getDenunciado()
+    {
+        return $this->denunciado;
     }
 
     /**

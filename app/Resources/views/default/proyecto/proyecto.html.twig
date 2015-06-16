@@ -43,8 +43,8 @@
                             <li><a href="#"><i class="fa fa-fw fa-twitter"></i><span>Codrops on Twitter</span></a></li>
                             <li><a href="#"><i class="fa fa-fw fa-rss"></i><span>Codrops RSS Feed</span></a></li>
                             <li><a href="#"><i class="fa fa-fw fa-google-plus"></i><span>Codrops on Google+</span></a></li>
-                            <li><a href="#"><i class="fa fa-fw fa-pinterest"></i><span>Codrops on Pinterest</span></a></li>
                             <li><a href="#"><i class="fa fa-fw fa-tumblr"></i><span>Codrops on Tumblr</span></a></li>
+                            <li><a href="{{ path('reportar_proyecto', {'id':proyecto.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Reporta el proyecto"><i class="mdi-action-info"></i><span>Codrops on Pinterest</span></a></li>
                             {% if usuario.id == proyecto.usuario.id %}
                             <li><a href="{{ path('editar_proyecto', {'id':proyecto.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Edita tu proyecto"><i class="fa fa-fw fa-edit"></i><span></span></a></li>
                             {% else %}
@@ -99,10 +99,11 @@
                             {{ form(formulario) }}
                         </div>
                         <div class="col s12 m10 l8 offset-l2">
+                            {% if comentarios %}
                             <div class="holder">
                             </div>
                             <ul class="lista-cometarios" id="itemContainer">
-                                {% if comentarios %}
+
                                     {% for coment in comentarios %}
                                         <li class="comentario-item">
                                             <img src="{{ coment.usuario.imagen }}" alt="" class="circle">
@@ -127,11 +128,12 @@
                                         </li>
                                     {% endfor %}
 
-                                {% endif %}
+
 
                             </ul>
                             <div class="holder">
                             </div>
+                            {% endif %}
                         </div>
 
                     </div>
