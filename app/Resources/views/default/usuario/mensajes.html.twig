@@ -74,7 +74,7 @@
             <li>
                 <div class="collapsible-header"><i class="mdi-notification-sms-failed"></i>No leídos <span class="contador-orange">{{ contadorNoLeidos }}</span></div>
                 <div class="collapsible-body">
-                    <form method="post" action="{{ path('marcar_leidos', {'id' : usuario.id}) }}" name="form-noleidos">
+                    <form method="post" action="{{ path('marcar_leidos')}}" name="form-noleidos">
                     {% if noLeidos %}
                     <ul class="collapsible" data-collapsible="accordion">
                         {% for nop in noLeidos %}

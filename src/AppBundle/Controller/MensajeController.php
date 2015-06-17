@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mensaje;
 use AppBundle\Form\Type\MensajeType;
+use Proxies\__CG__\AppBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,18 +13,16 @@ use Symfony\Component\HttpFoundation\Request;
 class MensajeController extends Controller
 {
     /**
-     * @Route("/marcar_leidos/{id}", name="marcar_leidos")
+     * @Route("/marcar_leidos", name="marcar_leidos")
      */
-    public function marcarLeidosAction(Mensaje $id)
+    public function marcarLeidosAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $usuario = $em->getRepository('AppBundle:Usuario')
-            ->find($id);
-        dump($usuario);
+
+        $user = $this->getUser();
         if(isset($_POST['marcar-leidos'])){
             $em = $this->getDoctrine()->getManager();
             $mensajes = $em->getRepository('AppBundle:Mensaje')
-                ->findBy(array('usuario'=>$usuario));
+                ->findBy(array('usuario'=>$user));
             foreach($mensajes as $item){
                 $item->setLeido(true);
                 $em->persist($item);

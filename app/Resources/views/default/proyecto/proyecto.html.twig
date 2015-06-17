@@ -78,8 +78,9 @@
                 <!-- DETALLE -->
                 <div id="test1" class="col s12">
                     <div class="row">
-                    <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Edita el detalle</a>
-
+                        {% if app.user.id == proyecto.usuario.id %}
+                            <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Edita el detalle</a>
+                        {% endif %}
                     </div>
                     <h2 class="center">Campaña del proyecto</h2>
 
@@ -147,7 +148,9 @@
                 <div id="test3" class="col s12">
                     <div class="col s12 m10 l8 offset-l2 actu">
                         <div class="row">
-                            <a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Añadir</a>
+                            {% if app.user.id == proyecto.usuario.id %}
+                                <a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Añadir</a>
+                            {% endif %}
                         </div>
                             {% if desarrollo %}
                             <ul class="cbp_tmtimeline">
@@ -158,10 +161,12 @@
                                         <div class="cbp_tmlabel">
                                             <h2>{{ actualizacion.titulo }}</h2>
                                             <p>{{ actualizacion.texto }}</p>
+                                            {% if app.user.id == proyecto.usuario.id %}
                                             <a href="{{ path('editar_desarrollo_proyecto', {'id': actualizacion.id}) }}" class="tooltipped right" data-position="top" data-delay="50" data-tooltip="Editar"> <i class="mdi-content-create right"></i></a>
                                             <form method="post" action="{{ path('eliminar_act', {'id' : actualizacion.id}) }}">
-                                                <button value="" name="eliminar_act" class="tooltipped right" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit" ><i class="mdi-action-delete right"></i></button>
+                                                <button id="eliminar_act" name="eliminar_act" class="tooltipped right" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit" ><i class="mdi-action-delete right"></i></button>
                                             </form>
+                                            {% endif %}
                                         </div>
                                     </li>
                                 {% endfor %}
@@ -175,7 +180,9 @@
                 <!-- GALERÍA -->
                 <div id="test4" class="col s12">
                     <div class="row">
+                        {% if app.user.id == proyecto.usuario.id %}
                         <a href="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3">Añade imágenes</a>
+                        {% endif %}
                     </div>
                     <div class="row">
                         {% if multimedia %}
