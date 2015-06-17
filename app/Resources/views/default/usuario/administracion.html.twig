@@ -35,7 +35,13 @@
                         <td>{% if user.esCreador %}Si{% else %}No{% endif %}</td>
                         <td>{% if user.esParticipante %}Si{% else %}No{% endif %}</td>
                         <td>{{ user.telefono }}</td>
-                        <td></td>
+                        <td>
+                            <form action="{{ path('gestion_usuarios', {'id':user.id}) }}" method="post">
+                                <button class="btn-floating red" type="submit" name="eliminar_user"><i class="mdi-action-delete"></i> </button>
+                            </form>
+                            <a href="{{ path('cuenta', {'id':user.id}) }}" class="btn-floating blue"><i class="mdi-action-lock"></i> </a>
+                            <a href="{{ path('editarPerfil', {'id':user.id})}}" class="btn-floating green"><i class="mdi-action-account-circle"></i> </a>
+                        </td>
                     </tr>
                     {% endfor %}
                     </tbody>

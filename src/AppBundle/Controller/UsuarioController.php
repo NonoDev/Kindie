@@ -113,19 +113,12 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/editarPerfil/", name="editarPerfil")
+     * @Route("/editarPerfil/{id}", name="editarPerfil")
      */
-    public function editarPerfilAction(Request $peticion)
+    public function editarPerfilAction(Request $peticion, Usuario $id)
     {
 
         $user = $this->getUser();
-        $id = $peticion->query->get('id');
-        if($user->getId()!= $id || $id == null){
-            // redireccionar a la portada
-            return new RedirectResponse(
-                $this->generateUrl('perfil')
-            );
-        }
         $em = $this->getDoctrine()->getManager();
         $usuario = $em->getRepository('AppBundle:Usuario')
             ->find($id);
@@ -227,6 +220,24 @@ class UsuarioController extends Controller
     }
 
 
+    /**
+     * @Route("/gestion_usuarios/{id}", name="gestion_usuarios")
+     */
+    public function gestionUsuariosAction(Request $peticion, Usuario $id)
+    {
+
+
+        if(isset($_POST['eliminar_user'])){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($id);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('administracion')
+            );
+        }
+
+    }
 
 
 
