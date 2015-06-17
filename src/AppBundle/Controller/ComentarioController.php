@@ -104,6 +104,38 @@ class ComentarioController extends Controller
 
     }
 
+    /**
+     * @Route("/gestion_comentarios/{id}", name="gestion_comentarios")
+     */
+    public function gestionUsuariosAction(Request $peticion, Comentario $id)
+    {
+
+
+        if(isset($_POST['eliminar_coment'])){
+            $em = $this->getDoctrine()->getManager();
+            $coment = $em->getRepository('AppBundle:Comentario')
+                ->find($id);
+            $em->remove($coment);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('administracion')
+            );
+        }
+
+        if(isset($_POST['validar_coment'])){
+            $em = $this->getDoctrine()->getManager();
+            $id->setDenunciado(false);
+            $em->persist($id);
+            $em->flush();
+
+
+            return new RedirectResponse(
+                $this->generateUrl('administracion')
+            );
+        }
+
+    }
 }
 
 

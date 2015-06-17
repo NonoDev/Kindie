@@ -98,7 +98,17 @@
                                 <td>{{ coment.usuario.nombreUsuario }}</td>
                                 <td>{{ coment.fecha|date('d/m/Y H:i:s') }}</td>
                                 <td>{{ coment.texto }}</td>
-                                <td></td>
+                                <td>
+                                    <form method="post" action="{{ path('gestion_comentarios', {'id':coment.id}) }}">
+                                        <button name="eliminar_coment" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit">
+                                            <i class="mdi-action-delete"></i>
+                                        </button>
+                                        <button name="validar_coment" class="btn-floating blue tooltipped" data-position="top" data-delay="50" data-tooltip="Validar" type="submit">
+                                            <i class="mdi-action-thumb-up"></i>
+                                        </button>
+                                    </form>
+                                    <a href="{{ path('editar_comentario', {'id': coment.id}) }}" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" ><i class="mdi-editor-border-color"></i></a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
