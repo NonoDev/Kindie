@@ -16,8 +16,7 @@
                             {{ noti.descripcion }}
                         </p>
 
-                        <a href="#" class="secondary-content"><i class="mdi-action-announcement
-"></i></a>
+                        <span class="right">el <strong>{{ noti.fecha|date('d/m/Y') }}</strong>, a las el <strong>{{ noti.fecha|date('H:i:s') }}</strong></span>
                     </li>
                     {% endfor %}
                 </ul>

@@ -498,6 +498,7 @@ class ProyectoController extends Controller
         $user=$this->getUser();
         $em = $this->getDoctrine()->getManager();
         $mensaje = new Mensaje();
+        // reportar proyecto
         if(isset($_POST['enviar'])){
             $em = $this->getDoctrine()->getManager();
             $id->setEsValido(false);
@@ -514,6 +515,52 @@ class ProyectoController extends Controller
             $em->persist($mensaje);
             $em->flush();
         }
+
+        // eliminar proyecto
+
+        if(isset($_POST['eliminar_pro'])){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($id);
+            $em->flush();
+            $mensaje->setFecha(new \DateTime());
+            $mensaje->setLeido(false);
+            $mensaje->setUsuario($id->getUsuario());
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setTipo('Reporte');
+            $mensaje->setTexto('Sentimos comunicarle que hemos decidido suspender su proyecto '.$id->getNombre().' por incumplir alguna de las normas de Kindie. Si desea
+            recibir más información se puede poner en contacto con el equipo de Kindie a través de kindieOficial@gmail.com. Le recordamos que al ser un incumplimiento de las
+            normas deberá usted hacerse cargo de los usuarios que le pidan el reintegro de sus inversiones, en caso de que existan. Un saludo y sentimos las molestias.');
+
+            $em->persist($mensaje);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('administracion')
+            );
+        }
+
+        // validar proyecto
+
+        if(isset($_POST['validar_pro'])){
+            $id->setEsValido(true);
+            $em->persist($id);
+            $em->flush();
+            $mensaje->setFecha(new \DateTime());
+            $mensaje->setLeido(false);
+            $mensaje->setUsuario($id->getUsuario());
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setTipo('Reporte');
+            $mensaje->setTexto('Nos alegra comunicarle que su proyecto '.$id->getNombre().' ya no se encuentra en moderación y ha sido validado. Lamentamos loas
+            incovenientes que esto le haya poddido causar. Un saludo del equipo de Kindie.');
+
+            $em->persist($mensaje);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('administracion')
+            );
+        }
+
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));

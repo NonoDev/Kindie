@@ -58,12 +58,11 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/perfil", name="perfil")
+     * @Route("/perfil/{id}", name="perfil")
      */
-    public function perfilAction(Request $peticion)
+    public function perfilAction(Request $peticion, Usuario $id)
     {
         $user = $this->getUser();
-        $id = $peticion->query->get('id');
         $em = $this->getDoctrine()->getManager();
         $usuario_perfil = $em->getRepository('AppBundle:Usuario')
             ->find($id);

@@ -70,7 +70,17 @@
                             <td>{{ pro.nombre }}</td>
                             <td>{{ pro.usuario.nombreUsuario }}</td>
                             <td>{{ pro.descripcionCorta }}</td>
-                            <td></td>
+                            <td>
+                                <form method="post" action="{{ path('reportar_proyecto', {'id':pro.id}) }}">
+                                    <button name="eliminar_pro" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit">
+                                        <i class="mdi-action-delete"></i>
+                                    </button>
+                                    <button name="validar_pro" class="btn-floating blue tooltipped" data-position="top" data-delay="50" data-tooltip="Validar" type="submit">
+                                        <i class="mdi-action-thumb-up"></i>
+                                    </button>
+                                </form>
+                                <a href="{{ path('editar_proyecto', {'id': pro.id}) }}" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" ><i class="mdi-editor-border-color"></i></a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -81,7 +91,7 @@
             </div>
             <div id="test3" class="col s12">
                 <h4 class="center">Moderación de comentarios</h4>
-                <div class="col s12 m10 l8 offset-l2">
+                <div class="col s12 m10 l8 offset-l2 offset-m1">
                     {% if comentarios %}
                     <table id="tabla_coment" class="display">
                         <thead>

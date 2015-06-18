@@ -21,12 +21,13 @@
                                     <div id="acciones_ms">
                                         <a href="{{ path('responder_mensaje', {'id':mensaje.id}) }}" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
 "></i></a>
-                                    </div>
+
                                     <form method="post" action="{{ path('eliminar_mensaje', {'id':mensaje.id}) }}" class="right">
                                         <button name="eliminar_mens" id="eliminar_mens" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit">
                                             <i class="mdi-action-delete"></i>
                                         </button>
                                     </form>
+                                    </div>
                                     <p>{{ mensaje.texto }}</p></div>
                             </li>
 
@@ -70,6 +71,7 @@
             <li>
                 <div class="collapsible-header"><i class="mdi-notification-sms-failed"></i>No leídos <span class="contador-orange">{{ contadorNoLeidos }}</span></div>
                 <div class="collapsible-body">
+
                     <form method="post" action="{{ path('marcar_leidos')}}" name="form-noleidos">
                     {% if noLeidos %}
                     <ul class="collapsible" data-collapsible="accordion">
@@ -77,6 +79,15 @@
                             <li>
                                 <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ nop.tipo }} <span class="infoms">de <strong>{{ nop.remitente }}</strong>, el <strong>{{ nop.fecha|date('d/m/Y') }}</strong></span> </div>
                                 <div class="collapsible-body">
+                                    <div id="acciones_ms">
+                                        <a href="{{ path('responder_mensaje', {'id':nop.id}) }}" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
+"></i></a>
+                                        <form method="post" action="{{ path('eliminar_mensaje', {'id':nop.id}) }}" class="right">
+                                            <button name="eliminar_mens" id="eliminar_mens" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit">
+                                                <i class="mdi-action-delete"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                     <p>{{ nop.texto }}</p>
                                 </div>
                             </li>

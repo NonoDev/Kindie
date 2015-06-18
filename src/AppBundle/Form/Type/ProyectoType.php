@@ -27,17 +27,17 @@ class ProyectoType extends AbstractType{
                 'label' => 'Localización',
                 'required' => true
             ))
-            ->add('fechaFin', 'datetime', array(
+           /* ->add('fechaFin', 'datetime', array(
                 'label' => 'Fecha límite',
                 'required' => true,
                 'attr' => array('class' => 'datepicker')
-            ))
+            ))*/
             ->add('descripcionCorta', 'text', array(
                 'label' => 'Descripción corta (se mostrará en la miniatura del proyecto)',
                 'required' => true
             ))
             ->add('meta', 'number', array(
-                'label' => 'Cantidad necesaria',
+                'label' => 'Cantidad necesaria (en €)',
                 'required' => true
             ))
             ->add('crear', 'submit', array(
