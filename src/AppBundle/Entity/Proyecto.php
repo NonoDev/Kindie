@@ -103,7 +103,7 @@ class Proyecto
     protected $esValido;
 
     /**
-     * @ORM\OneToOne(targetEntity="Favorito", mappedBy="proyecto")
+     * @ORM\OneToMany(targetEntity="Favorito", mappedBy="proyecto")
      *
      * @var Favorito
      */

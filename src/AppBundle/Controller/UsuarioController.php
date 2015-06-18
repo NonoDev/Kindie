@@ -40,7 +40,7 @@ class UsuarioController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $helper =  $password = $this->container->get('security.password_encoder');
                 $usuario->setPass($helper->encodePassword($usuario, $usuario->getPass()));
-            $usuario->setImagen('/uploads/perfiles/perfil_demo.jpg');
+                $usuario->setImagen('/uploads/perfiles/perfil_demo.jpg');
 
                 $em->persist($usuario);
                 $em->flush();

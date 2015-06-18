@@ -16,31 +16,36 @@ class UsuarioType extends AbstractType{
     {
         $builder
             ->add('nombreUsuario', 'text', array(
-                'label' => 'Nombre de usuario',
-                'required' => true
+                'label' => 'Nombre de usuario*',
+                'max_length' => 16,
+                'required' => true,
+                'attr' => (array('length' => 16))
             ))
             ->add('email', 'email', array(
-                'label' => 'Email',
+                'label' => 'Email*',
                 'required' => true
             ))
             ->add('dni', 'text', array(
-                'label' => 'DNI',
+                'label' => 'DNI*',
+                'max_length' => 9,
                 'required' => true
             ))
             ->add('pass', 'password', array(
-                'label' => 'Contraseña',
+                'label' => 'Contraseña* (entre 4-12 caracteres)',
+                'attr' => (array('length' => 12)),
                 'required' => true
             ))
             ->add('nombreCompleto', 'text', array(
-                'label' => 'Nombre completo',
+                'label' => 'Nombre completo*',
                 'required' => true
             ))
             ->add('apellidos', 'text', array(
-                'label' => 'Apellidos',
+                'label' => 'Apellidos*',
                 'required' => true
             ))
-            ->add('telefono', 'text', array(
+            ->add('telefono', 'number', array(
                 'label' => 'Telefono',
+                'max_length' => 9
             ))
             ->add('enviar', 'submit', array(
                 'label' => 'Registrarse',
