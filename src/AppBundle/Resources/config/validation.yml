@@ -1,0 +1,3 @@
+# src/AppBundle/Resources/config/validation.yml
+AppBundle\Entity\Usuario:
+    properties:

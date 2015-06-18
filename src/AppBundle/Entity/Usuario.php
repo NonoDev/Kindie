@@ -3,9 +3,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
+ * @UniqueEntity("nombreUsuario", message="Lo sentimos, este usuario ya existe en nuestra base de datos, escoja otro.")
  */
 class Usuario implements UserInterface
 {
@@ -20,22 +23,36 @@ class Usuario implements UserInterface
 
     /**
      * @ORM\Column(type="string")
-     *
      * @var string
+     * @Assert\NotNull(message="El campo DNI no puede estar vacío")
+     * @Assert\Length(
+     *      max = 9,
+     *      maxMessage = "El DNI no puede tener más de {{ limit }} caracteres"
+     * )
+     * @Assert\Regex(
+     *      pattern="/\d{8}[A-Z]{1}/",
+     *      match=true,
+     *      message="Introduzca un DNI con formato válido"
+     * )
      */
     protected $dni;
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     *
      * @var string
      */
     protected $imagen;
 
     /**
      * @ORM\Column(type="string")
-     *
      * @var string
+     * @Assert\NotNull(message="El campo contraseña no puede estar vacío")
+     * @Assert\Length(
+     *      max = 12,
+     *      min = 4,
+     *      maxMessage = "La contraseña puede tener un máximo de {{ limit }} caracteres",
+     *      minMessage = "La contraseña puede tener como mínimo {{ limit }} caracteres"
+     * )
      */
     protected $pass;
 
@@ -43,6 +60,11 @@ class Usuario implements UserInterface
      * @ORM\Column(type="string")
      *
      * @var string
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="Introduzca un nombre completo válido, sin números ni caracteres especiales"
+     * )
      */
     protected $nombreCompleto;
 
@@ -50,6 +72,10 @@ class Usuario implements UserInterface
      * @ORM\Column(type="string")
      *
      * @var string
+     * @Assert\Email(
+     *     message = "El email '{{ value }}' no es un email válido."
+     * )
+     *
      */
     protected $email;
 
@@ -57,6 +83,7 @@ class Usuario implements UserInterface
      * @ORM\Column(type="string")
      *
      * @var string
+     *
      */
     protected $telefono;
 
@@ -64,12 +91,16 @@ class Usuario implements UserInterface
      * @ORM\Column(type="string")
      *
      * @var string
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="Introduzca apellidos válidos, sin números ni caracteres especiales"
+     * )
      */
     protected $apellidos;
 
     /**
      * @ORM\Column(type="string")
-     *
      * @var string
      */
     protected $nombreUsuario;
