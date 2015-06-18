@@ -240,15 +240,15 @@ nav a.button-collapse i {
     border-bottom: 2px solid #a0f !important;
 }
 
-#acciones_coments, #acciones_coments form{
+#acciones_coments, #acciones_coments form, #acciones_ms a{
     float: right;
 }
-#eliminar_coment, #denunciar_coment, #eliminar_act{
+#eliminar_coment, #denunciar_coment, #eliminar_act, #eliminar_mens{
     background: transparent none repeat scroll 0% 0%;
     border: medium none;
 }
 
-#eliminar_coment:hover{
+#eliminar_coment:hover, #eliminar_mens:hover{
     color: #e53935;
 }
 

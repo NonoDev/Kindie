@@ -105,6 +105,86 @@ class MensajeController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/responder_mensaje/{id}", name="responder_mensaje")
+     */
+    public function responderMensajeAction(Mensaje $id, Request $peticion)
+    {
+        $user = $this->getUser();
+
+
+        // MENSAJES //
+        $mensaje = new Mensaje();
+
+        // crear el formulario
+        $formulario1 = $this->createForm(new MensajeType(), $mensaje);
+
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario1->handleRequest($peticion);
+
+        // Usuario del mensaje
+        $em = $this->getDoctrine()->getManager();
+        $remitente = $em->getRepository('AppBundle:Usuario')
+            ->find($id->getRemitente());
+        $em = $this->getDoctrine()->getManager();
+        if ($formulario1->isSubmitted() && $formulario1->isValid()){
+            // Guardar el mensaje en la base de datos
+            $em = $this->getDoctrine()->getManager();
+            $mensaje->setRemitente($user->getId());
+            $mensaje->setLeido(false);
+            $mensaje->setFecha(new \DateTime());
+            $mensaje->setUsuario($remitente);
+
+            $em->persist($mensaje);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('mensajes_usuario')
+            );
+
+        }
+
+        // FIN MENSAJES //
+
+
+        // Mensajes no leidos
+        $em = $this->getDoctrine()->getManager();
+        $noLeidos = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('leido' => false, 'usuario' => $user->getId()));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
+
+        return $this->render(':default/usuario:ResponderMensajes.html.twig', [
+            'usuario' => $user,
+            'formulario' => $formulario1->createView(),
+            'mensaje' => $id,
+            'remitente' => $remitente,
+            'mnl' => count($noLeidos),
+            'nnl' => count($nnl)
+        ]);
+
+    }
+
+
+    /**
+     * @Route("/eliminar_mensaje/{id}", name="eliminar_mensaje")
+     */
+    public function eliminarComentarioAction(Mensaje $id)
+    {
+        if(isset($_POST['eliminar_mens'])){
+            $em = $this->getDoctrine()->getManager();
+            $mensaje = $em->getRepository('AppBundle:Mensaje')
+                ->find($id);
+            $em->remove($mensaje);
+            $em->flush();
+
+            return new RedirectResponse(
+                $this->generateUrl('mensajes_usuario')
+            );
+        }
+
+    }
 
 
 }

@@ -19,18 +19,14 @@
                                 <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ mensaje.tipo }} <span class="infoms">de <strong>{{ mensaje.remitente }}</strong>, el <strong>{{ mensaje.fecha|date('d/m/Y') }}</strong></span> </div>
                                 <div class="collapsible-body">
                                     <div id="acciones_ms">
-                                        <a href="#modalMensaje" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
+                                        <a href="{{ path('responder_mensaje', {'id':mensaje.id}) }}" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
 "></i></a>
                                     </div>
-                                    <div id="mi-modal" class="col s12 m10 l8 offset-l2 offset-m1">
-                                        <h4>Modal Header</h4>
-                                        <label><strong>Remitente: </strong></label><span>{{ mensaje.usuario.nombreUsuario }}</span><br/>
-                                        <label><strong>Para: </strong></label><span>{{ mensaje.remitente }}</span><br/>
-                                        <label><strong>Asunto: </strong></label><span>Re+ {{ mensaje.tipo }}</span>
-
-                                    </div>
-                                    <div id="mascara"></div>
-
+                                    <form method="post" action="{{ path('eliminar_mensaje', {'id':mensaje.id}) }}" class="right">
+                                        <button name="eliminar_mens" id="eliminar_mens" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Eliminar" type="submit">
+                                            <i class="mdi-action-delete"></i>
+                                        </button>
+                                    </form>
                                     <p>{{ mensaje.texto }}</p></div>
                             </li>
 

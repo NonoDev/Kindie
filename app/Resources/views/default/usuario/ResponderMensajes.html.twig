@@ -1,0 +1,15 @@
+
+{% extends '::layout.html.twig' %}
+{% block title 'Kindie | Mis mensajes' %}
+    {% block contenido %}
+        <h1 class="center">Nuevo mensaje</h1>
+
+        <div class="row mensajes">
+            <div class="col s12 m10 l8 offset-l2 offset-m1">
+                <label>De: {{ usuario.nombreUsuario }}</label>
+                <label>Para: {{ remitente.nombreUsuario }}</label>
+                <label>Respuesta a: {{ mensaje.tipo }}</label>
+                {{ form(formulario) }}
+            </div>
+        </div>
+    {% endblock %}
