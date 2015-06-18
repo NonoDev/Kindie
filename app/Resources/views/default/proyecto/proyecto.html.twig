@@ -184,16 +184,25 @@
                         <a href="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3">Añade imágenes</a>
                         {% endif %}
                     </div>
-                    <div class="row">
+
                         {% if multimedia %}
+
+                    <div class="row" id="itemContainer">
+
+
                             {% for ima in multimedia %}
                                 <div class="col s12 m6 l3">
                                     <img class="materialboxed responsive-img" src="{{ ima.ruta }}">
                                 </div>
                             {% endfor %}
-                        {% endif %}
 
                     </div>
+
+                            {% else %}
+                            <h5 class="center">El usuario aún no ha añadido imágenes a su galería</h5>
+                        {% endif %}
+
+
 
                 </div>
             </div>

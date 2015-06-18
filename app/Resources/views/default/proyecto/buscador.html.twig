@@ -2,8 +2,11 @@
 {% block title %}Kindie | Buscador de proyectos{% endblock %}
     {% block contenido %}
         <section id="buscador" class="responsive-img" data-type="parallax_section" data-speed="5">
-            <div class="row">
+
                 {% if proyectos %}
+            <div class="row" id="itemContainer">
+                <div class="holder">
+                </div>
                     {% for item in proyectos %}
                         <div class="col s12 m4 l3">
                         <div class="card">
@@ -44,10 +47,13 @@
                         </div>
                     {% endfor %}
 
+            </div>
+                    <div class="holder">
+                    </div>
                 {% else %}
                     <h5 class="center">No hay coincidencias con su búsqueda, inténtelo de nuevo.</h5>
                 {% endif %}
-            </div>
+
 
         </section>
 

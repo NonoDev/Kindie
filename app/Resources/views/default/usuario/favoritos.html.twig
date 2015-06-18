@@ -3,8 +3,11 @@
     {% block contenido %}
         <h2 class="center">Favoritos</h2>
 
-        <div class="row">
+
             {% if favoritos %}
+                <div class="row" id="itemContainer">
+                    <div class="holder">
+                    </div>
                 {% for fav in favoritos %}
                     <a href="{{ path('proyecto', {'id':fav.proyecto.id}) }}">
                     <div class="col s12 m6 l2">
@@ -20,6 +23,11 @@
                     </div>
                     </a>
                 {% endfor %}
+                </div>
+                <div class="holder">
+                </div>
+                {% else %}
+                <h3 class="center">Aún no has añadidos favoritos</h3>
             {% endif %}
-        </div>
+
     {% endblock %}

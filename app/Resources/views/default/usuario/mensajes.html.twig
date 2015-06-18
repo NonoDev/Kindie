@@ -10,9 +10,11 @@
             <li>
                 <div class="collapsible-header"><i class="mdi-content-mail"></i>Bandeja de entrada <span class="contador-blue">{{ contadorMensajes }}</span></div>
                 <div class="collapsible-body">
-                    {% if mensajes %}
 
-                        <ul class="collapsible" data-collapsible="accordion">
+                    {% if mensajes %}
+                        <div class="holder">
+                        </div>
+                        <ul class="collapsible" data-collapsible="accordion" id="itemContainer">
                         {% for mensaje in mensajes %}
 
                             <li>
@@ -48,7 +50,9 @@
                 <div class="collapsible-header"><i class="mdi-content-send"></i>Enviados <span class="contador-green">{{ contadorEnviados }}</span></div>
                 <div class="collapsible-body">
                     {% if enviados %}
-                    <ul class="collapsible" data-collapsible="accordion">
+                        <div class="holder">
+                        </div>
+                    <ul class="collapsible" data-collapsible="accordion" id="itemContainer">
                         {% for envio in enviados %}
                             <li>
                                 <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ envio.tipo }} <span class="infoms">a <strong>{{ envio.usuario.nombreUsuario }}</strong>, el <strong>{{ envio.fecha|date('d/m/Y') }}</strong></span> </div>
@@ -74,7 +78,9 @@
 
                     <form method="post" action="{{ path('marcar_leidos')}}" name="form-noleidos">
                     {% if noLeidos %}
-                    <ul class="collapsible" data-collapsible="accordion">
+                        <div class="holder">
+                        </div>
+                    <ul class="collapsible" data-collapsible="accordion" id="itemContainer">
                         {% for nop in noLeidos %}
                             <li>
                                 <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ nop.tipo }} <span class="infoms">de <strong>{{ nop.remitente }}</strong>, el <strong>{{ nop.fecha|date('d/m/Y') }}</strong></span> </div>

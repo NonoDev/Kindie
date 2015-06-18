@@ -4,11 +4,14 @@
         <section id="principal-apoyados" class="responsive-img" data-type="parallax_section" data-speed="5">
         <h2 class="center">Proyectos apoyados</h2>
 
-        <div class="row">
+
             {% if apoyados %}
+            <div class="row" id="itemContainer">
+                <div class="holder">
+                </div>
                 {% for apo in apoyados %}
             <a href="{{ path('proyecto', {'id':apo.proyecto.id}) }}">
-                    <div class="col s12 m6 l2">
+                    <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-img">
                                 <img src="{{ apo.proyecto.imagenPrincipal }}" class="responsive-img">
@@ -21,7 +24,13 @@
                     </div>
                 </a>
                 {% endfor %}
+
+            </div>
+                <div class="holder">
+                </div>
+                {% else %}
+                <h3 class="center">No hay proyectos apoyados</h3>
             {% endif %}
-        </div>
+
         </section>
     {% endblock %}

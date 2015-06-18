@@ -20,9 +20,12 @@
         </form>
         </div>
         </div>
-        <div class="row" id="imagenes-gal">
+
             <h3 class="center">Edición de mi galería</h3>
             {% if multimedia %}
+                <div class="holder">
+                </div>
+                <div class="row" id="itemContainer">
                 {% for ima in multimedia %}
                     <div class="col s12 m6 l3">
                     <form method="post" action="{{ path('eliminar_imagen', {'id': ima.id}) }}">
@@ -33,6 +36,11 @@
 
                     </div>
                 {% endfor %}
+                </div>
+                <div class="holder">
+                </div>
+                {% else %}
+                <h5 class="center">Aún no has añadido imágenes</h5>
             {% endif %}
-        </div>
+
     {% endblock %}

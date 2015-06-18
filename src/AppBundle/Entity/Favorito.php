@@ -24,7 +24,7 @@ class Favorito
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Proyecto", inversedBy="favoritos", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="favoritos", cascade={"persist"})
      *
      * @var Proyecto
      *

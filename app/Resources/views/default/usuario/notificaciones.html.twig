@@ -7,7 +7,9 @@
         <div class="row notificaciones">
             <div class="col s12 m10 l8 offset-l2 offset-m1">
                 {% if notificaciones %}
-                <ul class="collection">
+                    <div class="holder">
+                    </div>
+                <ul class="collection" id="itemContainer">
                    {% for noti in notificaciones %}
                     <li class="collection-item avatar">
                         <i class="mdi-action-assessment circle green"></i>
@@ -20,6 +22,8 @@
                     </li>
                     {% endfor %}
                 </ul>
+                    <div class="holder">
+                    </div>
             {% else %}
                 <h4 class="center">No has recibido notificaciones aún</h4>
                 {% endif %}
