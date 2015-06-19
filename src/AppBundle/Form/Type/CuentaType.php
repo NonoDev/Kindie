@@ -18,9 +18,16 @@ class CuentaType extends AbstractType{
             ->add('email', 'email', array(
                 'label' => 'Correo electrónico',
             ))
+            ->add('nuevapass', 'password', array(
+                'label' => 'Nueva contraseña (entre 4 y 12 caracteres)',
+                'attr' => (array('length' => 12)),
+                'required' => false,
+                'mapped' => false
+            ))
             ->add('pass', 'password', array(
-                'label' => 'Nueva contraseña',
-                'required' => false
+                'label' => 'Confirmar contraseña',
+                'attr' => (array('length' => 12)),
+                'required' => true
             ))
             ->add('enviar', 'submit', array(
                 'label' => 'Guardar cambios',
