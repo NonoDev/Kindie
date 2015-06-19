@@ -8,5 +8,24 @@
             <blockquote>Si solamente desea cambiar su correo, introdúzcalo y confirme su contraseña actual.
             Si quiere cambiar su contraseña, rellene el campo "Nueva contraseña" y repítala en el campo "Confirmar contraseña" para realizar el cambio."</blockquote>
             </div>
+            <div class="col s12 m8 l6 offset-l3 offset-m2">
+                <a class="waves-effect waves-light btn red modal-trigger" href="#modal1">Eliminar cuenta</a>
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Cancelación de cuenta de {{ usuario.nombreUsuario }}</h4>
+                        <p>¿Está seguro que desea cancelar su cuenta de forma definitiva?<br/>
+                        Se perderán todos sus proyectos, mensajes, comentarios y participaciones.<br/>
+                        Recuerde que en caso de tener proyectos activos, usted se tendrá que hacer cargo de los reembolsos a los usuarios que así se lo solicite.<br>
+                        Si tiene alguna duda, visite nuestra página de normas. Gracias por confiar en Kindie.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ path('cuenta', {'id':usuario.id}) }}" method="post">
+                            <button name="eliminar_cuenta" class="btn red">Confirmar</button>
+                        </form>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     {% endblock %}

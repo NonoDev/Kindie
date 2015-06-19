@@ -208,6 +208,20 @@ class UsuarioController extends Controller
             $em->flush();
         }
 
+        //Eliminar cuenta
+        if(isset($_POST['eliminar_cuenta'])){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($id);
+            $em->flush();
+            $helper = $this->get('security.authentication_utils');
+            return $this->render(':default/usuario:entrada.html.twig',
+                [
+                    'last_username' => $helper->getLastUsername(),
+                    'error'         => $helper->getLastAuthenticationError(),
+                    'ok' => 'Su cuenta ha sido eliminada de forma correcta'
+                ]);
+        }
+
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));

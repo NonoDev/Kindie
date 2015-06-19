@@ -56,7 +56,8 @@ class DefaultController extends Controller
         return $this->render(':default/usuario:entrada.html.twig',
             [
                 'last_username' => $helper->getLastUsername(),
-                'error'         => $helper->getLastAuthenticationError()
+                'error'         => $helper->getLastAuthenticationError(),
+                'ok' => ''
             ]);
     }
 

@@ -33,9 +33,6 @@ a {
     outline: none;
 }
 
-a:hover, a:focus {
-    color: #a0f;
-}
 
 /* Top Navigation Style */
 .codrops-top {
