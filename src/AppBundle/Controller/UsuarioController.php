@@ -132,6 +132,9 @@ class UsuarioController extends Controller
 
             $em->persist($usuario);
             $em->flush();
+            $ok = 'Usuario modificado de forma correcta';
+        }else{
+            $ok = '';
         }
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
@@ -143,7 +146,8 @@ class UsuarioController extends Controller
             'usuario' => $user,
             'formulario' => $formulario->createView(),
             'mnl' => count($mnl),
-            'nnl' => count($nnl)
+            'nnl' => count($nnl),
+            'ok' => $ok
         ]);
     }
 

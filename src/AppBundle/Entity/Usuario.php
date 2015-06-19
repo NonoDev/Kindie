@@ -48,9 +48,9 @@ class Usuario implements UserInterface
      * @var string
      * @Assert\NotNull(message="El campo contraseña no puede estar vacío")
      * @Assert\Length(
-     *      max = 12,
+     *
      *      min = 4,
-     *      maxMessage = "La contraseña puede tener un máximo de {{ limit }} caracteres",
+     *
      *      minMessage = "La contraseña puede tener como mínimo {{ limit }} caracteres"
      * )
      */

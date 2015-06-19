@@ -17,10 +17,13 @@ class UsuarioModificarType extends AbstractType{
         $builder
             ->add('nombreUsuario', 'text', array(
                 'label' => 'Nuevo nombre de usuario',
+                'max_length' => 16,
+                'attr' => (array('length' => 16)),
                 'required' => true
             ))
             ->add('dni', 'text', array(
                 'label' => 'Nuevo DNI',
+                'max_length' => 9,
                 'required' => true
             ))
             ->add('nombreCompleto', 'text', array(
@@ -33,6 +36,8 @@ class UsuarioModificarType extends AbstractType{
             ))
             ->add('telefono', 'text', array(
                 'label' => 'Nuevo telefono',
+                'attr' => (array('length' => 9)),
+                'max_length' => 9
             ))
             ->add('enviar', 'submit', array(
                 'label' => 'Guardar cambios',
