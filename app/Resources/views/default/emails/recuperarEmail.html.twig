@@ -1,0 +1,8 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <img src="{{ asset('bundles/app/images/kindie.png') }}">
+    <p>Se ha generado una nueva contraseña para el usuario {{ usuario.nombreUsuario }}.</p>
+    <p>Pass: {{ pass }}</p>
+    <br/>
+    <p>Un saludo del equipo de Kindie.</p>
+{% endblock %}

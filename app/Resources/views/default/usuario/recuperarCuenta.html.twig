@@ -1,0 +1,51 @@
+{% extends '::layout.html.twig' %}
+{% block title %}Kindie | Recuperación de cuenta{% endblock %}
+    {% block contenido %}
+        <h2 class="center">Recuperación de cuenta</h2>
+        <div class="row">
+            <div class="col s12 m8 l6 offset-l3 offset-m2">
+                <blockquote>Introduzca su nombre de usuario y su correo para generarle una nueva contraseña.</blockquote>
+                <form action="{{ path('recuperar_cuenta') }}" method="post">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-account-circle prefix"></i>
+                            <input id="icon_prefix" type="text" class="validate" required="required" name="usuario">
+                            <label for="icon_prefix">Nombre de usuario</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="mdi-communication-email prefix"></i>
+                            <input id="icon_telephone" type="email" class="validate" required="required" name="email">
+                            <label for="icon_telephone">Email</label>
+                        </div>
+                        <button name="recuperar" type="submit" class="btn blue">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    {% endblock %}
+{% block scripts %}
+    {% if ok != "" %}
+        <script>
+            $(document).ready(function() {
+
+                // crear notificacion
+                var notification = new NotificationFx({
+                    message : '<p>{{ ok }}</p>',
+                    layout : 'growl',
+                    effect : 'jelly',
+                    type : 'notice', // notice, warning, error or success
+                    onClose : function() {
+                        bttn.disabled = false;
+                    }
+                });
+
+                // show the notification
+                notification.show();
+
+
+            } );
+        </script>
+    {% endif %}
+{% endblock %}

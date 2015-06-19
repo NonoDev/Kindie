@@ -37,6 +37,10 @@ security:
             pattern:  ^/nuevo_usuario$
             security: false
 
+        recuperar_cuenta:
+            pattern: ^/recuperar_cuenta$
+            security: false
+
         # secures part of the application
         area_segura:
             pattern:    ^/

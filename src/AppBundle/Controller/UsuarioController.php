@@ -256,6 +256,63 @@ class UsuarioController extends Controller
 
     }
 
+    /**
+     * @Route("/recuperar_cuenta", name="recuperar_cuenta")
+     */
+    public function recuperarCuentaAction()
+    {
+
+
+        if(isset($_POST['recuperar'])){
+            $em = $this->getDoctrine()->getManager();
+            // generador de contraseñas
+            $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+            $cad = "";
+            for($i=0;$i<12;$i++) {
+                $cad .= substr($str,rand(0,62),1);
+            }
+
+            $usuario = $em->getRepository('AppBundle:Usuario')
+                ->findOneByNombreUsuario(array('nombreUsuario' => $_POST['usuario']));
+
+            if($usuario->getEmail() == $_POST['email']){
+                $helper =  $password = $this->container->get('security.password_encoder');
+                $usuario->setPass($helper->encodePassword($usuario, $cad));
+                $em->persist($usuario);
+                $em->flush();
+
+                //email con su nueva contraseña
+                // correo electrónico al participante
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Recuperación de contraseña en Kindie')
+                    ->setFrom('kindieOficial@gmail.com')
+                    ->setTo($usuario->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                        // app/Resources/views/Emails/registration.html.twig
+                            ':default/emails:recuperarEmail.html.twig',
+                            array('pass' => $cad, 'usuario' => $usuario)
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+                return $this->render(':default/usuario:recuperarCuenta.html.twig', [
+                    'ok' => 'Se ha generado una contraseña de forma correcta, compruebe su correo.'
+                ]);
+            }else{
+                return $this->render(':default/usuario:recuperarCuenta.html.twig', [
+                    'ok' => 'La relación entre ese email y nombre de usuario no existen'
+                ]);
+            }
+
+        }
+
+        return $this->render(':default/usuario:recuperarCuenta.html.twig', [
+            'ok' => ''
+        ]);
+
+    }
+
 
 
 }
