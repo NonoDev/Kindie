@@ -7,11 +7,19 @@
             <h1 class="center">Creación de un nuevo proyecto</h1>
 
             <div class="fs-form-wrap" id="fs-form-wrap">
-                <form id="myform" class="fs-form fs-form-full" action="{{ path('nuevo_proyecto') }}" method="post" enctype="multipart/form-data">
+                <form id="myform" class="fs-form fs-form-full" action="{{ path('nuevo_proyecto', {'nombre': 'n'}) }}" method="post" enctype="multipart/form-data">
                     <ol class="fs-fields">
                         <li>
                             <label class="fs-field-label fs-anim-upper" for="q1">Nombre del proyecto</label>
                             <input class="fs-anim-lower" id="q1" name="nombre" type="text" placeholder="Mi Proyecto" required/>
+                            <a href="#" class="btn blue" id="comprobar">Comprobar disponibilidad</a>
+                            {% if proyecto == 'Si' %}
+                                <br><span class="contador-blue">Nombre de proyecto no disponible, prueba con otro</span>
+                            {% elseif proyecto == 'n' %}
+
+                                {% else %}
+                                <br><span class="contador-blue">Nombre de proyecto disponible, continua.</span>
+                            {% endif %}
                         </li>
                         <li>
                             <label class="fs-field-label fs-anim-upper" for="q2" data-info="No hace falta que sea muy larga, es la descripción que aparecerá en las miniaturas">Descripción corta</label>
@@ -68,3 +76,14 @@
             </h1>
         </div>
     {% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            $("#comprobar").attr('href', '#');
+            $("#q1").keyup(function(){
+                $("#comprobar").attr('href', '/app_dev.php/comprobar_proyecto?nombre='+$(this).val());
+                console.log($(this).val());
+            });
+        });
+    </script>
+{% endblock %}

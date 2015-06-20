@@ -14,6 +14,7 @@ use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\ComentarioType;
 use AppBundle\Form\Type\ParticiparType;
 use AppBundle\Form\Type\ProyectoType;
+use Doctrine\ORM\Query\Parameter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -223,9 +224,9 @@ class ProyectoController extends Controller
     }
 
     /**
-     * @Route("/nuevo_proyecto", name="nuevo_proyecto")
+     * @Route("/nuevo_proyecto/{nombre}", name="nuevo_proyecto")
      */
-    public function nuevo_proyectoAction(Request $request)
+    public function nuevo_proyectoAction($nombre)
     {
         $proyecto = new Proyecto();
         $user=$this->getUser();
@@ -282,7 +283,8 @@ class ProyectoController extends Controller
         return $this->render(':default/proyecto:nuevo_proyecto.html.twig', [
             'generos' => $generos,
             'mnl' => count($mnl),
-            'nnl' => count($nnl)
+            'nnl' => count($nnl),
+            'proyecto' => $nombre
         ]);
     }
 
@@ -572,6 +574,28 @@ class ProyectoController extends Controller
             'mnl' => count($mnl),
             'nnl' => count($nnl)
         ]);
+    }
+
+    /**
+     * @Route("/comprobar_proyecto", name="comprobar_proyecto")
+     */
+    public function comrpobarProyectoAction(Request $request)
+    {
+        $nombre = $request->query->get('nombre');
+        $em = $this->getDoctrine()->getManager();
+        $proyecto = $em->getRepository('AppBundle:Proyecto')
+            ->findBy(array('nombre' => $nombre));
+
+        if($proyecto){
+            return new RedirectResponse(
+                $this->generateUrl('nuevo_proyecto', array('nombre'=> 'Si'))
+            );
+        }else{
+            return new RedirectResponse(
+                $this->generateUrl('nuevo_proyecto', array('nombre'=> 'No'))
+            );
+        }
+
     }
 }
 

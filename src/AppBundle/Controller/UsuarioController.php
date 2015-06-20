@@ -275,6 +275,11 @@ class UsuarioController extends Controller
             $usuario = $em->getRepository('AppBundle:Usuario')
                 ->findOneByNombreUsuario(array('nombreUsuario' => $_POST['usuario']));
 
+            if(!$usuario){
+                return $this->render(':default/usuario:recuperarCuenta.html.twig', [
+                    'ok' => 'El usuario que ha introducido no existe.'
+                ]);
+            }
             if($usuario->getEmail() == $_POST['email']){
                 $helper =  $password = $this->container->get('security.password_encoder');
                 $usuario->setPass($helper->encodePassword($usuario, $cad));

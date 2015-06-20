@@ -7,7 +7,7 @@
             </h1>
             <h6 class="center"><i><strong>--Edith Wharton</strong></i></h6>
             <br/>
-            <a href="{{ path('nuevo_proyecto') }}" class="btn purple accent-4">Empieza un proyecto</a>
+            <a href="{{ path('nuevo_proyecto', {'nombre': 'n'}) }}" class="btn purple accent-4">Empieza un proyecto</a>
         </section>
         <section id="empieza1">
             <div class="row">
@@ -42,7 +42,7 @@
 <h6 class="center"><strong><i>Juan A. Valera</i></strong>, creador de Kindie</h6>
                 </div>
                 <div class="col s12 m8 l6 offset-l3 offset-m2">
-                    <a href="{{ path('nuevo_proyecto') }}" class="btn purple accent-4">Empieza el tuyo</a>
+                    <a href="{{ path('nuevo_proyecto', {'nombre': 'n'}) }}" class="btn purple accent-4">Empieza el tuyo</a>
                     o
                     <a href="{{ path('descubre_proyectos') }}" class="btn blue">Explora</a>
                 </div>
