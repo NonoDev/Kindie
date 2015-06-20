@@ -61,8 +61,8 @@ class Usuario implements UserInterface
      *
      * @var string
      * @Assert\Regex(
-     *     pattern     = "/^[a-z]+$/i",
-     *     htmlPattern = "^[a-zA-Z]+$",
+     *     pattern     = "/^[A-Za-záéíóúñ]{2,}([\s][A-Za-záéíóúñ]{2,})+$/",
+     *     htmlPattern = "/^[A-Za-záéíóúñ]{2,}([\s][A-Za-záéíóúñ]{2,})+$/",
      *     message="Introduzca un nombre completo válido, sin números ni caracteres especiales"
      * )
      */
@@ -92,8 +92,8 @@ class Usuario implements UserInterface
      *
      * @var string
      * @Assert\Regex(
-     *     pattern     = "/^[a-z]+$/i",
-     *     htmlPattern = "^[a-zA-Z]+$",
+     *     pattern     = "/^[A-Za-záéíóúñ]{2,}([\s][A-Za-záéíóúñ]{2,})+$/",
+     *     htmlPattern = "/^[A-Za-záéíóúñ]{2,}([\s][A-Za-záéíóúñ]{2,})+$/",
      *     message="Introduzca apellidos válidos, sin números ni caracteres especiales"
      * )
      */

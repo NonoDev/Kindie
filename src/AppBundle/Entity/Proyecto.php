@@ -29,6 +29,10 @@ class Proyecto
      * @ORM\Column(type="float")
      *
      * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="El valor {{ value }} no es un tipo numérico válido."
+     * )
      */
     protected $contribuciones;
 
@@ -50,6 +54,8 @@ class Proyecto
      * @ORM\Column(type="date")
      *
      * @var \Datetime
+     * @Assert\Date(message="Introduzca una fecha con formato válido")
+     *
      */
     protected $fechaInicio;
 
@@ -57,6 +63,7 @@ class Proyecto
      * @ORM\Column(type="date")
      *
      * @var \Datetime
+     * @Assert\Date(message="Introduzca una fecha con formato válido")
      */
     protected $fechaFin;
 
@@ -86,6 +93,10 @@ class Proyecto
      * @ORM\Column(type="float")
      *
      * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="El valor {{ value }} no es un tipo numérico válido."
+     * )
      */
     protected $meta;
 
