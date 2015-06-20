@@ -32,6 +32,12 @@ class NotificacionController extends Controller
             $em->flush();
 
         }
+        if($noLeidas){
+            $ok = 'Las nuevas notificaciones se han marcado como leídas';
+        }else{
+            $ok = "";
+        }
+
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
@@ -41,7 +47,8 @@ class NotificacionController extends Controller
         return $this->render(':default/usuario:notificaciones.html.twig', [
             'notificaciones' => $notificaciones,
             'mnl' => count($mnl),
-            'nnl' => count($nnl)
+            'nnl' => count($nnl),
+            'ok' => $ok
         ]);
     }
 

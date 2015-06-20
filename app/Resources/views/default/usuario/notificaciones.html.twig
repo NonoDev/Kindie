@@ -30,3 +30,29 @@
             </div>
         </div>
     {% endblock %}
+    {% block scripts %}
+    {% if notificaciones %}
+    {% if ok != "" %}
+        <script>
+            $(document).ready(function() {
+
+                // crear notificacion
+                var notification = new NotificationFx({
+                    message : '<p>{{ ok }}</p>',
+                    layout : 'growl',
+                    effect : 'jelly',
+                    type : 'notice', // notice, warning, error or success
+                    onClose : function() {
+                        bttn.disabled = false;
+                    }
+                });
+
+                // show the notification
+                notification.show();
+
+
+            } );
+        </script>
+    {% endif %}
+        {% endif %}
+{% endblock %}

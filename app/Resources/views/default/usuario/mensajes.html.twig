@@ -76,7 +76,7 @@
                 <div class="collapsible-header"><i class="mdi-notification-sms-failed"></i>No leídos <span class="contador-orange">{{ contadorNoLeidos }}</span></div>
                 <div class="collapsible-body">
 
-                    <form method="post" action="{{ path('marcar_leidos')}}" name="form-noleidos">
+
                     {% if noLeidos %}
                         <div class="holder">
                         </div>
@@ -99,12 +99,14 @@
                             </li>
                         {% endfor %}
                         </ul>
+                    <form method="post" action="{{ path('marcar_leidos')}}" name="form-noleidos">
                         <button name="marcar-leidos" class="btn blue" type="submit">Marcar como leídos</button>
+                    </form>
                     {% else %}
                         <h3 class="center">Aún no hay mensajes</h3>
                     {% endif %}
 
-                    </form>
+
                 </div>
             </li>
         </ul>

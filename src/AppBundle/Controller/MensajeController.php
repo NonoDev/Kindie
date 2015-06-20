@@ -29,7 +29,7 @@ class MensajeController extends Controller
                 $em->flush();
             }
 
-
+            $this->addFlash('success', 'Mensajes marcados como leídos correctamente');
             return new RedirectResponse(
                 $this->generateUrl('mensajes_usuario')
             );
