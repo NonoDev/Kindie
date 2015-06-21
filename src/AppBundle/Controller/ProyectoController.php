@@ -123,6 +123,7 @@ class ProyectoController extends Controller
 
             $em->persist($comentario);
             $em->flush();
+            $this->addFlash('success', 'Nuevo comentario añadido');
         }
 
         // Obtener comentarios

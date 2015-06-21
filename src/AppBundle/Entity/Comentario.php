@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  */
@@ -19,6 +20,10 @@ class Comentario
      * @ORM\Column(type="string")
      *
      * @var string
+     * @Assert\Length(
+     *      max = 500,
+     *      maxMessage = "El comentario no puede tener más de {{ limit }} caracteres"
+     * )
      */
     protected $texto;
 
