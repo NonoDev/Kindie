@@ -96,6 +96,8 @@ class UsuarioController extends Controller
             $em->persist($mensaje);
             $em->flush();
 
+            $this->addFlash('success', 'Mensaje enviado de forma correcta');
+
         }
 
         // FIN MENSAJES //
@@ -285,7 +287,7 @@ class UsuarioController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($id);
             $em->flush();
-
+            $this->addFlash('success', 'Usuario eliminado de forma correcta');
 
             return new RedirectResponse(
                 $this->generateUrl('administracion')

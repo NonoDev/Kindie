@@ -33,6 +33,9 @@ class ImagenController extends Controller
                    $imagen->setRuta("/".$ruta_final.$_FILES['upload']['name']);
                    $em->persist($imagen);
                    $em->flush();
+                   $this->addFlash('success', 'Imagen modificada de forma correcta');
+               }else{
+                   $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
                }
            }
         }
@@ -71,7 +74,9 @@ class ImagenController extends Controller
                     $user->setImagen("/".$ruta_final.$_FILES['upload']['name']);
                     $em->persist($user);
                     $em->flush();
-                }
+                }$this->addFlash('success', 'Imagen modificada de forma correcta');
+            }else{
+                $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
             }
         }
         $em = $this->getDoctrine()->getManager();
@@ -104,7 +109,9 @@ class ImagenController extends Controller
                     $id->setImagenPrincipal("/".$ruta_final.$_FILES['upload']['name']);
                     $em->persist($id);
                     $em->flush();
-                }
+                }$this->addFlash('success', 'Imagen modificada de forma correcta');
+            }else{
+                $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
             }
         }
         $em = $this->getDoctrine()->getManager();
@@ -124,7 +131,7 @@ class ImagenController extends Controller
     /**
      * @Route("/eliminar_imagen/{id}", name="eliminar_imagen")
      */
-    public function eliminarComentarioAction(Multimedia $id)
+    public function eliminarImagenAction(Multimedia $id)
     {
         if(isset($_POST['eliminar-ima'])){
             $em = $this->getDoctrine()->getManager();
@@ -132,7 +139,7 @@ class ImagenController extends Controller
                 ->find($id);
             $em->remove($imagen);
             $em->flush();
-
+            $this->addFlash('success', 'Imagen eliminada de forma correcta');
             return new RedirectResponse(
                 $this->generateUrl('multimedia_proyecto', array('id'=>$id->getProyecto()->getId()))
             );

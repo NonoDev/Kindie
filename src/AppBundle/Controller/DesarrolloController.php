@@ -26,7 +26,7 @@ class DesarrolloController extends Controller
             $em->flush();
 
             $miid = $act->getProyecto()->getId();
-
+            $this->addFlash('success', 'Actualización eliminada');
             return new RedirectResponse(
                 $this->generateUrl('proyecto', array('id'=>$miid))
             );
@@ -56,6 +56,8 @@ class DesarrolloController extends Controller
 
             $em->persist($act);
             $em->flush();
+
+            $this->addFlash('success', 'Actualización insertada de forma correcta');
 
         }
 
@@ -94,6 +96,8 @@ class DesarrolloController extends Controller
 
             $em->persist($id);
             $em->flush();
+
+            $this->addFlash('success', 'Desarrollo modificado de forma correcta');
 
         }
 

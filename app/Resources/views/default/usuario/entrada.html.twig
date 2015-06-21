@@ -2,6 +2,12 @@
 {% block title 'Kindie | Login' %}
     {% block stylesheets %}<link rel="stylesheet" href="{{ asset('bundles/app/css/login.css') }}">{% endblock %}
     {% block body %}
+        {% if error %}
+            <div class="alert alert-danger alert-dismissable" id="danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                {{ error.message }}
+            </div>
+        {% endif %}
         <a href="{{ path('portada') }}">
         <div class="content">
             <svg viewBox="0 0 800 300">
@@ -76,26 +82,5 @@
                 } );
             </script>
             {% endif %}
-            {% if error %}
-                <script>
-                    $(document).ready(function() {
 
-                        // crear notificacion
-                        var notification = new NotificationFx({
-                            message : '<p>Mensaje y/o contraseña incorrectos.</p>',
-                            layout : 'growl',
-                            effect : 'jelly',
-                            type : 'notice', // notice, warning, error or success
-                            onClose : function() {
-                                bttn.disabled = false;
-                            }
-                        });
-
-                        // show the notification
-                        notification.show();
-
-
-                    } );
-                </script>
-        {% endif %}
     {% endblock %}

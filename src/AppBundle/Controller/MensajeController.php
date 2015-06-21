@@ -141,6 +141,8 @@ class MensajeController extends Controller
             $em->persist($mensaje);
             $em->flush();
 
+            $this->addFlash('success', 'Mensaje respondido de forma correcta');
+
             return new RedirectResponse(
                 $this->generateUrl('mensajes_usuario')
             );
@@ -181,6 +183,8 @@ class MensajeController extends Controller
                 ->find($id);
             $em->remove($mensaje);
             $em->flush();
+
+            $this->addFlash('success', 'Mensaje eliminado de forma correcta');
 
             return new RedirectResponse(
                 $this->generateUrl('mensajes_usuario')

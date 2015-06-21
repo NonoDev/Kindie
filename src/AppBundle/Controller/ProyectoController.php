@@ -166,6 +166,8 @@ class ProyectoController extends Controller
             $em->persist($mensaje);
             $em->flush();
 
+            $this->addFlash('success', 'Mensaje enviado de forma correcta');
+
         }
 
         // FIN MENSAJES //
@@ -269,6 +271,7 @@ class ProyectoController extends Controller
 
             $em->persist($proyecto);
             $em->flush();
+            $this->addFlash('success', 'El proyecto se ha creado de forma correcta, edite su campaña si lo desea o vaya a ver como luce su proyecto');
 
             return new RedirectResponse(
                 $this->generateUrl('editarDetalle_proyecto', array('id'=>$proyecto->getId()))
@@ -316,6 +319,10 @@ class ProyectoController extends Controller
 
             $em->persist($proyecto);
             $em->flush();
+            $this->addFlash('success', 'Campaña editada de forma correcta');
+
+        }elseif(($formulario->isSubmitted() && !$formulario->isValid())){
+            $this->addFlash('danger', 'Error al modificar la campaña, compruebe bien los datos introducidos');
 
         }
         // mensajes no leidos
@@ -366,6 +373,7 @@ class ProyectoController extends Controller
                 }
             $em->persist($id);
             $em->flush();
+            $this->addFlash('success', 'Inversión realizada con éxito, recibirá un correco con la información de su transacción.');
 
             // Mandar notificacion al creador del proyecto
             $em = $this->getDoctrine()->getManager();
@@ -481,6 +489,10 @@ class ProyectoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($id);
             $em->flush();
+
+            $this->addFlash('success', 'Proyecto editado de forma correcta');
+        }elseif($formulario->isSubmitted() && !$formulario->isValid()){
+            $this->addFlash('danger', 'Error al modificar el proyecto, revise los datos');
         }
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
@@ -519,6 +531,7 @@ class ProyectoController extends Controller
 
             $em->persist($mensaje);
             $em->flush();
+            $this->addFlash('success', 'Proyecto reportado de forma correcta');
         }
 
         // eliminar proyecto
@@ -539,6 +552,7 @@ class ProyectoController extends Controller
             $em->persist($mensaje);
             $em->flush();
 
+            $this->addFlash('success', 'Proyecto eliminado de forma correcta');
             return new RedirectResponse(
                 $this->generateUrl('administracion')
             );
@@ -560,6 +574,8 @@ class ProyectoController extends Controller
 
             $em->persist($mensaje);
             $em->flush();
+
+            $this->addFlash('success', 'Proyecto validado de forma correcta');
 
             return new RedirectResponse(
                 $this->generateUrl('administracion')
