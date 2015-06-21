@@ -85,9 +85,9 @@
             <div class="row mensajes">
                 <div class="col s12 m10 l8 offset-l2 offset-m1">
                     <div class="info-perfil">
-                        <a href="{{ path('imagen_usuario') }}"><img src="{{ usuario.imagen }}"></a>
+                        <a href="{{ path('imagen_usuario') }}"><img src="{{ usuario.imagen }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Cambia la imagen de perfil"></a>
                         <p class="proyecto-arriba">{{ usuario.nombreUsuario }}</p>
-                        <p>Proyectos apoyados: 0</p>
+                        <p>Proyectos apoyados: {{ part }}</p>
                         <p><a href="{{ path('editarPerfil', {'id':usuario.id})}}" class="btn purple accent-4"> Edita tu perfil</a> </p>
                     </div>
                 </div>

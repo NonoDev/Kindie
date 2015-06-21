@@ -263,7 +263,7 @@ nav a.button-collapse i {
     font-size: 40px;
     padding: 0;
     margin-bottom: -20px;
-    margin-top: 0px;
+    margin-top: -10px;
     font-weight: 500;
 }
 #proyecto h6{
@@ -493,8 +493,8 @@ float: right;
     position: absolute;
     background: rgba(41, 210, 55, 0.8) none repeat scroll 0% 0%;
     color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 20%;
+    padding: 20px 30px;
+    width: 30%;
     border-radius: 5px;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
     margin: 20px;
@@ -512,6 +512,15 @@ float: right;
 
 
 /* fin mensajes */
+#comprobar{
+    font-size: 15px !important;
+
+}
+.no-dp, .dp{
+    float: left;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+}
 /* footer */
 .page-footer{
     position: relative;

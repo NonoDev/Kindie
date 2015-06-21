@@ -64,6 +64,48 @@ class DefaultController extends Controller
             ]);
     }
 
+    /**
+     *
+     * @Route("/normas", name="normas")
+     */
+    public function normasAction(Request $request)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
+        return $this->render(':default:normas.html.twig', [
+            'usuario' => $user,
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
+        ]);
+    }
+
+    /**
+     *
+     * @Route("/sobre_nosotros", name="sobre_nosotros")
+     */
+    public function sobreNosotrosAction(Request $request)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        // mensajes no leidos
+        $mnl = $em->getRepository('AppBundle:Mensaje')
+            ->findBy(array('usuario' => $user, 'leido' => false));
+        // notis no leídas
+        $nnl = $em->getRepository('AppBundle:Notificacion')
+            ->findBy(array('usuario' => $user, 'leida' => false));
+        return $this->render(':default:sobreNosotros.html.twig', [
+            'usuario' => $user,
+            'mnl' => count($mnl),
+            'nnl' => count($nnl)
+        ]);
+    }
+
 
 
 }

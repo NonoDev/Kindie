@@ -6,9 +6,9 @@
 
         <div class="row mensajes">
             <div class="col s12 m10 l8 offset-l2 offset-m1">
-                <label>De: {{ usuario.nombreUsuario }}</label>
-                <label>Para: {{ remitente.nombreUsuario }}</label>
-                <label>Respuesta a: {{ mensaje.tipo }}</label>
+                <label>De: <strong>{{ usuario.nombreUsuario }}</strong></label><br/>
+                <label>Para: <strong>{{ remitente.nombreUsuario }}</strong></label><br/>
+                <label>Respuesta a: <strong>{{ mensaje.tipo }}</strong></label>
                 {{ form(formulario) }}
             </div>
         </div>

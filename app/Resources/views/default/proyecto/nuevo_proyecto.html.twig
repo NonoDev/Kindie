@@ -11,19 +11,19 @@
                     <ol class="fs-fields">
                         <li>
                             <label class="fs-field-label fs-anim-upper" for="q1">Nombre del proyecto</label>
-                            <input class="fs-anim-lower" id="q1" name="nombre" type="text" placeholder="Mi Proyecto" required/>
+                            <input class="fs-anim-lower" id="q1" {% if proyecto != 'Si' and proyecto != 'n' %}value="{{ proyecto }}"{% endif %} name="nombre" type="text" placeholder="Mi Proyecto" required/>
                             <a href="#" class="btn blue" id="comprobar">Comprobar disponibilidad</a>
                             {% if proyecto == 'Si' %}
-                                <br><span class="contador-blue">Nombre de proyecto no disponible, prueba con otro</span>
+                                <br><span class="no-dp"><i class="mdi-content-clear red-text"></i> Nombre de proyecto no disponible, prueba con otro</span>
                             {% elseif proyecto == 'n' %}
 
                                 {% else %}
-                                <br><span class="contador-blue">Nombre de proyecto disponible, continua.</span>
+                                <br><span class="dp"><i class="mdi-action-done green-text"></i> Nombre de proyecto disponible, continua.</span>
                             {% endif %}
                         </li>
                         <li>
-                            <label class="fs-field-label fs-anim-upper" for="q2" data-info="No hace falta que sea muy larga, es la descripción que aparecerá en las miniaturas">Descripción corta</label>
-                            <textarea class="fs-anim-lower" id="q2" name="descrpcion_corta" placeholder="Descripción corta"></textarea>
+                            <label class="fs-field-label fs-anim-upper" for="q2" data-info="No hace falta que sea muy larga, es la descripción que aparecerá en las miniaturas" >Descripción corta</label>
+                            <textarea class="fs-anim-lower" id="q2" name="descrpcion_corta" placeholder="Descripción corta" required></textarea>
                         </li>
                         <li>
                             <label class="fs-field-label fs-anim-upper" for="q3" data-info="Indica la recompensa por participar en pocas palabras">Recompensa</label>
@@ -38,26 +38,26 @@
                             <input class="fs-anim-lower datepicker" id="q5" name="fechaFin" type="date" placeholder="Fecha final" required/>
                         </li>
                         <li>
-                            <label class="fs-field-label fs-anim-upper" for="q6" data-info="Será la imagen que aparezca en portada y miniatura del proyecto, elige bien">Imagen destacada</label>
+                            <label class="fs-field-label fs-anim-upper" for="q6" data-info="Será la imagen que aparezca en portada y miniatura del proyecto, elige bien" >Imagen destacada</label>
                             <input class="fs-anim-lower file" id="q6" name="imagen_destacada" type="file" placeholder="Selecciona una imagen" required/>
                         </li>
 
                         <li>
                             <label class="fs-field-label fs-anim-upper" for="q7">Meta</label>
-                            <input class="fs-mark fs-anim-lower" id="q7" name="meta" type="number" placeholder="1000" step="1" min="1"/>
+                            <input class="fs-mark fs-anim-lower" id="q7" name="meta" type="number" placeholder="1000" step="1" min="1" required/>
                         </li>
                         <li data-input-trigger>
                             <label class="fs-field-label fs-anim-upper" for="q8" data-info="Selecciona los géneros a los que pertenece tu videojuego">Género del proyecto</label>
                             <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
                                 {% for gen in generos %}
-                                    <span><input id="{{ gen.id }}" name="genero" type="checkbox" value="{{ gen.nombre }}"/><label for="{{ gen.id }}"><img src="/bundles/app/images/generos/miniaturas/{{ gen.nombre }}.png">{{ gen.nombre }}</label></span>
+                                    <span><input id="{{ gen.id }}" name="genero" type="radio" value="{{ gen.nombre }}"/><label for="{{ gen.id }}"><img src="/bundles/app/images/generos/miniaturas/{{ gen.nombre }}.png">{{ gen.nombre }}</label></span>
                                 {% endfor %}
 
+                                <div class="row">
+                                    <blockquote>Cada proyecto tiene solamente un género</blockquote>
+                                </div>
+                            </div>
 
-                            </div>
-                            <div class="row">
-                                <blockquote>Cada proyecto tiene solamente un género</blockquote>
-                            </div>
                         </li>
 
                     </ol><!-- /fs-fields -->

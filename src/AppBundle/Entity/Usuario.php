@@ -135,7 +135,7 @@ class Usuario implements UserInterface
     protected $favoritos = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="usuario", cascade={"persist", "remove"})
      *
      * @var Comentario
      */
@@ -149,7 +149,7 @@ class Usuario implements UserInterface
     protected $notificaciones = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="Mensaje", mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity="Mensaje", mappedBy="usuario", cascade={"persist", "remove"})
      *
      * @var Mensaje
      */

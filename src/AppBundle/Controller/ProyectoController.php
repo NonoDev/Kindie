@@ -176,6 +176,9 @@ class ProyectoController extends Controller
         $multimedia = $em->getRepository('AppBundle:Multimedia')
             ->findBy(array('proyecto' => $id));
 
+        $fav = $em->getRepository('AppBundle:Favorito')
+            ->findBy(array('usuario' => $user, 'proyecto' => $id));
+
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
@@ -195,7 +198,8 @@ class ProyectoController extends Controller
             'participantes' => count($proyecto->getParticipantes()),
             'multimedia' => $multimedia,
             'mnl' => count($mnl),
-            'nnl' => count($nnl)
+            'nnl' => count($nnl),
+            'fav' => $fav
         ]);
     }
 
@@ -632,7 +636,7 @@ class ProyectoController extends Controller
             );
         }else{
             return new RedirectResponse(
-                $this->generateUrl('nuevo_proyecto', array('nombre'=> 'No'))
+                $this->generateUrl('nuevo_proyecto', array('nombre'=> $nombre))
             );
         }
 

@@ -11,10 +11,10 @@
                     {% else %}
                     <img class="responsive-img" src="{{ proyecto.imagenPrincipal }}">
                     {% endif %}
-                    <p>{{ proyecto.descripcionCorta }}</p>
                     <p><i class="small mdi-maps-pin-drop"></i> {{ proyecto.localizacion }}&nbsp; <i class="small mdi-image-style"></i> {{ proyecto.generos.nombre }}
+                    </p>
+                    <p>{{ proyecto.descripcionCorta }}</p>
 
-                        </p>
 
                 </div>
                 <div class="col s12 m6 l4">
@@ -24,11 +24,11 @@
                     <p>Días para recaudar</p>
                     <p class="proyecto-arriba">{{ participantes }}</p>
                     <p>Inversores</p>
-                    {% if usuario.id != proyecto.usuario.id or proyecto.fechaFin|date('d/m/Y') <= "now"|date("d/m/Y") %}
+                    {% if usuario.id != proyecto.usuario.id and proyecto.fechaFin|date('d/m/Y') <= "now"|date("d/m/Y") %}
                         <a href="{{ path('participar_proyecto', {'id' : proyecto.id}) }}" class="btn btn-large purple accent-4">Apóyalo</a>
                     {% endif %}
                     <div id="favorito">
-                        <a href="{{ path('favoritos', {'id':proyecto.id}) }}" id="favoritos"><i class="fa fa-heart"></i> Favoritos</a>
+                        <a href="{{ path('favoritos', {'id':proyecto.id}) }}" id="favoritos">{% if fav %}<i class="fa fa-heart" style="color: firebrick;"></i>{% else %}<i class="fa fa-heart"></i>{% endif %} Favoritos</a>
                     </div><br/>
                         <div id="menu" class="menu">
 					<span class="morph-shape" data-morph-active="M251,150c0,93.5-29.203,143-101,143S49,243.5,49,150C49,52.5,78.203,7,150,7S251,51.5,251,150z">

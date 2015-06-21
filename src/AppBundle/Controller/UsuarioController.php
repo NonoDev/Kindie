@@ -69,6 +69,8 @@ class UsuarioController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        //participaciones
+        $par = $user->getParticipaciones();
         $usuario_perfil = $em->getRepository('AppBundle:Usuario')
             ->find($id);
         $proyectos_usuario_perfil = $em->getRepository('AppBundle:Proyecto')
@@ -114,7 +116,8 @@ class UsuarioController extends Controller
             'formularioMensaje' => $formulario1->createView(),
             'proyectos_usuario_perfil' => $proyectos_usuario_perfil,
             'mnl' => count($mnl),
-            'nnl' => count($nnl)
+            'nnl' => count($nnl),
+            'part' => count($par)
         ]);
     }
 

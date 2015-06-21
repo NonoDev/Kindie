@@ -41,6 +41,11 @@ security:
             pattern: ^/recuperar_cuenta$
             security: false
 
+        descubre:
+            pattern: ^/descubre$
+            security: false
+
+
         # secures part of the application
         area_segura:
             pattern:    ^/

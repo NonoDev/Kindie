@@ -124,7 +124,7 @@ class Proyecto
     protected $favoritos = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="proyecto")
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="proyecto", cascade={"persist", "remove"}, orphanRemoval=true)
      *
      * @var Comentario
      */

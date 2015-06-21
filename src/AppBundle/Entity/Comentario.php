@@ -49,7 +49,7 @@ class Comentario
 
     /**
      * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="comentarios")
-     *
+     * @ORM\JoinColumn(nullable=true)
      * @var Proyecto
      */
     protected $proyecto;
