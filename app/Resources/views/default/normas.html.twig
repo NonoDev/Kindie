@@ -2,39 +2,75 @@
 {% block title %} Kindie | Normas {% endblock %}
 {% block contenido %}
 
+<h1 class="center">Nuestras reglas</h1>
+    <div class="row">
+        <div class="col s12 m10 l10 offset-l1 offset-m1">
+    <h5 class="center"> Damos la bienvenida y apoyamos a proyectos creativos de los más diversos géneros: </h5>
+        {% if generos %}
+
+                <div class="row">
+                    {% for genero in generos %}
+                        <div class="col s12 m4 l2">
+                            <div class="card-panel blue center">
+                                <a href="{{ path('genero', {'id':genero.id}) }}"><span class="white-text">{% if genero.nombre == 'Aventuras gráficas' %}Av. Gráficas{% else %}{{ genero.nombre }}{% endif %}</span></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    <h5 class="center">En cada proyecto se debe de crear algo nuevo para compartirlo con los demás.</h5>
+
+    <p>Kindie puede utilizarse para crear todo tipo de videojuegos. Lo que todos los proyectos tienen en común es que con ellos se crean cosas nuevas que se compartirán con el mundo. En determinado momento, el creador debe poder decir: “Listo, está terminado. Aquí está lo que creamos. ¡A disfrutar!”
+    </p>
+            <h5 class="center">Los proyectos deben ser presentados de manera honesta y clara.</h5>
+
+    <p>Nuestra comunidad se basa en la confianza y la comunicación. Los proyectos no pueden engañar a las personas ni tergiversar los hechos,
+        y los creadores deben ser sinceros con respecto a lo que planean lograr. Cuando un proyecto involucra la fabricación y distribución
+        de algo complejo, como p.e. un videojuego en dispositivo de realidad virtual, el creador debe mostrar un prototipo de lo que se está creando. Se prohíben las representaciones
+        en render de realismo fotográfico.</p>
+
+        <h5 class="center">Los proyectos no pueden utilizarse para recaudar fondos para obras benéficas, ofrecer incentivos financieros ni involucrar artículos prohibidos.
+</h5>
+    <p>Todos estamos a favor de las obras benéficas y las inversiones, pero Kindie no es el lugar para ello. No se pueden hacer promesas
+        de donar los fondos recaudados a una obra benéfica o una causa y no se pueden ofrecer incentivos financieros, tales como acciones o reintegros.
+        Tampoco podemos permitir ninguna de estas cosas prohibidas.</p>
+
+            <h5 class="center">Responsabilidad total a la hora de cancelar proyectos</h5>
+            <p>En Kindie queremos usuarios responsables y que sean consecuentes con sus peticiones en cada proyecto. Si
+            un usuario decide cancelar un proyecto antes de la recaudación, se deberá hacer cargo de los reembolsos a sus inversores si así se lo requieren. Se un usuario responsable</p>
+
+    Estas normas no abarcan todos los usos posibles de Kindie, pero explican nuestro propósito y nuestra perspectiva.
 
 
-    Damos la bienvenida y apoyamos a proyectos de las más diversas categorías: Arte, Cómics, Artesanía, Danza, Diseño, Moda, Cine & vídeo, Comida, Juegos, Periodismo, Música, Fotografía, Publicidad, Tecnología y Teatro. Existen tres normas que todo proyecto de Kickstarter debe respetar.
+<h3 class="center">Normas de la comunidad</h3>
 
-    En cada proyecto se debe de crear algo nuevo para compartirlo con los demás.
+    <h5>Kindie es una comunidad de personas comprometidas a convertir ideas nuevas en realidad. Nuestra comunidad se basa en
+        algunos valores fundamentales: transparencia, confianza y honestidad. De todos nosotros depende traer ideas nuevas al
+        mundo y asegurarnos de que Kindie sea un lugar que comparta este espíritu solidario. ¡Tenemos algunas reglas que esperamos
+        que tengas en cuenta durante todo el camino!
+</h5>
+            <h5><i class="mdi-content-clear red-text"></i> No envíes correo basura</h5>
 
-    Kickstarter puede utilizarse para crear todo tipo de cosas: arte y accesorios, eventos y espacios, ideas y experiencias. Lo que todos los proyectos tienen en común es que con ellos se crean cosas nuevas que se compartirán con el mundo. En determinado momento, el creador debe poder decir: “Listo, está terminado. Aquí está lo que creamos. ¡A disfrutar!”
-    Los proyectos deben ser presentados de manera honesta y clara.
+    <p>Esto incluye, entre otros, bombardeos de enlaces, promocionar un proyecto en un lugar indebido,
+        publicitar servicios de terceros y usar listas de correos electrónicos de fuentes externas.
+    </p>
+            <h5><i class="mdi-content-clear red-text"></i> Pórtate bien.</h5>
 
-    Nuestra comunidad se basa en la confianza y la comunicación. Los proyectos no pueden engañar a las personas ni tergiversar los hechos, y los creadores deben ser sinceros con respecto a lo que planean lograr. Cuando un proyecto involucra la fabricación y distribución de algo complejo, como p.e. un dispositivo, el creador debe mostrar un prototipo de lo que se está creando. Se prohíben las representaciones en render de realismo fotográfico.
-    Los proyectos no pueden utilizarse para recaudar fondos para obras benéficas, ofrecer incentivos financieros ni involucrar artículos prohibidos.
+    <p>La comunicación es una parte fundamental en nuestra comunidad. Creemos que el diálogo y el intercambio
+        de ideas y consejos entre patrocinadores y creadores es muy importante. Sólo pedimos que dichas conversaciones
+        se lleven de manera honesta, respetuosa y educada. No publiques contenido obsceno, odioso o cuestionable.
+        No publiques información personal. No publiques contenido protegido por copyright sin permiso. Si no te gusta un proyecto,
+        simplemente no lo patrocines y listo. Siempre sé respetuoso de nuestro espacio compartido y de los compañeros que lo visitan.</p>
 
-    Todos estamos a favor de las obras benéficas y las inversiones, pero Kickstarter no es el lugar para ello. No se pueden hacer promesas de donar los fondos recaudados a una obra benéfica o una causa y no se pueden ofrecer incentivos financieros, tales como acciones o reintegros. Tampoco podemos permitir ninguna de estas cosas prohibidas.
+            <h5><i class="mdi-content-clear red-text"></i> Si ves algo, di algo.</h5>
 
-    Estas normas no abarcan todos los usos posibles de Kickstarter, pero explican nuestro propósito y nuestra perspectiva.
+    <p>Si hay algo que te parece fuera de lugar, avísanos. Nuestro equipo de integridad revisa todas las denuncias que recibimos y actuamos
+        en cuanto notamos que alguien está incumpliendo las reglas. A veces, eso simplemente implica hacer una advertencia,
+        pero otras veces implica suspender ciertos privilegios de un usuario o incluso suspender su cuenta.
+        ¿Sabes cómo puedes evitar que te suceda algo así? Muy fácil - ¡no envíes contenido no deseado y pórtate bien!</p>
 
-
-
-
-    Kickstarter es una comunidad de personas comprometidas a convertir ideas nuevas en realidad. Nuestra comunidad se basa en algunos valores fundamentales: transparencia, confianza y honestidad. De todos nosotros depende traer ideas nuevas al mundo y asegurarnos de que Kickstarter sea un lugar que comparta este espíritu solidario. ¡Tenemos algunas reglas que esperamos que tengas en cuenta durante todo el camino!
-
-    No envíes correo basura
-
-    Esto incluye, entre otros, bombardeos de enlaces, promocionar un proyecto en un lugar indebido, arrobar en Twitter indiscriminadamente, publicitar servicios de terceros y usar listas de correos electrónicos de fuentes externas.
-    Pórtate bien.
-
-    La comunicación es una parte fundamental en nuestra comunidad. Creemos que el diálogo y el intercambio de ideas y consejos entre patrocinadores y creadores es muy importante. Sólo pedimos que dichas conversaciones se lleven de manera honesta, respetuosa y educada. No publiques contenido obsceno, odioso o cuestionable. No publiques información personal. No publiques contenido protegido por copyright sin permiso. Si no te gusta un proyecto, simplemente no lo patrocines y listo. Siempre sé respetuoso de nuestro espacio compartido y de los compañeros que lo visitan.
-    Si ves algo, di algo.
-
-    Si hay algo que te parece fuera de lugar, avísanos. Nuestro equipo de integridad revisa todas las denuncias que recibimos y actuamos en cuanto notamos que alguien está incumpliendo las reglas. A veces, eso simplemente implica hacer una advertencia, pero otras veces implica suspender ciertos privilegios de un usuario o incluso suspender su cuenta. ¿Sabes cómo puedes evitar que te suceda algo así? Muy fácil - ¡no envíes contenido no deseado y pórtate bien!
-
-    A medida que nuestra comunidad crece y cambia, vamos modificando la manera en que evaluamos y reforzamos estas reglas. De todos nosotros depende que Kickstarter siga siendo un lugar seguro y divertido para todos, tanto patrocinadores como creadores. ¡Gracias por formar parte de la comunidad Kickstarter!
-
-
+    <h5>De todos nosotros depende que Kindie sea un lugar seguro y divertido para todos, tanto patrocinadores como creadores. ¡Gracias por formar parte de la comunidad Kindie!</h5>
+    </div>
+    </div>
 {% endblock %}
 

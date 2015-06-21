@@ -72,6 +72,9 @@ class DefaultController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $generos = $em->getRepository('AppBundle:Genero')
+            ->findAll()
+        ;
         // mensajes no leidos
         $mnl = $em->getRepository('AppBundle:Mensaje')
             ->findBy(array('usuario' => $user, 'leido' => false));
@@ -80,6 +83,7 @@ class DefaultController extends Controller
             ->findBy(array('usuario' => $user, 'leida' => false));
         return $this->render(':default:normas.html.twig', [
             'usuario' => $user,
+            'generos' => $generos,
             'mnl' => count($mnl),
             'nnl' => count($nnl)
         ]);
