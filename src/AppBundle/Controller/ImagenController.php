@@ -33,7 +33,7 @@ class ImagenController extends Controller
                    $imagen->setRuta("/".$ruta_final.$_FILES['upload']['name']);
                    $em->persist($imagen);
                    $em->flush();
-                   $this->addFlash('success', 'Imagen modificada de forma correcta');
+                   $this->addFlash('success', 'Imagen añadida de forma correcta');
                }else{
                    $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
                }

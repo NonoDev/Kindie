@@ -24,7 +24,7 @@
                     <p>Días para recaudar</p>
                     <p class="proyecto-arriba">{{ participantes }}</p>
                     <p>Inversores</p>
-                    {% if usuario.id != proyecto.usuario.id %}
+                    {% if usuario.id != proyecto.usuario.id or proyecto.fechaFin|date('d/m/Y') <= "now"|date("d/m/Y") %}
                         <a href="{{ path('participar_proyecto', {'id' : proyecto.id}) }}" class="btn btn-large purple accent-4">Apóyalo</a>
                     {% endif %}
                     <div id="favorito">

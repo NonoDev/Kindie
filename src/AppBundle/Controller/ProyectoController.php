@@ -503,7 +503,8 @@ class ProyectoController extends Controller
         return $this->render(':default/proyecto:editarProyecto.html.twig', [
             'mnl' => count($mnl),
             'nnl' => count($nnl),
-            'formulario' => $formulario->createView()
+            'formulario' => $formulario->createView(),
+            'proyecto' => $id
         ]);
     }
 
