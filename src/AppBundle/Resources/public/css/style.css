@@ -530,3 +530,23 @@ float: right;
 }
 
 /* fin pie */
+
+/*Media queries */
+
+@media screen and (max-width:992px){
+    .bloque{
+        float: left;
+        margin-right: 40px;
+    }
+    #info-pro{
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width:1024px){
+    .bloque{
+        margin-top: -20px;
+    }
+
+}

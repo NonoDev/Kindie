@@ -40,7 +40,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 /* Views (fullscreen and overview)*/
 .fs-form-full {
-    top: 32%;
+    top: 25%;
     margin: 0 auto;
     width: 70%;
 }
@@ -212,9 +212,9 @@ button.fs-continue,
     bottom: 100%;
     left: 0;
     padding: 0 0 10px;
-    min-width: 200px;
+    min-width: 300px;
     content: attr(data-info);
-    font-size: 0.4em;
+    font-size: 15px;
     color: #6a7b7e;
     opacity: 0;
     -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
@@ -331,8 +331,8 @@ button.fs-continue,
 
 .fs-fields .fs-radio-custom label::after {
     position: absolute;
-    top: 5%;
-    left: 4%;
+    top: 6%;
+    left: 6%;
     background-position: 50% 0%;
     background-size: 85%;
     background-repeat: no-repeat;

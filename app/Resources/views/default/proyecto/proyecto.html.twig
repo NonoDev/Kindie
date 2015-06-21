@@ -5,7 +5,7 @@
             <h1 class="center">{{ proyecto.nombre }}</h1>
             <h6 class="center">Por <strong><i><a href="{{ path('perfil', {'id': proyecto.usuario.id}) }}">{{ proyecto.usuario.nombreUsuario }}</a></i></strong></h6>
             <div class="row">
-                <div class="col s12 m8 l6 offset-l2">
+                <div class="col s12 m8 l6 offset-l2 offset-m2">
                     {% if usuario.id == proyecto.usuario.id %}
                         <a href="{{ path('imagen_proyecto', {'id':proyecto.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Cambia la imagen pricipal"><img class="responsive-img" src="{{ proyecto.imagenPrincipal }}"></a>
                     {% else %}
@@ -17,13 +17,19 @@
 
 
                 </div>
-                <div class="col s12 m6 l4">
+                <div class="col s12 m8 l4 offset-m2" id="info-pro">
+                    <div class="bloque">
                     <p class="proyecto-arriba">{{ proyecto.contribuciones }} €</p>
                     <p>de {{ proyecto.meta }}€</p>
+                    </div>
+                    <div class="bloque">
                     <p class="proyecto-arriba">{{ diferencia+1 }}</p>
                     <p>Días para recaudar</p>
+                    </div>
+                    <div class="bloque">
                     <p class="proyecto-arriba">{{ participantes }}</p>
                     <p>Inversores</p>
+                    </div>
                     {% if usuario.id != proyecto.usuario.id and proyecto.fechaFin|date('d/m/Y') <= "now"|date("d/m/Y") %}
                         <a href="{{ path('participar_proyecto', {'id' : proyecto.id}) }}" class="btn btn-large purple accent-4">Apóyalo</a>
                     {% endif %}
@@ -83,7 +89,7 @@
                 <div id="test1" class="col s12">
                     <div class="row">
                         {% if app.user.id == proyecto.usuario.id %}
-                            <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Edita el detalle</a>
+                            <a href="{{ path('editarDetalle_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"> Editar</a>
                         {% endif %}
                     </div>
                     <h2 class="center">Campaña del proyecto</h2>
@@ -153,7 +159,7 @@
                     <div class="col s12 m10 l8 offset-l2 actu">
                         <div class="row">
                             {% if app.user.id == proyecto.usuario.id %}
-                                <a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"><i class="mdi-action-extension"></i> Añadir</a>
+                                <a href="{{ path('desarrollo_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3"> Añadir</a>
                             {% endif %}
                         </div>
                             {% if desarrollo %}
@@ -185,7 +191,7 @@
                 <div id="test4" class="col s12">
                     <div class="row">
                         {% if app.user.id == proyecto.usuario.id %}
-                        <a href="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3">Añade imágenes</a>
+                        <a href="{{ path('multimedia_proyecto', {'id':proyecto.id}) }}" class="btn blue col s12 m6 l2 offset-l5 offset-m3">Añadir</a>
                         {% endif %}
                     </div>
 

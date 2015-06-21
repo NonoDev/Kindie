@@ -1,8 +1,16 @@
 {% extends '::layout.html.twig' %}
 
 {% block title 'Kindie | Creación de proyecto' %}
-    {% block contenido %}
 
+    {% block contenido %}
+        <style>
+            .page-footer{
+                margin-top: 40% !important;
+            }
+            .container img{
+                width: 100px !important;
+            }
+        </style>
         <div class="container">
             <h1 class="center">Creación de un nuevo proyecto</h1>
 
@@ -34,7 +42,7 @@
                             <input class="fs-anim-lower" id="q4" name="localizacion" type="text" placeholder="Nombre de la ciudad" required/>
                         </li>
                         <li>
-                            <label class="fs-field-label fs-anim-upper" for="q5" data-info="Es la fecha en la que se da por concluido el periodo de recaudación">Fecha de recaudación</label>
+                            <label class="fs-field-label fs-anim-upper" for="q5" data-info="Es la fecha en la que se da por concluido el periodo de recaudación. Ten cuidado, si eliges una fecha ya pasada, el proyecto se dará de alta, pero no podrá recaudar fondos.">Fecha de recaudación</label>
                             <input class="fs-anim-lower datepicker" id="q5" name="fechaFin" type="date" placeholder="Fecha final" required/>
                         </li>
                         <li>
@@ -50,12 +58,10 @@
                             <label class="fs-field-label fs-anim-upper" for="q8" data-info="Selecciona los géneros a los que pertenece tu videojuego">Género del proyecto</label>
                             <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
                                 {% for gen in generos %}
-                                    <span><input id="{{ gen.id }}" name="genero" type="radio" value="{{ gen.nombre }}"/><label for="{{ gen.id }}"><img src="/bundles/app/images/generos/miniaturas/{{ gen.nombre }}.png">{{ gen.nombre }}</label></span>
+                                    <span><input id="{{ gen.id }}" name="genero" type="radio" value="{{ gen.nombre }}"/><label for="{{ gen.id }}"><img src="/bundles/app/images/generos/miniaturas/{{ gen.nombre }}.png">{% if gen.nombre == 'Aventuras gráficas' %}Av. Gráficas{% else %}{{ gen.nombre }}{% endif %}</label></span>
                                 {% endfor %}
 
-                                <div class="row">
-                                    <blockquote>Cada proyecto tiene solamente un género</blockquote>
-                                </div>
+
                             </div>
 
                         </li>
@@ -69,12 +75,11 @@
 
 
         </div><!-- /container -->
-
-        <div class="row">
-            <h1 class="center">
-
-            </h1>
-        </div>
+<div class="row">
+    <div class="col s12">
+        <h4></h4>
+    </div>
+</div>
     {% endblock %}
 {% block scripts %}
     <script>
@@ -82,7 +87,6 @@
             $("#comprobar").attr('href', '#');
             $("#q1").keyup(function(){
                 $("#comprobar").attr('href', '/app_dev.php/comprobar_proyecto?nombre='+$(this).val());
-                console.log($(this).val());
             });
         });
     </script>
