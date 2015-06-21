@@ -77,10 +77,10 @@
             {{ flashMessage }}
         </div>
     {% endfor %}
-    {% for flashMessage in app.session.flashbag.get('error') %}
+    {% for flashMessage in app.session.flashbag.get('danger') %}
         <div id="danger">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-            {{ flashMessage }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        {{ flashMessage }}
         </div>
     {% endfor %}
         {% block contenido %}

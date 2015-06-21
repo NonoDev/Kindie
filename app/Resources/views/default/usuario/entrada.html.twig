@@ -75,5 +75,27 @@
 
                 } );
             </script>
+            {% endif %}
+            {% if error %}
+                <script>
+                    $(document).ready(function() {
+
+                        // crear notificacion
+                        var notification = new NotificationFx({
+                            message : '<p>Mensaje y/o contraseña incorrectos.</p>',
+                            layout : 'growl',
+                            effect : 'jelly',
+                            type : 'notice', // notice, warning, error or success
+                            onClose : function() {
+                                bttn.disabled = false;
+                            }
+                        });
+
+                        // show the notification
+                        notification.show();
+
+
+                    } );
+                </script>
         {% endif %}
     {% endblock %}

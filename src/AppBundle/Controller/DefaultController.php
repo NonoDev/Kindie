@@ -6,8 +6,10 @@ use AppBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\UserRepository;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class DefaultController extends Controller
 {
@@ -49,10 +51,11 @@ class DefaultController extends Controller
      *
      * @Route("/entrar", name="usuario_entrar")
      */
-    public function entrarAction()
+    public function entrarAction(Request $request)
     {
         $helper = $this->get('security.authentication_utils');
         dump($helper->getLastAuthenticationError());
+
         return $this->render(':default/usuario:entrada.html.twig',
             [
                 'last_username' => $helper->getLastUsername(),

@@ -6,7 +6,7 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CuentaType extends AbstractType{
+class CuentaEmailType extends AbstractType{
 
     /**
      * @param FormBuilderInterface $builder
@@ -15,25 +15,17 @@ class CuentaType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nuevapass', 'password', array(
-                'label' => 'Nueva contraseña (entre 4 y 12 caracteres)',
-                'attr' => (array('length' => 12)),
-                'required' => false,
-                'mapped' => false
-            ))
-            ->add('pass', 'password', array(
-                'label' => 'Confirmar contraseña',
-                'attr' => (array('length' => 12)),
-                'required' => false
+            ->add('email', 'email', array(
+                'label' => 'Correo electrónico',
+                'required' => true
             ))
             ->add('enviar', 'submit', array(
-                'label' => 'Guardar cambios',
+                'label' => 'Cambiar email',
                 'attr' => array('class' => 'btn purple accent-4 waves-effect waves-light')
             ));
 
         ;
     }
-
 
     /**
      * Returns the name of this type.
@@ -42,6 +34,6 @@ class CuentaType extends AbstractType{
      */
     public function getName()
     {
-        return 'cuenta';
+        return 'cuentaEmail';
     }
 }

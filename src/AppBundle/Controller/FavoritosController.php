@@ -25,6 +25,7 @@ class FavoritosController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($favorito);
             $em->flush();
+            $this->addFlash('success', 'Proyecto eliminado de favoritos');
         }else{
             $nFavorito = new Favorito();
             $em = $this->getDoctrine()->getManager();
@@ -32,6 +33,7 @@ class FavoritosController extends Controller
             $nFavorito->setUsuario($user);
             $em->persist($nFavorito);
             $em->flush();
+            $this->addFlash('success', 'Proyecto añadido a favoritos');
         }
 
         return new RedirectResponse(

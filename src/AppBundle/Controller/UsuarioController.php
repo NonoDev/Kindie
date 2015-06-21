@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mensaje;
+use AppBundle\Form\Type\CuentaEmailType;
 use AppBundle\Form\Type\CuentaType;
 use AppBundle\Form\Type\MensajeType;
 use AppBundle\Form\Type\UsuarioModificarType;
@@ -44,11 +45,15 @@ class UsuarioController extends Controller
 
                 $em->persist($usuario);
                 $em->flush();
+
+            $this->addFlash('success', 'Se ha completado el registro de forma correcta. Elija su imagen de perfil para terminar de configurar su perfil');
             return new RedirectResponse(
                 $this->generateUrl('imagen_usuario')
             );
 
-        }
+        }elseif($formulario->isSubmitted() && !$formulario->isValid()){
+            $this->addFlash('danger', 'Ha habido un error al completar el registro, compruebe los datos introducidos');
+    }
 
 
         return $this->render(':default/usuario:registro.html.twig', array(
@@ -198,15 +203,46 @@ class UsuarioController extends Controller
         // Procesar el formulario si se ha enviado con un POST
         $formulario->handleRequest($peticion);
         // Si se ha enviado y el contenido es válido, guardar los cambios
+        // crear el formulario
+        $formulario1 = $this->createForm(new CuentaEmailType(), $usuario);
+        // Procesar el formulario si se ha enviado con un POST
+        $formulario1->handleRequest($peticion);
+        // Si se ha enviado y el contenido es válido, guardar los cambios
 
         if ($formulario->isSubmitted() && $formulario->isValid()){
-            // Guardar el mensaje en la base de datos
+
+
+                    if($_POST['cuenta']['nuevapass'] != $_POST['cuenta']['pass']) {
+                        $this->addFlash('danger', 'Las nuevas contraseñas no coinciden');
+                    }else{
+                        $em = $this->getDoctrine()->getManager();
+                        $helper =  $password = $this->container->get('security.password_encoder');
+                        $usuario->setPass($helper->encodePassword($usuario, $_POST['cuenta']['nuevapass']));
+                        $em->persist($usuario);
+                        $em->flush();
+                        $this->addFlash('success', 'Contraseña modificada correctamente, para que no haya fallos en su sesión le recomendamos volver a autentificarse');
+                    }
+                }
+        if ($formulario1->isSubmitted() && $formulario1->isValid()){
+
+                $em = $this->getDoctrine()->getManager();
+                $usuario->setEmail($_POST['cuentaEmail']['email']);
+                $em->persist($usuario);
+                $em->flush();
+                $this->addFlash('success', 'El email se ha modificado de forma correcta');
+
+        }elseif($formulario1->isSubmitted() && !$formulario1->isValid()){
+            $this->addFlash('danger', 'Lo sentimos, ha habido un fallo cambiando el email, inténtelo de nuevo');
+        }
+
+
+
             $em = $this->getDoctrine()->getManager();
             $helper =  $password = $this->container->get('security.password_encoder');
             $usuario->setPass($helper->encodePassword($usuario, $usuario->getPass()));
-            $em->persist($usuario);
-            $em->flush();
-        }
+            //$em->persist($usuario);
+            //$em->flush();
+
 
         //Eliminar cuenta
         if(isset($_POST['eliminar_cuenta'])){
@@ -231,6 +267,7 @@ class UsuarioController extends Controller
         return $this->render(':default/usuario:cuenta.html.twig',[
             'usuario' => $user,
             'formulario' => $formulario->createView(),
+            'formulario1' => $formulario1->createView(),
             'mnl' => count($mnl),
             'nnl' => count($nnl)
         ]);
@@ -242,12 +279,13 @@ class UsuarioController extends Controller
      */
     public function gestionUsuariosAction(Request $peticion, Usuario $id)
     {
-
+        //Eliminar usuario
 
         if(isset($_POST['eliminar_user'])){
             $em = $this->getDoctrine()->getManager();
             $em->remove($id);
             $em->flush();
+
 
             return new RedirectResponse(
                 $this->generateUrl('administracion')

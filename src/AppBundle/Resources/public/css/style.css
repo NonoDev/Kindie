@@ -489,8 +489,9 @@ float: right;
 
 /* FIN ADMINISTRACION */
 /* mensajes de confirmación */
-#success{
-    background: rgb(41, 210, 55) none repeat scroll 0% 0%;
+#success, #danger{
+    position: absolute;
+    background: rgba(41, 210, 55, 0.8) none repeat scroll 0% 0%;
     color: rgb(255, 255, 255);
     padding: 30px;
     width: 20%;
@@ -498,7 +499,11 @@ float: right;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
     margin: 20px;
 }
-#success button{
+#danger{
+    background: rgba(210, 7, 7, 0.80) none repeat scroll 0% 0%;
+}
+
+#success button, #danger button{
     float: right;
     margin: -26px;
     background: transparent none repeat scroll 0% 0%;
