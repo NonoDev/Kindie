@@ -156,7 +156,9 @@ class ProyectoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $mensaje->setRemitente($user->getId());
             $mensaje->setLeido(false);
-            $mensaje->setDenunciado(false);
+            $nombreRemi = $em->getRepository('AppBundle:Usuario')
+                ->find($user->getId());
+            $mensaje->setNombreRemitente($nombreRemi->getNombreUsuario());
             $mensaje->setFecha(new \DateTime());
             $mensaje->setUsuario($usuarioMensaje);
 

@@ -36,7 +36,12 @@ class Mensaje
      */
     protected $leido;
 
-
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $nombreRemitente;
 
     /**
      * @ORM\Column(type="integer")
@@ -113,6 +118,29 @@ class Mensaje
     public function getTexto()
     {
         return $this->texto;
+    }
+
+    /**
+     * Set nombreRemitente
+     *
+     * @param string $nombreRemitente
+     * @return Mensaje
+     */
+    public function setNombreRemitente($nombreRemitente)
+    {
+        $this->nombreRemitente = $nombreRemitente;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreRemitente
+     *
+     * @return string
+     */
+    public function getNombreRemitente()
+    {
+        return $this->nombreRemitente;
     }
 
     /**

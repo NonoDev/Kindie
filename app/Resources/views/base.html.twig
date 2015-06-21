@@ -194,57 +194,17 @@
                         $('.tooltipped').tooltip({delay: 50});
                     });
 
-                    // mi modal
-                    var maskHeight = $(document).height();
-                    var maskWidth = $(window).width();
-                    $('#mascara').css({'width':maskWidth,'height':maskHeight});
-                    $(".mi-modal-trigger2").click(function(){
 
-                        $('#mascara').fadeTo("slow",0.5);
-                        var winH = $(window).height();
-                        var winW = $(window).width();
-
-                        //transition effect
-                        $("#mi-modal2").slideDown();
-                    });
-                    $('#mascara').click(function () {
-                        $(this).fadeOut();
-                        $('#mi-modal2').fadeOut();
-                    });
-
-                    $(".mi-modal-trigger").click(function(){
-
-                        $('#mascara').fadeTo("slow",0.5);
-                        var winH = $(window).height();
-                        var winW = $(window).width();
-
-                        //transition effect
-                        $("#mi-modal").slideDown();
-                    });
-                    $('#mascara').click(function () {
-                        $(this).fadeOut();
-                        $('#mi-modal').fadeOut();
-                    });
-
-
-                    //frases aleatorias
-                    var frases = new Array();
-                    var autores = new Array();
-                    autores[1] = "Steve Jobs";
-                    autores[0] = "Edith Wharton";
-                    frases["Edith Wharton"] = "La creatividad no consiste en una nueva manera, sino en una nueva visión";
-                    frases["Steve Jobs"] = "La creatividad no consiste en una nueva manera, sino en una nueva visión guano";
-                    function rotar(){
-                        indice = Math.random()*(autores.length);
-                        indice = Math.floor(indice);
-                        $("#frases").text(frases[autores[indice]]);
-                    }
-
-
-                    setTimeout("rotar();",2000);
 
                     //paginacion
 
+
+                    $("#success button").click(function(){
+                        $("#success").fadeOut(1500);
+                    });
+                    setTimeout(function() {
+                        $("#success").fadeOut(1500);
+                    },5000);
 
 
                 });

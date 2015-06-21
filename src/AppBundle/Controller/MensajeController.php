@@ -131,6 +131,9 @@ class MensajeController extends Controller
             // Guardar el mensaje en la base de datos
             $em = $this->getDoctrine()->getManager();
             $mensaje->setRemitente($user->getId());
+            $nombreRemi = $em->getRepository('AppBundle:Usuario')
+                ->find($user->getId());
+            $mensaje->setNombreRemitente($nombreRemi->getNombreUsuario());
             $mensaje->setLeido(false);
             $mensaje->setFecha(new \DateTime());
             $mensaje->setUsuario($remitente);

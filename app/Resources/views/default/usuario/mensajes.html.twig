@@ -18,7 +18,7 @@
                         {% for mensaje in mensajes %}
 
                             <li>
-                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ mensaje.tipo }} <span class="infoms">de <strong>{{ mensaje.remitente }}</strong>, el <strong>{{ mensaje.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ mensaje.tipo }} <span class="infoms">de <strong>{{ mensaje.nombreRemitente }}</strong>, el <strong>{{ mensaje.fecha|date('d/m/Y') }}</strong></span> </div>
                                 <div class="collapsible-body">
                                     <div id="acciones_ms">
                                         <a href="{{ path('responder_mensaje', {'id':mensaje.id}) }}" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
@@ -47,7 +47,7 @@
             </li>
             <!-- enviados -->
             <li>
-                <div class="collapsible-header"><i class="mdi-content-send"></i>Enviados <span class="contador-green">{{ contadorEnviados }}</span></div>
+                <div class="collapsible-header"><i class="mdi-content-send"></i>Historial de enviados <span class="contador-green">{{ contadorEnviados }}</span></div>
                 <div class="collapsible-body">
                     {% if enviados %}
                         <div class="holder">
@@ -83,7 +83,7 @@
                     <ul class="collapsible" data-collapsible="accordion" id="itemContainer">
                         {% for nop in noLeidos %}
                             <li>
-                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ nop.tipo }} <span class="infoms">de <strong>{{ nop.remitente }}</strong>, el <strong>{{ nop.fecha|date('d/m/Y') }}</strong></span> </div>
+                                <div class="collapsible-header"><i class="mdi-communication-messenger"></i>{{ nop.tipo }} <span class="infoms">de <strong>{{ nop.nombreRemitente }}</strong>, el <strong>{{ nop.fecha|date('d/m/Y') }}</strong></span> </div>
                                 <div class="collapsible-body">
                                     <div id="acciones_ms">
                                         <a href="{{ path('responder_mensaje', {'id':nop.id}) }}" class="responder tooltipped mi-modal-trigger" data-position="top" data-delay="50" data-tooltip="Responder" ><i class="mdi-action-question-answer
