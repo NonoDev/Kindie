@@ -120,11 +120,21 @@ class UsuarioController extends Controller
 
     /**
      * @Route("/editarPerfil/{id}", name="editarPerfil")
+     *
      */
     public function editarPerfilAction(Request $peticion, Usuario $id)
     {
-
         $user = $this->getUser();
+        //redirección si no es el usuario
+        if($id->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $em = $this->getDoctrine()->getManager();
         $usuario = $em->getRepository('AppBundle:Usuario')
             ->find($id);
@@ -160,7 +170,7 @@ class UsuarioController extends Controller
 
     /**
      * @Route("/administracion", name="administracion")
-     *
+     * @Security(expression="has_role('ROLE_ADMIN')")
      */
     public function administracionAction(Request $peticion)
     {
@@ -197,6 +207,16 @@ class UsuarioController extends Controller
     public function cuentaAction(Request $peticion, Usuario $id)
     {
         $user = $this->getUser();
+        //redirección si no es el usuario
+        if($id->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $em = $this->getDoctrine()->getManager();
         $usuario = $em->getRepository('AppBundle:Usuario')
             ->find($id);

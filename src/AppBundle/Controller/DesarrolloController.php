@@ -41,6 +41,16 @@ class DesarrolloController extends Controller
     {
         $act = new Desarrollo();
         $user=$this->getUser();
+        //redirección si no es el usuario
+        if($id->getUsuario()->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $em = $this->getDoctrine()->getManager();
         // crear el formulario
         $formulario = $this->createForm(new ActualizacionType(), $act);
@@ -83,6 +93,16 @@ class DesarrolloController extends Controller
     public function editarDesarrolloAction(Request $request, Desarrollo $id)
     {
         $user=$this->getUser();
+        //redirección si no es el usuario
+        if($id->getProyecto()->getUsuario()->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $em = $this->getDoctrine()->getManager();
         // crear el formulario
         $formulario = $this->createForm(new ActualizacionType(), $id);

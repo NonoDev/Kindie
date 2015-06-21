@@ -20,6 +20,16 @@ class ImagenController extends Controller
     public function multimediaAction(Proyecto $id)
     {
         $user = $this->getUser();
+        //redirección si no es el usuario
+        if($id->getUsuario()->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $ruta_final = "uploads/img/";
         $tipos = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png', 'image/gif');
         $imagen = new Multimedia();
@@ -74,9 +84,10 @@ class ImagenController extends Controller
                     $user->setImagen("/".$ruta_final.$_FILES['upload']['name']);
                     $em->persist($user);
                     $em->flush();
-                }$this->addFlash('success', 'Imagen modificada de forma correcta');
-            }else{
-                $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
+                    $this->addFlash('success', 'Imagen modificada de forma correcta');
+                }else{
+                    $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
+                }
             }
         }
         $em = $this->getDoctrine()->getManager();
@@ -98,6 +109,16 @@ class ImagenController extends Controller
     public function imagenProyectoAction(Proyecto $id)
     {
         $user = $this->getUser();
+        //redirección si no es el usuario
+        if($id->getUsuario()->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $ruta_final = "uploads/principales_proyectos/";
         $tipos = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png', 'image/gif');
         if(isset($_POST['subir'])){
@@ -109,9 +130,10 @@ class ImagenController extends Controller
                     $id->setImagenPrincipal("/".$ruta_final.$_FILES['upload']['name']);
                     $em->persist($id);
                     $em->flush();
-                }$this->addFlash('success', 'Imagen modificada de forma correcta');
-            }else{
-                $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
+                    $this->addFlash('success', 'Imagen modificada de forma correcta');
+                }else{
+                    $this->addFlash('danger', 'El archivo tiene que ser de tipo imagen.');
+                }
             }
         }
         $em = $this->getDoctrine()->getManager();

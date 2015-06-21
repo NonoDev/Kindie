@@ -303,6 +303,16 @@ class ProyectoController extends Controller
     public function editarDetalleAction(Request $request, Proyecto $id)
     {
         $user=$this->getUser();
+        //redirección si no es el usuario
+        if($id->getUsuario()->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $em = $this->getDoctrine()->getManager();
         $proyecto = $em->getRepository('AppBundle:Proyecto')
             ->find($id)
@@ -478,6 +488,16 @@ class ProyectoController extends Controller
     public function editarProyectoAction(Proyecto $id, Request $request)
     {
         $user=$this->getUser();
+        //redirección si no es el usuario
+        if($id->getUsuario()->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $em = $this->getDoctrine()->getManager();
 // crear el formulario
         $formulario = $this->createForm(new ProyectoType(), $id);

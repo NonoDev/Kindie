@@ -18,6 +18,16 @@ class ComentarioController extends Controller
     public function marcarLeidosAction(Comentario $id, Request $peticion)
     {
         $user = $this->getUser();
+        //redirección si no es el usuario
+        if($id->getUsuario()->getId() != $user->getId()){
+            if($user->getesAdmin() == false) {
+                $this->addFlash('danger', 'Acceso denegado');
+                return new RedirectResponse(
+                    $this->generateUrl('inicio')
+
+                );
+            }
+        }
         $em = $this->getDoctrine()->getManager();
 
         // crear el formulario
