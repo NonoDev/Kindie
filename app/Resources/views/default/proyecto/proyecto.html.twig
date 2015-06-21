@@ -38,7 +38,11 @@
 					</span>
                         <button class="trigger"><i class="mdi-image-style"></i><span></span></button>
                         <ul class="menu__items">
+                            {% if usuario.id == proyecto.usuario.id %}
+                                <li><a href="{{ path('perfil', {'id': proyecto.usuario.id}) }}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Ve a tu perfil"><i class="fa fa-fw fa-user"></i><span></span></a></li>
+                            {% else %}
                             <li><a href="#modalMensaje" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Contacta con el creador" ><i class="fa fa-fw fa-envelope"></i><span></span></a></li>
+                            {% endif %}
                             <li><a href="#" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Compártelo en Facebook"><i class="fa fa-fw fa-facebook"></i><span></span></a></li>
                             <li><a href="#"><i class="fa fa-fw fa-twitter"></i><span>Codrops on Twitter</span></a></li>
                             <li><a href="#"><i class="fa fa-fw fa-rss"></i><span>Codrops RSS Feed</span></a></li>

@@ -32,6 +32,7 @@ class ComentarioController extends Controller
 
             $em->persist($id);
             $em->flush();
+            $this->addFlash('success', 'Comentario editado de forma correcta');
 
             return new RedirectResponse(
                 $this->generateUrl('proyecto', array('id'=> $id->getProyecto()->getId()))
@@ -75,6 +76,7 @@ class ComentarioController extends Controller
             $notificacion->setFecha(new \DateTime());
             $em->persist($notificacion);
             $em->flush();
+            $this->addFlash('success', 'Comentario denunciado de forma correcta, se estudiará en moderación');
 
             return new RedirectResponse(
                 $this->generateUrl('proyecto', array('id'=>$id->getProyecto()->getId()))
@@ -97,6 +99,8 @@ class ComentarioController extends Controller
 
             $id = $coment->getProyecto()->getId();
 
+            $this->addFlash('success', 'Comentario eliminado de forma correcta');
+
             return new RedirectResponse(
                 $this->generateUrl('proyecto', array('id'=>$id))
             );
@@ -117,6 +121,7 @@ class ComentarioController extends Controller
                 ->find($id);
             $em->remove($coment);
             $em->flush();
+            $this->addFlash('success', 'Comentario eliminado de forma correcta');
 
             return new RedirectResponse(
                 $this->generateUrl('administracion')
@@ -129,7 +134,7 @@ class ComentarioController extends Controller
             $em->persist($id);
             $em->flush();
 
-
+            $this->addFlash('success', 'Comentario validado de forma correcta');
             return new RedirectResponse(
                 $this->generateUrl('administracion')
             );
