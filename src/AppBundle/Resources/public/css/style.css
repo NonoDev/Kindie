@@ -490,6 +490,7 @@ float: right;
 /* FIN ADMINISTRACION */
 /* mensajes de confirmación */
 #success, #danger{
+    z-index: 10000;
     position: absolute;
     background: rgba(41, 210, 55, 0.8) none repeat scroll 0% 0%;
     color: rgb(255, 255, 255);

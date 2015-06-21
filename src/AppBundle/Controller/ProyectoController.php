@@ -550,6 +550,7 @@ class ProyectoController extends Controller
             $mensaje->setLeido(false);
             $mensaje->setUsuario($id->getUsuario());
             $mensaje->setRemitente($user->getId());
+            $mensaje->setNombreRemitente($user->getNombreUsuario());
             $mensaje->setTipo('Reporte');
             $mensaje->setTexto('El usuario '.$user->getNombreUsuario().' ha reportado tu proyecto '. $id->getNombre() .' por el siguiente motivo: '. $_POST['motivo'] .'.
             Tu proyecto va a ser revisado para ver si incumple alguna de las normas de publicación de los proyectos. Disculpe las molestias.');
@@ -569,6 +570,7 @@ class ProyectoController extends Controller
             $mensaje->setLeido(false);
             $mensaje->setUsuario($id->getUsuario());
             $mensaje->setRemitente($user->getId());
+            $mensaje->setNombreRemitente($user->getNombreUsuario());
             $mensaje->setTipo('Reporte');
             $mensaje->setTexto('Sentimos comunicarle que hemos decidido suspender su proyecto '.$id->getNombre().' por incumplir alguna de las normas de Kindie. Si desea
             recibir más información se puede poner en contacto con el equipo de Kindie a través de kindieOficial@gmail.com. Le recordamos que al ser un incumplimiento de las
@@ -593,6 +595,7 @@ class ProyectoController extends Controller
             $mensaje->setLeido(false);
             $mensaje->setUsuario($id->getUsuario());
             $mensaje->setRemitente($user->getId());
+            $mensaje->setNombreRemitente($user->getNombreUsuario());
             $mensaje->setTipo('Reporte');
             $mensaje->setTexto('Nos alegra comunicarle que su proyecto '.$id->getNombre().' ya no se encuentra en moderación y ha sido validado. Lamentamos loas
             incovenientes que esto le haya poddido causar. Un saludo del equipo de Kindie.');
