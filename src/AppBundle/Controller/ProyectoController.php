@@ -103,7 +103,6 @@ class ProyectoController extends Controller
         $proyecto->setVisitas($visitas+1);
         $em->persist($proyecto);
         $em->flush();
-        dump($visitas);
         // diferencia de fechas
         $fechaInicio = new \DateTime();
         $fechaFin = $proyecto->getFechaFin();
@@ -245,7 +244,6 @@ class ProyectoController extends Controller
         $generos = $em->getRepository('AppBundle:Genero')
             ->findAll();
 
-        dump($_POST);
         if(isset($_POST['crear'])){
             $em = $this->getDoctrine()->getManager();
             $proyecto->setUsuario($user);
@@ -267,7 +265,6 @@ class ProyectoController extends Controller
             if(isset($_FILES['imagen_destacada'])){
                 if(in_array($_FILES['imagen_destacada']['type'], $tipos)){
                     if(move_uploaded_file($_FILES['imagen_destacada']['tmp_name'], $ruta_final.$_FILES['imagen_destacada']['name']));
-                    dump("El archivo ". basename( $_FILES["imagen_destacada"]["name"]). " ha sido subido con éxito");
                     $em = $this->getDoctrine()->getManager();
                     $proyecto->setImagenPrincipal("/".$ruta_final.$_FILES['imagen_destacada']['name']);
                 }

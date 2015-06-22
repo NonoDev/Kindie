@@ -37,7 +37,6 @@ class ImagenController extends Controller
            if(isset($_FILES['upload'])){
                if(in_array($_FILES['upload']['type'], $tipos)){
                    if(move_uploaded_file($_FILES['upload']['tmp_name'], $ruta_final.$_FILES['upload']['name']));
-                   dump("El archivo ". basename( $_FILES["upload"]["name"]). " ha sido subido con éxito");
                    $em = $this->getDoctrine()->getManager();
                    $imagen->setProyecto($id);
                    $imagen->setRuta("/".$ruta_final.$_FILES['upload']['name']);
@@ -125,7 +124,6 @@ class ImagenController extends Controller
             if(isset($_FILES['upload'])){
                 if(in_array($_FILES['upload']['type'], $tipos)){
                     if(move_uploaded_file($_FILES['upload']['tmp_name'], $ruta_final.$_FILES['upload']['name']));
-                    dump("El archivo ". basename( $_FILES["upload"]["name"]). " ha sido subido con éxito");
                     $em = $this->getDoctrine()->getManager();
                     $id->setImagenPrincipal("/".$ruta_final.$_FILES['upload']['name']);
                     $em->persist($id);

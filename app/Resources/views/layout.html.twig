@@ -56,18 +56,51 @@
                 <li></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="{{ path('descubre_proyectos') }}">Descubre</a></li>
-                <li><a href="{{ path('empieza')}}">Empieza</a></li>
-                <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
-                <li><a href="{{ path('nuevo_usuario') }}">Regístrate</a></li>
+                <li class="buscar"><a><i class="mdi-action-find-replace"></i></a></li>
+                <li class="buscador">
+                    <div id="morphsearch" class="morphsearch">
+
+                        <form class="morphsearch-form" action="{{ path('buscador_proyectos') }}" method="post">
+                            <input class="morphsearch-input" type="search" name="search"/>
+                            <button class="morphsearch-submit" type="submit" id="buscar" name="buscar">Buscar</button>
+                        </form>
+                        <div class="morphsearch-content">
+                            <div class="dummy-column">
+
+                            </div>
+                            <div class="dummy-column">
+
+                            </div>
+                            <div class="dummy-column">
+
+                            </div>
+                        </div><!-- /morphsearch-content -->
+                        <span class="morphsearch-close"></span>
+                    </div><!-- /morphsearch -->
+                </li>
                 <!-- Dropdown Trigger -->
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"></a></li>
+                <li><a href="{{ path('descubre_proyectos') }}">Descubre</a></li>
+                <li><a href="{{ path('empieza') }}">Empieza</a></li>
+                {%  if app.user %}
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{ app.user.nombreUsuario }}</span><span>{% if mnl + nnl > 0 %}<i class="mdi-action-announcement"></i>{% endif %}</a></li>
                 <ul id="dropdown1" class="dropdown-content">
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
+                    <li><a href="{{ path('mensajes_usuario') }}">Mensajes <span class="contador-blue"> {{ mnl }}</span></a></li>
+                    <li><a href="{{ path('perfil', {'id': app.user.id}) }}">Perfil</a></li>
+                    <li><a href="{{ path('proyectos_apoyados') }}">Proyectos apoyados</a></li>
+                    <li><a href="{{ path('listar_favoritos') }}">Favoritos</a></li>
+                    <li><a href="{{ path('cuenta', {'id':app.user.id}) }}">Mi cuenta</a></li>
+                    <li><a href="{{ path('notificaciones') }}">Notificaciones <span class="contador-green"> {{ nnl }}</span></a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('administracion') }}">Panel de administración</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('usuario_salir') }}">Cerrar sesión</a></li>
                 </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{{ path('usuario_entrar') }}">Login</a></li>
+                    <li><a href="{{ path('nuevo_usuario') }}">Regístrate</a></li>
+                {% endif %}
+
             </ul>
         </div>
     </nav>

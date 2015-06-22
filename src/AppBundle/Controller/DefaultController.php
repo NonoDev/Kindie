@@ -54,8 +54,6 @@ class DefaultController extends Controller
     public function entrarAction(Request $request)
     {
         $helper = $this->get('security.authentication_utils');
-        dump($helper->getLastAuthenticationError());
-
         return $this->render(':default/usuario:entrada.html.twig',
             [
                 'last_username' => $helper->getLastUsername(),

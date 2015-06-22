@@ -712,7 +712,7 @@ class Usuario implements UserInterface
         if ($this->getEsParticipante()) {
             $roles[] = new Role('ROLE_PARTICIPANTE');
         }
-        dump($roles);
+
         return $roles;
     }
 
